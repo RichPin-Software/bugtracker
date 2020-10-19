@@ -1,0 +1,151 @@
+html, body {
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+div.nav {
+    float:left;
+    width:fit-content;
+    height: 100%;
+    margin:0 30px 0 0;
+    background-color:rgb(221, 218, 218);
+}
+
+div.nav ul {
+    list-style-type: none;
+    overflow: hidden;
+    margin:0;
+    padding:0;
+}
+
+div.nav ul li {
+    text-align: center;
+    padding:40px 50px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+div.nav ul li a {
+    text-decoration: none;
+    font-weight: 600;
+    color: black;
+}
+
+div#login-container {
+    padding: 10% 0;
+}
+
+div#members-container {
+    padding:0;
+}
+
+div#members-body {
+    padding: 0 30px;
+}
+
+div#login-form {
+    width:500px;
+    height:fit-content;
+    margin:0 auto;
+    padding:0 120px;
+}
+
+div#addtask-form {
+    width:fit-content;
+    margin: 10px auto 0 auto;
+}
+
+#login-form h1{
+    text-align: center;
+}
+
+input#username {
+    width:100%;
+}
+
+input#password {
+    width:100%;
+}
+
+input#task-title {
+    width:100%;
+}
+
+input#task-author {
+    width:100%;
+}
+
+div.container {
+    width:90%;
+    height:100%;
+    margin: 0 auto;
+}
+
+div.header {
+    background-color: rgb(0, 100, 0);
+    padding:30px;
+}
+
+div.header h1 {
+    display:inline;
+    color:rgb(255, 255, 255);
+}
+
+div.header a {
+    float:right;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+div.error {
+    color: rgb(255, 0, 0);
+}
+
+input.submit {
+    background-color: rgb(25, 65, 247);
+    padding:4px;
+    border-radius:7px;
+    float:right;
+    color:rgb(255, 255, 255);
+}
+
+.alerts {
+    list-style-type: none;
+    overflow: hidden;
+    padding:0;
+}
+
+.alerts li {
+    padding:5px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.alerts li.success {
+    border:3px solid rgb(0, 255, 0);
+    background-color: rgb(196, 248, 196);
+    color:rgb(0, 255, 0);
+}
+
+.alerts li.warning {
+    border:3px solid rgb(255, 196, 0);
+    background-color: rgb(245, 226, 165);
+    color:rgb(255, 196, 0);
+}
+
+.alerts li.error {
+    border:3px solid rgb(255, 0, 0);
+    background-color: rgb(255, 188, 188);
+    color:rgb(255, 0, 0);
+}
