@@ -14,44 +14,8 @@ body {
     font-family: sans-serif;
 }
 
-div.nav {
-    float:left;
-    width:fit-content;
-    height: 100%;
-    margin:0 30px 0 0;
-    background-color:rgb(221, 218, 218);
-}
-
-div.nav ul {
-    list-style-type: none;
-    overflow: hidden;
-    margin:0;
-    padding:0;
-}
-
-div.nav ul li {
-    text-align: center;
-    padding:40px 50px;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
-}
-
-div.nav ul li a {
-    text-decoration: none;
-    font-weight: 600;
-    color: black;
-}
-
 div#login-container {
     padding: 10% 0;
-}
-
-div#members-container {
-    padding:0;
-}
-
-div#members-body {
-    padding: 0 30px;
 }
 
 div#login-form {
@@ -86,6 +50,23 @@ input#task-author {
     width:100%;
 }
 
+table#tasks {
+    padding:0;
+    width:100%;
+}
+
+table#tasks td {
+    padding:20px;
+}
+
+table#tasks tr:nth-child(odd) {
+    background-color:rgb(179, 236, 184);
+}
+
+table#tasks tr:nth-child(even) {
+    background-color: rgb(151, 194, 154);
+}
+
 div.container {
     width:90%;
     height:100%;
@@ -106,6 +87,40 @@ div.header a {
     float:right;
     text-decoration: none;
     color: rgb(255, 255, 255);
+}
+
+div.nav {
+    float:left;
+    width:13%;
+    height: 100%;
+    margin:0;
+    background-color:rgb(221, 218, 218);
+}
+
+div.nav ul {
+    list-style-type: none;
+    overflow: hidden;
+    margin:0;
+    padding:0;
+}
+
+div.nav ul li {
+    text-align: center;
+    padding:40px 50px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+div.nav ul li a {
+    text-decoration: none;
+    font-weight: 600;
+    color: black;
+}
+
+div.members-body {
+    padding: 0;
+    width:87%;
+    float:right;
 }
 
 div.error {
