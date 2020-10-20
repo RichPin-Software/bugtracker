@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/style.css">
-    <title>Add Task</title>
+    <title>Members Only</title>
 </head>
 <body>
-    <div class="container" id="members-container">
+    <div class="container">
         <div class="row">
             <div class="header">
                 <h1>Bug Tracker</h1>
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="row">
-            <div id="members-body">
+            <div class="members-body">
                 <div id="addtask-form">
                     <form action="" method="POST">
                         <input type="text" name="task-title" cols="100" id="task-title" placeholder="New Task Title">

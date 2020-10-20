@@ -7,7 +7,7 @@
     <title>Members Only</title>
 </head>
 <body>
-    <div class="container" id="members-container">
+    <div class="container">
         <div class="row">
             <div class="header">
                 <h1>Bug Tracker</h1>
@@ -25,8 +25,8 @@
             </div>
         </div>
         <div class="row">
-            <div id="members-body">
-                <?php 
+            <div class="members-body">
+                <?php
                     $loginSuccessful = $this->getAlerts();
                     if($loginSuccessful != '')
                     {
@@ -40,11 +40,11 @@
                         echo $loginSuccessful;
                     }
                 ?>
-                <table>
+                <table id="tasks">
                     <?php
                         include('includes/database.php');
 
-                        $sql = "SELECT * FROM subscribers ORDER BY id";
+                        $sql = "SELECT * FROM tasks ORDER BY id";
                         $result = $conn->query($sql);
         
                         if($result) {
@@ -52,9 +52,7 @@
                                 while($row = $result->fetch_object()) {
                                     $table = <<<TABLE
                                     <tr>
-                                    <td>$row->id</td>
-                                    <td>$row->name</td>
-                                    <td>$row->email</td>
+                                    <td><a href="#">BUG-$row->id: $row->title</a></td>
                                     </tr>
                                     TABLE;
         
