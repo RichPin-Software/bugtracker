@@ -17,7 +17,7 @@
         <div class="row">
             <div class="nav">
                 <ul>
-                    <li><a href="members.php?addTask=true">Add Task</a></li>
+                    <li><a id="add-task" href="#">Add Task</a></li>
                     <li><a href="#">TODO</a></li>
                     <li><a href="#">Pending</a></li>
                     <li><a href="#">Resolved</a></li>
@@ -26,22 +26,12 @@
         </div>
         <div class="row">
             <div class="members-body">
-                <div id="addtask-form">
-                    <form action="" method="POST">
-                        <input type="text" name="task-title" cols="100" id="task-title" placeholder="New Task Title">
-                        <div class="error"></div><br>
-                        <input type="text" name="task-author" id="task-author" placeholder="Created by">
-                        <div class="error"></div><br>
-                        <textarea name="task-description" id="task-description" cols="100" rows="20"></textarea><br>
-                        <input type="button" name="cancel" id="cancel" value="Cancel">
-                        <input type="submit" class="submit" value="Submit">
-                    </form>
-                </div>
+                
             </div>
         </div>
     </div>
 
-    <script src="../models/ui.js"></script>
-    <script src="app.js"></script>
+    <script src="../../bugtracker/models/ui.js"></script>
+    <script src="../bugtracker/app.js"></script>
 </body>
 </html>

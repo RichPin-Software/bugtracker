@@ -1,7 +1,13 @@
 let Ui = new UI();
-//let queryString = window.location.search;
 
-if(Ui.mQueryString.includes('addTask'))
-{
-    Ui.cancelForm('cancel', 'click', 'members.php');
-}
+const btnAddTask = document.getElementById('add-task');
+const btnCancel = document.getElementById('cancel');
+
+btnAddTask.addEventListener('click', ()=> {
+    Ui.hideElement('tasks');
+    Ui.showElement('addtask-form');
+});
+
+btnCancel.addEventListener('click', ()=> {
+    Ui.redirect('members.php');
+});
