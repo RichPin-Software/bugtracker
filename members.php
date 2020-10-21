@@ -12,14 +12,7 @@
     {
         if($_SESSION['currentUser'])
         {
-            if(isset($_GET['addTask']))
-            {
-                $Template->load('views/v_tasks.php');
-            }
-            else
-            {
-                $Template->load('views/v_members.php');
-            }
+            $Template->load('views/v_members.php');
         }
         else
         {

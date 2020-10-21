@@ -26,6 +26,7 @@ div#login-form {
 }
 
 div#addtask-form {
+    display:none;
     width:fit-content;
     margin: 10px auto 0 auto;
 }
