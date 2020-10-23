@@ -4,8 +4,8 @@ const btnAddTask = document.getElementById('add-task');
 const btnCancel = document.getElementById('cancel');
 
 btnAddTask.addEventListener('click', ()=> {
-    Ui.hideElement('tasks');
-    Ui.showElement('addtask-form');
+    Ui.hideElement('.display-table');
+    Ui.showElement('.add-task-form');
 });
 
 btnCancel.addEventListener('click', ()=> {

@@ -12,21 +12,7 @@
             <h1>Member Login</h1>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <?php 
-                    /*
-                        Validate Form
-                    */
-                    $alert = $this->getAlerts();
-                    if($alert != '')
-                    {
-                        echo "<ul class='alerts'>$alert</ul>";
-                        echo "<script>setTimeout(()=>{
-                                document.querySelector('.alerts').style.display='none';
-                            },3000);</script>";
-                    }
-                    else
-                    {
-                        echo $alert;
-                    }
+                    echo $this->displayAlert();
                 ?>
                 <label for="username">Username:</label><br>
                 <input type="text" name="username" id="username" value="<?php echo $this->getData('input_user'); ?>">
@@ -38,6 +24,5 @@
             </form>
         </div>
     </div>
-
 </body>
 </html>
