@@ -17,7 +17,7 @@
         <div class="row">
             <div class="nav">
                 <ul>
-                    <li><a id="add-task" href="#">Add Task</a></li>
+                    <li><a href="members.php?addtask=true">Add Task</a></li>
                     <li><a href="#">TODO</a></li>
                     <li><a href="#">Pending</a></li>
                     <li><a href="#">Resolved</a></li>
@@ -55,9 +55,6 @@
                         }
                     ?>
                 </table>
-                <?php
-                    echo $this->addTaskForm();
-                ?>
             </div>
         </div>
     </div>

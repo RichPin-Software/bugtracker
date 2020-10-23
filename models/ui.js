@@ -28,9 +28,9 @@ class UI
         element.style.display = 'none';
     }
 
-    cancelForm(buttonId, event, url)
+    cancelForm(queryselector, event, url)
     {
-        let button = document.getElementById(buttonId);
+        let button = document.querySelector(queryselector);
 
         button.addEventListener(event, ()=> {
             this.redirect(url);
