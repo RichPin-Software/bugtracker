@@ -25,8 +25,39 @@
             </div>
         </div>
         <div class="row">
-            <div class="members-body">
-                
+            <div class="members-body" id="selected-tasks-container">
+                <table class="display-table" id="selected-task">
+                    <?php
+                        include('includes/database.php');
+
+                        $id = $_SESSION['id'];
+
+                        $sql = "SELECT * FROM tasks WHERE id = $id";
+                        $result = $conn->query($sql);
+        
+                        if($result) {
+                            if($result->num_rows > 0) {
+                                $row = $result->fetch_object();
+                                $table = <<<TABLE
+                                <tr><th>$row->title</th></tr>
+                                <tr><td id="author">Created By: $row->author</td></tr>
+                                <tr><td id="assignee">Assigned To: $row->assignee</td></tr>
+                                <tr><td id="status">$row->status</td></tr>
+                                <tr><td id="description">$row->description</td></tr>
+                                TABLE;
+    
+                                echo $table;
+                            } else {
+                                echo "<tr><td>No Data Available</td></tr>";
+                            }
+                        } else {
+                            echo "Error: $mysqli->error";
+                        }
+                    ?>
+                </table>
+                <?php
+                    echo $this->addTaskForm();
+                ?>
             </div>
         </div>
     </div>

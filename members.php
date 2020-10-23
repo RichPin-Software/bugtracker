@@ -10,14 +10,20 @@
     }
     else
     {
-        if($_SESSION['currentUser'])
+        if(isset($_GET['id']))
         {
-            $Template->load('views/v_members.php');
+            $_SESSION['id'] = $_GET['id'];
+            $Template->load('views/v_tasks.php');
         }
         else
         {
-            $Template->load('views/v_login.php');
+            if($_SESSION['currentUser'])
+            {
+                $Template->load('views/v_members.php');
+            }
+            else
+            {
+                $Template->load('views/v_login.php');
+            }
         }
     }
-
-    

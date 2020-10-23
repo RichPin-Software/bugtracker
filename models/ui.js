@@ -16,15 +16,15 @@ class UI
         return window.location.href = url;
     }
 
-    showElement(elementId, display = 'block')
+    showElement(queryselector, display = 'block')
     {
-        let element = document.getElementById(elementId);
+        let element = document.querySelector(queryselector);
         element.style.display = display;
     }
 
-    hideElement(elementId)
+    hideElement(queryselector)
     {
-        let element = document.getElementById(elementId);
+        let element = document.querySelector(queryselector);
         element.style.display = 'none';
     }
 

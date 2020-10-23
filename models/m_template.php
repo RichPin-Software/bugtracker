@@ -75,17 +75,46 @@ class Templates
     }
 
     /*
-        TEST Functions
+        Forms and Alerts
     */
-    function getAlertTypes()
+    function addTaskForm()
     {
-        if(isset($this->alertTypes))
+        $form = <<<FORM
+        <div class="add-task-form" id="addtask-form">
+        <form action="" method="POST">
+        <input type="text" name="task-title" cols="100" id="task-title" placeholder="New Task Title">
+        <div class="error"></div><br>
+        <input type="text" name="task-author" id="task-author" placeholder="Created by">
+        <div class="error"></div><br>
+        <textarea name="task-description" id="task-description" cols="100" rows="20"></textarea><br>
+        <input type="button" name="cancel" id="cancel" value="Cancel">
+        <input type="submit" class="submit" value="Submit">
+        </form>
+        </div>
+        FORM;
+
+        return $form;
+    }
+
+    function displayAlert()
+    {
+        $alert = $this->getAlerts();
+        if($alert != '')
         {
-            print_r($this->alertTypes);
+            $showAlert = <<<ALERT
+            <ul class="alerts">$alert</ul>
+            <script>
+            setTimeout(()=>{
+            document.querySelector('.alerts').style.display='none';
+            },3000);
+            </script>
+            ALERT;
+
+            return $showAlert;
         }
         else
         {
-            echo "\$alertTypes is not set";
+            return $alert;
         }
     }
 }
