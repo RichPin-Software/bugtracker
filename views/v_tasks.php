@@ -30,28 +30,33 @@
                     <?php
                         include('includes/database.php');
 
-                        $id = $_SESSION['id'];
+                        if ($stmt = $conn->prepare("SELECT * FROM tasks WHERE id = ?"))
+                        {
+                            $stmt->bind_param("i", $id);
+                            $id = $_SESSION['id'];
+                            $stmt->execute();
+                            $stmt->store_result();
+                            $stmt->bind_result($result['id'], $result['title'], $result['author'], $result['assignee'], $result['status'], $result['description']);
 
-                        $sql = "SELECT * FROM tasks WHERE id = $id";
-                        $result = $conn->query($sql);
-        
-                        if($result) {
-                            if($result->num_rows > 0) {
-                                $row = $result->fetch_object();
-                                $table = <<<TABLE
-                                <tr><th>$row->title</th></tr>
-                                <tr><td id="author">Created By: $row->author</td></tr>
-                                <tr><td id="assignee">Assigned To: $row->assignee</td></tr>
-                                <tr><td id="status">$row->status</td></tr>
-                                <tr><td id="description">$row->description</td></tr>
-                                TABLE;
-    
-                                echo $table;
-                            } else {
-                                echo "<tr><td>No Data Available</td></tr>";
+                            if ($stmt->num_rows > 0)
+                            {
+                                $stmt->fetch();
+                                ?>
+                                <tr><th><?php echo $result['title']; ?></th></tr>
+                                <tr><td id="author"><?php echo $result['author']; ?></td></tr>
+                                <tr><td id="assignee"><?php echo $result['assignee']; ?></td></tr>
+                                <tr><td id="status"><?php echo $result['status']; ?></td></tr>
+                                <tr><td id="description"><?php echo $result['description']; ?></td></tr>
+                                <?php
                             }
-                        } else {
-                            echo "Error: $mysqli->error";
+                            else
+                            {
+                                echo "<tr><th>No Data Available</th></tr>";
+                            }
+                        }
+                        else
+                        {
+                            echo "Failure to connect: ($conn->errno) $conn->error";
                         }
                     ?>
                 </table>
