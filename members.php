@@ -49,8 +49,25 @@
                     }
                     else
                     {
+                        $title = $Template->getData('input_title');
+                        $author = $Template->getData('input_user');
+                        $status = "TODO";
+                        $description = $Template->getData('input_description');
                         // insert sql
-                        echo "it worked";
+                        if($stmt = $conn->prepare("INSERT INTO tasks (title, author, status, description) VALUES (?,?,?,?)"))
+                        {
+                            $stmt->bind_param("ssss", $title, $author, $status, $description);
+                            $stmt->execute();
+
+                            $stmt->close();
+                            $conn->close();
+
+                            $Template->load('views/v_members.php');
+                        }
+                        else
+                        {
+                            echo "Error: cannot complete query";
+                        }
                     }
                 }
                 else
