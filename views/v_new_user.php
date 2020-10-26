@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/style.css">
-    <title>Member Sign-up</title>
+    <title>New User</title>
 </head>
 <body>
     <div class="container" id="login-container">
         <div id="login-form">
-            <h1>Member Sign-up</h1>
+            <h1>New User</h1>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <?php 
                     echo $this->displayAlert();

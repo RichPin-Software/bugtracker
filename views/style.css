@@ -57,9 +57,8 @@ div#addtask-container {
     padding:0 100px 50px 100px;
 }
 
-div#edit-container {
+td#edit-delete {
     float:right;
-    margin: 30px 30px 0 0;
 }
 
 textarea#task-description {
@@ -73,7 +72,11 @@ textarea#task-description {
 
 table#selected-task {
     padding:20px;
+    border:1px solid black;
+    border-radius:10px;
+    width:80%;
     height: 100%;
+    margin:20px auto auto auto;
 }
 
 table#selected-task #author, #assignee, #status {
@@ -90,8 +93,9 @@ table#tasks tr:nth-child(even) {
     background-color: rgb(151, 194, 154);
 }
 
-a #edit-task, #delete-task {
+#edit-task, #delete-task {
     padding:10px;
+    text-decoration: underline;
 }
 
 a#signup {
@@ -104,7 +108,7 @@ a#back {
 }
 
 div.container {
-    width:90%;
+    width:80%;
     height:100%;
     margin: 0 auto;
 }
@@ -189,9 +193,9 @@ input.cancel {
 }
 
 .alerts li.success {
-    border:3px solid rgb(0, 255, 0);
-    background-color: rgb(196, 248, 196);
-    color:rgb(0, 255, 0);
+    border:3px solid rgb(4, 201, 4);
+    background-color: rgb(213, 248, 203);
+    color:rgb(4, 201, 4);
 }
 
 .alerts li.warning {
