@@ -36,6 +36,10 @@ textarea {
     padding:5px;
 }
 
+a {
+    text-decoration: none;
+}
+
 div#login-container {
     padding: 10% 0;
 }
@@ -51,6 +55,11 @@ div#addtask-container {
     width:100%;
     margin: 10px auto 0 auto;
     padding:0 100px 50px 100px;
+}
+
+div#edit-container {
+    float:right;
+    margin: 30px 30px 0 0;
 }
 
 textarea#task-description {
@@ -79,6 +88,10 @@ table#tasks tr:nth-child(odd) {
 
 table#tasks tr:nth-child(even) {
     background-color: rgb(151, 194, 154);
+}
+
+a #edit-task, #delete-task {
+    padding:10px;
 }
 
 div.container {

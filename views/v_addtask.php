@@ -17,7 +17,7 @@
         <div class="row">
             <div class="nav">
                 <ul>
-                    <li><a id="add-task" href="#">Add Task</a></li>
+                    <li><a href="#">Add Task</a></li>
                     <li><a href="#">TODO</a></li>
                     <li><a href="#">Pending</a></li>
                     <li><a href="#">Resolved</a></li>
@@ -30,12 +30,12 @@
                     <?php
                         echo $this->displayAlert();
                     ?>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="addtask-form" method="POST">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">
                         <input type="text" name="task-title" cols="100" id="task-title" placeholder="New Task Title" value="<?php echo $this->getData('input_title'); ?>">
                         <div class="error"><?php echo $this->getData('error_title'); ?></div><br>
                         <input type="text" name="task-author" id="task-author" placeholder="Created by" value="<?php echo $this->getData('input_user'); ?>">
                         <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
-                        <textarea type="text" name="task-description" id="task-description" form="addtask-form" placeholder="Description..."><?php echo $this->getData('input_description'); ?></textarea>
+                        <textarea type="text" name="task-description" id="task-description" form="task-form" placeholder="Description..."><?php echo $this->getData('input_description'); ?></textarea>
                         <div class="error"><?php echo $this->getData('error_description'); ?></div><br>
                         <input type="button" name="cancel" class="cancel" value="Cancel">
                         <input type="submit" class="submit" value="Submit">
