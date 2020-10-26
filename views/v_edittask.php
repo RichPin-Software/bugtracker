@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/style.css">
-    <title>Members Only</title>
+    <title>Edit Task</title>
 </head>
 <body>
     <div class="container">
@@ -25,9 +25,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="members-body" id="selected-tasks-container">
-                <table class="display-table" id="selected-task">
+            <div class="members-body" id="add-task-container">
+                <div id="addtask-container">
                     <?php
+                        echo $this->displayAlert();
+
                         include('includes/database.php');
 
                         if ($stmt = $conn->prepare("SELECT * FROM tasks WHERE id = ?"))
@@ -41,29 +43,29 @@
                             if ($stmt->num_rows > 0)
                             {
                                 $stmt->fetch();
-                                ?>
-                                <tr><th><?php echo $result['title']; ?></th></tr>
-                                <tr><td id="author"><?php echo $result['author']; ?></td></tr>
-                                <tr><td id="assignee"><?php echo $result['assignee']; ?></td></tr>
-                                <tr><td id="status"><?php echo $result['status']; ?></td></tr>
-                                <tr><td id="description"><?php echo $result['description']; ?></td></tr>
-                                <?php
-                                $stmt->close();
-                                $conn->close();
+                    ?>
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">
+                        <input type="text" name="task-title" cols="100" id="task-title" placeholder="New Task Title" value="<?php echo $result['title']; ?>">
+                        <div class="error"><?php echo $this->getData('error_title'); ?></div><br>
+                        <input type="text" name="task-author" id="task-author" placeholder="Created by" value="<?php echo $result['author']; ?>">
+                        <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
+                        <textarea type="text" name="task-description" id="task-description" form="task-form" placeholder="Description..."><?php echo $result['description']; ?></textarea>
+                        <div class="error"><?php echo $this->getData('error_description'); ?></div><br>
+                        <input type="button" name="cancel" class="cancel" value="Cancel">
+                        <input type="submit" class="submit" value="Submit">
+                    </form>
+                    <?php
                             }
                             else
                             {
-                                echo "<tr><th>No Data Available</th></tr>";
+                                echo "<div>Error: task does not exist</div>";
                             }
                         }
                         else
                         {
-                            echo "<tr><th>Failure to connect: ($conn->errno) $conn->error</th></tr>";
+                            echo "<div>Failure to connect: ($conn->errno) $conn->error</div>";
                         }
                     ?>
-                </table>
-                <div id="edit-container">
-                    <a id="edit-task" href="members.php?edittask=true">Edit</a><a id="delete-task" href="members.php?deletetask=true">Delete</a>
                 </div>
             </div>
         </div>
