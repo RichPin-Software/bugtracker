@@ -26,6 +26,7 @@
         </div>
         <div class="row">
             <div class="members-body" id="selected-tasks-container">
+                <a id="back" href="members.php"><<< Back</a>
                 <table class="display-table" id="selected-task">
                     <?php
                         include('includes/database.php');
@@ -61,10 +62,8 @@
                             echo "<tr><th>Failure to connect: ($conn->errno) $conn->error</th></tr>";
                         }
                     ?>
+                            <tr><td id="edit-delete"><a id="edit-task" href="members.php?edittask=true">Edit</a><a id="delete-task" href="members.php?deletetask=true">Delete</a></td></tr>
                 </table>
-                <div id="edit-container">
-                    <a id="edit-task" href="members.php?edittask=true">Edit</a><a id="delete-task" href="members.php?deletetask=true">Delete</a>
-                </div>
             </div>
         </div>
     </div>
