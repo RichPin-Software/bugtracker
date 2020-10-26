@@ -94,6 +94,15 @@ a #edit-task, #delete-task {
     padding:10px;
 }
 
+a#signup {
+    font-size: 13px;
+}
+
+a#back {
+    padding:40px;
+
+}
+
 div.container {
     width:90%;
     height:100%;

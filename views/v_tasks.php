@@ -26,6 +26,7 @@
         </div>
         <div class="row">
             <div class="members-body" id="selected-tasks-container">
+                <a id="back" href="members.php"><<< Back</a>
                 <table class="display-table" id="selected-task">
                     <?php
                         include('includes/database.php');
