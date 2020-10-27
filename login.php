@@ -9,7 +9,6 @@
 
         if($_POST['username']=='' || $_POST['password']=='')
         {
-            // show error
             if($_POST['username']=='')
             {
                 $Template->setData('error_user', '*required!');
@@ -23,9 +22,16 @@
         }
         else
         {
-            // successful login
-            $_SESSION['userLoggedIn'] = true;
-            $Template->redirect('members.php');
+            if($Auth->validateLogin($Template->getData('input_user'), $Template->getData('input_pass')) == false)
+            {
+                $Template->setAlert('Invalid username or password!','error');
+                $Template->load('views/v_login.php');
+            }
+            else
+            {
+                $_SESSION['userLoggedIn'] = true;
+                $Template->redirect('members.php');
+            }
         }
     }
     else

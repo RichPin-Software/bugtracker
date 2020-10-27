@@ -15,10 +15,10 @@
                     echo $this->displayAlert();
                 ?>
                 <label for="username">Create Username:</label><br>
-                <input type="text" name="username" id="username" value="<?php echo $this->getData('input_user'); ?>">
+                <input type="text" name="username" id="username" value="<?php echo $this->getData('new_user'); ?>">
                 <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
                 <label for="password">Create Password:</label>
-                <input type="password" name="password" id="password" value="<?php echo $this->getData('input_pass'); ?>">
+                <input type="password" name="password" id="password" value="<?php echo $this->getData('newuser_pass'); ?>">
                 <div class="error"><?php echo $this->getData('error_pass'); ?></div><br>
                 <input type="submit" class="submit" value="Submit">
             </form>
