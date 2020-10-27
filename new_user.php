@@ -10,7 +10,6 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
 {
     if($_POST['username']=='' || $_POST['password']=='')
     {
-        // show error
         if($_POST['username']=='')
         {
             $Template->setData('error_user', '*required!');
@@ -24,9 +23,18 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
     }
     else
     {
-        // new member created
-        $member = $_POST['username'];
-        $Template->setAlert("Welcome $member! Please sign in with your new username and password!", 'success');
-        $Template->redirect('login.php');
+        // create new user account
+        $Template->setData('new_user', $_POST['username']);
+        $Template->setData('newuser_pass', $_POST['password']);
+        $new_user = $Template->getData('new_user');
+        $new_password = $Template->getData('newuser_pass');
+
+        $Auth->addNewUser($new_user, $new_password);
+        $Template->setAlert("Welcome $new_user! Please sign in with your new username and password!", 'success');
+        $Template->redirect("login.php");
     }
+}
+else
+{
+    die("Error: page did not load properly");
 }
