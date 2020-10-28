@@ -17,7 +17,7 @@
         <div class="row">
             <div class="nav">
                 <ul>
-                    <li><a href="members.php?addtask=true">Add Task</a></li>
+                    <li><a href="users.php?addtask=true">Add Task</a></li>
                     <li><a href="#">TODO</a></li>
                     <li><a href="#">Pending</a></li>
                     <li><a href="#">Resolved</a></li>
@@ -47,7 +47,7 @@
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">
                         <input type="text" name="task-title" cols="100" id="task-title" placeholder="New Task Title" value="<?php echo $result['title']; ?>">
                         <div class="error"><?php echo $this->getData('error_title'); ?></div><br>
-                        <input type="text" name="task-author" id="task-author" placeholder="Created by" value="<?php echo $result['author']; ?>">
+                        <input type="text" name="task-author" id="task-author" placeholder="Created by" value="<?php echo $result['author']; ?>" disabled>
                         <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
                         <textarea type="text" name="task-description" id="task-description" form="task-form" placeholder="Description..."><?php echo $result['description']; ?></textarea>
                         <div class="error"><?php echo $this->getData('error_description'); ?></div><br>

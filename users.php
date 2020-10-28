@@ -6,14 +6,14 @@
     {
         $Template->setAlert('Login Successful!', 'success');
         $_SESSION['currentUser'] = true;
-        $Template->load('views/v_members.php');
+        $Template->load('views/v_users.php');
     }
     else
     {
         if(isset($_GET['id']))
         {
             $_SESSION['id'] = $_GET['id'];
-            $Template->load('views/v_tasks.php');
+            $Template->load('views/v_task.php');
         }
         else if(isset($_GET['addtask']))
         {
@@ -22,10 +22,6 @@
                 unset($_SESSION['id']);
             }
             $Template->load('views/v_addtask.php');
-        }
-        else if(isset($_GET['edittask']))
-        {
-            $Template->load('views/v_edittask.php');
         }
         // DELETE TASK
         else if(isset($_GET['deletetask']))
@@ -41,7 +37,7 @@
 
                 $Template->setAlert("BUG-$id Deleted Successfully", 'success');
                 unset($_SESSION['id']);
-                $Template->load('views/v_members.php');
+                $Template->load('views/v_users.php');
             }
         }
         else
@@ -51,19 +47,14 @@
                 if($_SERVER["REQUEST_METHOD"] == "POST")
                 {
                     $Template->setData('input_title', $_POST['task-title']);
-                    $Template->setData('input_user', $_POST['task-author']);
+                    $Template->setData('input_user', $_SESSION['user']);
                     $Template->setData('input_description', $_POST['task-description']);
-
                     // VALIDATE FORM
-                    if($_POST['task-title']=='' || $_POST['task-author']=='' || $_POST['task-description']=='')
+                    if($_POST['task-title']=='' || $_POST['task-description']=='')
                     {
                         if($_POST['task-title']=='')
                         {
                             $Template->setData('error_title', '*required!');
-                        }
-                        if($_POST['task-author']=='')
-                        {
-                            $Template->setData('error_user', '*required!');
                         }
                         if($_POST['task-description']=='')
                         {
@@ -72,35 +63,11 @@
                         $Template->setAlert('Must complete required fields', 'error');
                         $Template->load('views/v_addtask.php');
                     }
-                    // EDIT TASK
-                    else if(isset($_SESSION['id']))
-                    {
-                        $id = $_SESSION['id'];
-                        $title = $Template->getData('input_title');
-                        $author = $Template->getData('input_user');
-                        $status = "TODO";
-                        $description = $Template->getData('input_description');
-                        
-                        if($stmt = $conn->prepare("UPDATE tasks SET title=?, author=?, status=?, description=? WHERE id=?"))
-                        {
-                            $stmt->bind_param("ssssi", $title, $author, $status, $description, $id);
-                            $stmt->execute();
-
-                            $stmt->close();
-                            $conn->close();
-
-                            $Template->load('views/v_members.php');
-                        }
-                        else
-                        {
-                            echo "Error: cannot complete query";
-                        }
-                    }
                     // ADD TASK
                     else
                     {
                         $title = $Template->getData('input_title');
-                        $author = $Template->getData('input_user');
+                        $author = $_SESSION['user'];
                         $status = "TODO";
                         $description = $Template->getData('input_description');
                         
@@ -112,7 +79,7 @@
                             $stmt->close();
                             $conn->close();
 
-                            $Template->load('views/v_members.php');
+                            $Template->load('views/v_users.php');
                         }
                         else
                         {
@@ -122,7 +89,7 @@
                 }
                 else
                 {
-                    $Template->load('views/v_members.php');
+                    $Template->load('views/v_users.php');
                 }
             }
             else

@@ -30,7 +30,8 @@
             else
             {
                 $_SESSION['userLoggedIn'] = true;
-                $Template->redirect('members.php');
+                $_SESSION['user'] = $Template->getData('input_user');
+                $Template->redirect('users.php');
             }
         }
     }

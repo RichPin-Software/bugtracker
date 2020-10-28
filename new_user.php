@@ -21,6 +21,19 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
         $Template->setAlert('Must complete required fields', 'error');
         $Template->load('views/v_new_user.php');
     }
+    else if(strlen($_POST['username']) < 8 || strlen($_POST['password']) < 8)
+    {
+        if(strlen($_POST['username']) < 8)
+        {
+            $Template->setData('error_user', '*must be at least 8 characters');
+        }
+        if(strlen($_POST['password']) < 8)
+        {
+            $Template->setData('error_pass', '*must be at least 8 characters');
+        }
+        
+        $Template->load('views/v_new_user.php');
+    }
     else
     {
         // create new user account

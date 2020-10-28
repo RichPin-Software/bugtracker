@@ -17,7 +17,7 @@
         <div class="row">
             <div class="nav">
                 <ul>
-                    <li><a href="members.php?addtask=true">Add Task</a></li>
+                    <li><a href="users.php?addtask=true">Add Task</a></li>
                     <li><a href="#">TODO</a></li>
                     <li><a href="#">Pending</a></li>
                     <li><a href="#">Resolved</a></li>
@@ -41,7 +41,7 @@
                                 while($row = $result->fetch_object()) {
                                     $table = <<<TABLE
                                     <tr>
-                                    <td><a href="members.php?id=$row->id">BUG-$row->id: $row->title</a></td>
+                                    <td><a href="users.php?id=$row->id">BUG-$row->id: $row->title</a></td>
                                     </tr>
                                     TABLE;
         
