@@ -11,7 +11,7 @@
         <div class="row">
             <div class="header">
                 <h1>Bug Tracker</h1>
-                <a href="logout.php">Logout</a>
+                <a href="login.php?logout=1">Logout</a>
             </div>
         </div>
         <div class="row">

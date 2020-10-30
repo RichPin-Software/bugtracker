@@ -11,13 +11,13 @@
         <div class="row">
             <div class="header">
                 <h1>Bug Tracker</h1>
-                <a href="logout.php">Logout</a>
+                <a href="login.php?logout=1">Logout</a>
             </div>
         </div>
         <div class="row">
             <div class="nav">
                 <ul>
-                    <li><a href="users.php?addtask=true">Add Task</a></li>
+                    <li><a href="add_task.php">Add Task</a></li>
                     <li><a href="#">TODO</a></li>
                     <li><a href="#">Pending</a></li>
                     <li><a href="#">Resolved</a></li>

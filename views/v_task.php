@@ -11,13 +11,13 @@
         <div class="row">
             <div class="header">
                 <h1>Bug Tracker</h1>
-                <a href="logout.php">Logout</a>
+                <a href="login.php?logout=1">Logout</a>
             </div>
         </div>
         <div class="row">
             <div class="nav">
                 <ul>
-                    <li><a href="users.php?addtask=true">Add Task</a></li>
+                    <li><a href="add_task.php">Add Task</a></li>
                     <li><a href="#">TODO</a></li>
                     <li><a href="#">Pending</a></li>
                     <li><a href="#">Resolved</a></li>
@@ -62,7 +62,7 @@
                             echo "<tr><th>Failure to connect: ($conn->errno) $conn->error</th></tr>";
                         }
                     ?>
-                            <tr><td id="edit-delete"><a id="edit-task" href="update_task.php?edittask=true">Edit</a><a id="delete-task" href="users.php?deletetask=true">Delete</a></td></tr>
+                            <tr><td id="edit-delete"><a id="edit-task" href="update_task.php">Edit</a><a id="delete-task" href="users.php?deletetask=true">Delete</a></td></tr>
                 </table>
             </div>
         </div>

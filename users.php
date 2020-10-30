@@ -15,6 +15,7 @@
             $_SESSION['id'] = $_GET['id'];
             $Template->load('views/v_task.php');
         }
+        /*
         else if(isset($_GET['addtask']))
         {
             if(isset($_SESSION['id']))
@@ -23,10 +24,20 @@
             }
             $Template->load('views/v_addtask.php');
         }
+        */
         // DELETE TASK
         else if(isset($_GET['deletetask']))
         {
-            if($stmt = $conn->prepare("DELETE FROM tasks WHERE id=?"))
+            $id = $_SESSION['id'];
+            $Auth->deleteTask($id);
+
+            unset($_SESSION['id']);
+            $Template->setAlert("BUG-$id Deleted Successfully", 'success');
+            $Template->redirect('users.php');
+
+
+
+            /* if($stmt = $conn->prepare("DELETE FROM tasks WHERE id=?"))
             {
                 $stmt->bind_param("i", $id);
                 $id = $_SESSION['id'];
@@ -38,59 +49,13 @@
                 $Template->setAlert("BUG-$id Deleted Successfully", 'success');
                 unset($_SESSION['id']);
                 $Template->load('views/v_users.php');
-            }
+            } */
         }
         else
         {
             if($_SESSION['currentUser'])
             {
-                if($_SERVER["REQUEST_METHOD"] == "POST")
-                {
-                    $Template->setData('input_title', $_POST['task-title']);
-                    $Template->setData('input_user', $_SESSION['user']);
-                    $Template->setData('input_description', $_POST['task-description']);
-                    // VALIDATE FORM
-                    if($_POST['task-title']=='' || $_POST['task-description']=='')
-                    {
-                        if($_POST['task-title']=='')
-                        {
-                            $Template->setData('error_title', '*required!');
-                        }
-                        if($_POST['task-description']=='')
-                        {
-                            $Template->setData('error_description', '*required!');
-                        }
-                        $Template->setAlert('Must complete required fields', 'error');
-                        $Template->load('views/v_addtask.php');
-                    }
-                    // ADD TASK
-                    else
-                    {
-                        $title = $Template->getData('input_title');
-                        $author = $_SESSION['user'];
-                        $status = "TODO";
-                        $description = $Template->getData('input_description');
-                        
-                        if($stmt = $conn->prepare("INSERT INTO tasks (title, author, status, description) VALUES (?,?,?,?)"))
-                        {
-                            $stmt->bind_param("ssss", $title, $author, $status, $description);
-                            $stmt->execute();
-
-                            $stmt->close();
-                            $conn->close();
-
-                            $Template->load('views/v_users.php');
-                        }
-                        else
-                        {
-                            echo "Error: cannot complete query";
-                        }
-                    }
-                }
-                else
-                {
-                    $Template->load('views/v_users.php');
-                }
+                $Template->load('views/v_users.php');
             }
             else
             {

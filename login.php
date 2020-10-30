@@ -1,7 +1,7 @@
 <?php
     include('includes/init.php');
     include('includes/database.php');
-
+    // IF USER SUBMITS LOGIN FORM
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
         $Template->setData('input_user', $_POST['username']);
@@ -36,11 +36,18 @@
         }
     }
     else
-    {
-        if(isset($_GET['userLoggedOut']))
+    {   // IF USER LOGS OUT
+        if(isset($_GET['logout']))
         {
-            $Template->setAlert('Successfully Logged Out', 'success');
-        }
+            if($_SESSION['userLoggedIn'])
+            {
+                session_unset();
+                session_destroy();
 
+                $Template->setAlert('Logout Successful', 'success');
+                $Template->load('views/v_login.php');
+            }
+        }
+        // DISPLAY LOGIN FORM
         $Template->load('views/v_login.php');
     }

@@ -4,7 +4,7 @@
     // IF CURRENT USER
     if($_SESSION['currentUser'])
     {
-        // IF USER SUBMITS UPDATE TASK FORM
+        // IF USER SUBMITS ADD TASK FORM
         if($_SERVER["REQUEST_METHOD"] == "POST")
         {
             $Template->setData('input_title', $_POST['task-title']);
@@ -21,24 +21,24 @@
                     $Template->setData('error_description', '*required!');
                 }
                 $Template->setAlert('Must complete required fields', 'error');
-                $Template->load('views/v_edittask.php');
+                $Template->load('views/v_addtask.php');
             }
             else
             {
-                // UPDATE TASK
-                $id = $_SESSION['id'];
+                // ADD TASK
                 $title = $Template->getData('input_title');
                 $status = "TODO";
+                $author = $_SESSION['user'];
                 $description = $Template->getData('input_description');
 
-                $Auth->updateTask($id, $title, $status, $description);
-                $Template->load('views/v_task.php');
+                $Auth->addTask($title, $status, $author, $description);
+                $Template->redirect('users.php');
             }
         }
         else
         {
-            // DISPLAY UPDATE TASK FORM
-            $Template->load('views/v_edittask.php');
+            // DISPLAY ADD TASK FORM
+            $Template->load('views/v_addtask.php');
         }
     }
     else

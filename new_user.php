@@ -1,11 +1,12 @@
 <?php
 include('includes/init.php');
 include('includes/database.php');
-
+// DISPLAY NEW USER FORM
 if(isset($_GET['signup']))
 {
     $Template->load('views/v_new_user.php');
 }
+// IF USER SUBMITS NEW USER FORM
 else if($_SERVER["REQUEST_METHOD"] == "POST")
 {
     if($_POST['username']=='' || $_POST['password']=='')
@@ -36,7 +37,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
     }
     else
     {
-        // create new user account
+        // CREATE NEW USER ACCOUNT
         $Template->setData('new_user', $_POST['username']);
         $Template->setData('newuser_pass', $_POST['password']);
         $new_user = $Template->getData('new_user');
