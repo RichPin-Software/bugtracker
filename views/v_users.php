@@ -51,7 +51,7 @@
                                 echo "<tr><td>No Data Available</td></tr>";
                             }
                         } else {
-                            echo "Error: $mysqli->error";
+                            echo "Error: ($conn->errno) $conn->error";
                         }
                     ?>
                 </table>

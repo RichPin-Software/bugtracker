@@ -1,49 +1,56 @@
 <?php
     include('includes/init.php');
     include('includes/database.php');
-    // IF CURRENT USER
+
+    $key_1 = 'input_title';
+    $key_2 = 'input_description';
+    $err_key_1 = 'error_title';
+    $err_key_2 = 'error_description';
+    $error = '*required field!';
+    /*
+        If logged in as current user
+    */
     if($_SESSION['currentUser'])
     {
-        // IF USER SUBMITS ADD TASK FORM
+        /*
+            If user submits add task form
+        */
         if($_SERVER["REQUEST_METHOD"] == "POST")
         {
-            $Template->setData('input_title', $_POST['task-title']);
-            $Template->setData('input_description', $_POST['task-description']);
+            $title = $_POST['task-title'];
+            $description = $_POST['task-description'];
 
-            if($_POST['task-title']=='' || $_POST['task-description']=='')
+            if($Template->formValidate($key_1, $title, $err_key_1, $key_2, $description, $err_key_2, $error))
             {
-                if($_POST['task-title']=='')
-                {
-                    $Template->setData('error_title', '*required!');
-                }
-                if($_POST['task-description']=='')
-                {
-                    $Template->setData('error_description', '*required!');
-                }
-                $Template->setAlert('Must complete required fields', 'error');
-                $Template->load('views/v_addtask.php');
-            }
-            else
-            {
-                // ADD TASK
-                $title = $Template->getData('input_title');
+                /*
+                    Add task
+                */
+                $title = $Template->getData($key_1);
                 $status = "TODO";
                 $author = $_SESSION['user'];
-                $description = $Template->getData('input_description');
+                $description = $Template->getData($key_2);
 
                 $Auth->addTask($title, $status, $author, $description);
                 $Template->redirect('users.php');
             }
+            else
+            {
+                $Template->load('views/v_addtask.php');
+            }
         }
         else
         {
-            // DISPLAY ADD TASK FORM
+            /*
+                Display add task form
+            */
             $Template->load('views/v_addtask.php');
         }
     }
     else
     {
-        // IF NOT LOGGED IN
+        /*
+            If not logged in
+        */
         $Template->setAlert('Access Denied!', 'error');
         $Template->redirect('login.php');
     }

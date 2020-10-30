@@ -1,45 +1,51 @@
 <?php
     include('includes/init.php');
     include('includes/database.php');
-    // IF USER SUBMITS LOGIN FORM
+
+    $user_key = 'input_user';
+    $pass_key = 'input_pass';
+    $err_key_1 = 'error_user';
+    $err_key_2 = 'error_pass';
+    $error = '*required field!';
+    /*
+        If user submits login form
+    */
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        $Template->setData('input_user', $_POST['username']);
-        $Template->setData('input_pass', $_POST['password']);
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
-        if($_POST['username']=='' || $_POST['password']=='')
+        if($Template->formValidate($user_key, $username, $err_key_1, $pass_key, $password, $err_key_2, $error))
         {
-            if($_POST['username']=='')
+            $username = $Template->getData($user_key);
+            $password = $Template->getData($pass_key);
+
+            if($Auth->validateLogin($username, $password))
             {
-                $Template->setData('error_user', '*required!');
+                $_SESSION['login_successful'] = true;
+                $_SESSION['user'] = $Template->getData($user_key);
+                $Template->redirect('users.php');
             }
-            if($_POST['password']=='')
-            {
-                $Template->setData('error_pass', '*required!');
-            }
-            $Template->setAlert('Must complete required fields', 'error');
-            $Template->load('views/v_login.php');
-        }
-        else
-        {
-            if($Auth->validateLogin($Template->getData('input_user'), $Template->getData('input_pass')) == false)
+            else
             {
                 $Template->setAlert('Invalid username or password!','error');
                 $Template->load('views/v_login.php');
             }
-            else
-            {
-                $_SESSION['userLoggedIn'] = true;
-                $_SESSION['user'] = $Template->getData('input_user');
-                $Template->redirect('users.php');
-            }
+        }
+        else
+        {
+            $Template->setAlert('Must complete required fields', 'error');
+            $Template->load('views/v_login.php');
         }
     }
     else
-    {   // IF USER LOGS OUT
+    {
+        /*
+            If user logs out
+        */
         if(isset($_GET['logout']))
         {
-            if($_SESSION['userLoggedIn'])
+            if($_SESSION['login_successful'])
             {
                 session_unset();
                 session_destroy();
@@ -48,6 +54,8 @@
                 $Template->load('views/v_login.php');
             }
         }
-        // DISPLAY LOGIN FORM
+        /*
+            Display login form
+        */
         $Template->load('views/v_login.php');
     }
