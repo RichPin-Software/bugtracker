@@ -17,7 +17,7 @@
         <div class="row">
             <div class="nav">
                 <ul>
-                    <li><a href="add_task.php">Add Task</a></li>
+                    <li><a href="users.php?addtask=1">Add Task</a></li>
                     <li><a href="#">TODO</a></li>
                     <li><a href="#">Pending</a></li>
                     <li><a href="#">Resolved</a></li>

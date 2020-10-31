@@ -17,7 +17,7 @@
         <div class="row">
             <div class="nav">
                 <ul>
-                    <li><a href="add_task.php">Add Task</a></li>
+                    <li><a href="users.php?addtask=1">Add Task</a></li>
                     <li><a href="#">TODO</a></li>
                     <li><a href="#">Pending</a></li>
                     <li><a href="#">Resolved</a></li>
@@ -26,7 +26,7 @@
         </div>
         <div class="row">
             <div class="members-body" id="selected-tasks-container">
-                <a id="back" href="users.php"><<< Back</a>
+                <a id="back" href="users.php?back=1"><<< Back</a>
                 <table class="display-table" id="selected-task">
                     <?php
                         include('includes/database.php');
@@ -62,7 +62,7 @@
                             echo "<tr><th>Failure to connect: ($conn->errno) $conn->error</th></tr>";
                         }
                     ?>
-                            <tr><td id="edit-delete"><a id="edit-task" href="update_task.php">Edit</a><a id="delete-task" href="users.php?deletetask=true">Delete</a></td></tr>
+                            <tr><td id="edit-delete"><a id="edit-task" href="users.php">Edit</a><a id="delete-task" href="users.php?deletetask=true">Delete</a></td></tr>
                 </table>
             </div>
         </div>

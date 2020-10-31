@@ -77,10 +77,10 @@ class Templates
     /*
         Forms and Alerts
     */
-    function formValidate($key_1, $input_1, $err_key_1, $key_2, $input_2, $err_key_2, $error)
+    function formValidate($input_1_key, $input_1, $err_key_1, $input_2_key, $input_2, $err_key_2, $error)
     {
-        $this->setData($key_1, $input_1);
-        $this->setData($key_2, $input_2);
+        $this->setData($input_1_key, $input_1);
+        $this->setData($input_2_key, $input_2);
 
         $validate;
 
