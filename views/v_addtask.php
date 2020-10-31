@@ -11,7 +11,7 @@
         <div class="row">
             <div class="header">
                 <h1>Bug Tracker</h1>
-                <a href="logout.php">Logout</a>
+                <a href="login.php?logout=1">Logout</a>
             </div>
         </div>
         <div class="row">
@@ -33,7 +33,7 @@
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">
                         <input type="text" name="task-title" cols="100" id="task-title" placeholder="New Task Title" value="<?php echo $this->getData('input_title'); ?>">
                         <div class="error"><?php echo $this->getData('error_title'); ?></div><br>
-                        <input type="text" name="task-author" id="task-author" placeholder="Created by" value="<?php echo $this->getData('input_user'); ?>">
+                        <input type="text" name="task-author" id="task-author" value="<?php /*echo $this->getData('input_user');*/ echo $_SESSION['user']; ?>" disabled>
                         <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
                         <textarea type="text" name="task-description" id="task-description" form="task-form" placeholder="Description..."><?php echo $this->getData('input_description'); ?></textarea>
                         <div class="error"><?php echo $this->getData('error_description'); ?></div><br>

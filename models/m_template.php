@@ -77,6 +77,28 @@ class Templates
     /*
         Forms and Alerts
     */
+    function formValidate($input_1_key, $input_1, $err_key_1, $input_2_key, $input_2, $err_key_2, $error)
+    {
+        $this->setData($input_1_key, $input_1);
+        $this->setData($input_2_key, $input_2);
+
+        $validate;
+
+        if($input_1=='' || $input_2=='')
+        {
+            if($input_1=='') { $this->setData($err_key_1, $error); }
+            if($input_2=='') { $this->setData($err_key_2, $error); }
+
+            $validate = false;
+        }
+        else
+        {
+            $validate = true;
+        }
+
+        return $validate;
+    }
+
     function displayAlert()
     {
         $alert = $this->getAlerts();

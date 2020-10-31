@@ -11,13 +11,13 @@
         <div class="row">
             <div class="header">
                 <h1>Bug Tracker</h1>
-                <a href="logout.php">Logout</a>
+                <a href="login.php?logout=1">Logout</a>
             </div>
         </div>
         <div class="row">
             <div class="nav">
                 <ul>
-                    <li><a href="members.php?addtask=true">Add Task</a></li>
+                    <li><a href="users.php?addtask=1">Add Task</a></li>
                     <li><a href="#">TODO</a></li>
                     <li><a href="#">Pending</a></li>
                     <li><a href="#">Resolved</a></li>
@@ -41,7 +41,7 @@
                                 while($row = $result->fetch_object()) {
                                     $table = <<<TABLE
                                     <tr>
-                                    <td><a href="members.php?id=$row->id">BUG-$row->id: $row->title</a></td>
+                                    <td><a href="users.php?id=$row->id">BUG-$row->id: $row->title</a></td>
                                     </tr>
                                     TABLE;
         
@@ -51,7 +51,7 @@
                                 echo "<tr><td>No Data Available</td></tr>";
                             }
                         } else {
-                            echo "Error: $mysqli->error";
+                            echo "Error: ($conn->errno) $conn->error";
                         }
                     ?>
                 </table>
