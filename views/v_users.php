@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        window.history.forward();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/style.css">
@@ -33,25 +36,30 @@
                     <?php
                         include('includes/database.php');
 
-                        $sql = "SELECT * FROM tasks ORDER BY id";
-                        $result = $conn->query($sql);
-        
-                        if($result) {
-                            if($result->num_rows > 0) {
-                                while($row = $result->fetch_object()) {
-                                    $table = <<<TABLE
-                                    <tr>
-                                    <td><a href="users.php?id=$row->id">BUG-$row->id: $row->title</a></td>
-                                    </tr>
-                                    TABLE;
-        
-                                    echo $table;
+                        if ($stmt = $conn->prepare("SELECT id, title FROM tasks ORDER BY id"))
+                        {
+                            $stmt->execute();
+                            $stmt->store_result();
+                            $stmt->bind_result($id, $title);
+
+                            if ($stmt->num_rows > 0)
+                            {
+                                while($stmt->fetch()) 
+                                {
+                                    echo "<tr><td><a href='users.php?id=$id'>BUG-$id: $title</a></td></tr>";
                                 }
-                            } else {
+                                $stmt->free_result();
+                                $stmt->close();
+                                $conn->close();
+                            }
+                            else
+                            {
                                 echo "<tr><td>No Data Available</td></tr>";
                             }
-                        } else {
-                            echo "Error: ($conn->errno) $conn->error";
+                        }
+                        else
+                        {
+                            echo "<tr><td>Failure to connect: ($conn->errno) $conn->error</td></tr>";
                         }
                     ?>
                 </table>

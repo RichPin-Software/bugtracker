@@ -1,7 +1,9 @@
 <?php
 include('includes/init.php');
 include('includes/database.php');
-
+/*
+    Form variables
+*/
 $user_key = 'input_user';
 $pass_key = 'input_pass';
 $err_key_user = 'error_user';

@@ -62,7 +62,7 @@
                             echo "<tr><th>Failure to connect: ($conn->errno) $conn->error</th></tr>";
                         }
                     ?>
-                            <tr><td id="edit-delete"><a id="edit-task" href="users.php">Edit</a><a id="delete-task" href="users.php?deletetask=true">Delete</a></td></tr>
+                            <tr><td id="edit-delete"><a id="edit-task" href="users.php?edittask=true">Edit</a><a id="delete-task" href="users.php?deletetask=true">Delete</a></td></tr>
                 </table>
             </div>
         </div>
