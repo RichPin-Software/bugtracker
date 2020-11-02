@@ -37,7 +37,7 @@
                         <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
                         <textarea type="text" name="task-description" id="task-description" form="task-form" placeholder="Description..."><?php echo $this->getData('input_description'); ?></textarea>
                         <div class="error"><?php echo $this->getData('error_description'); ?></div><br>
-                        <input type="button" name="cancel" class="cancel" value="Cancel">
+                        <input type="button" name="cancel" class="cancel cancel-form" value="Cancel">
                         <input type="submit" class="submit" value="Submit">
                     </form>
                 </div>
