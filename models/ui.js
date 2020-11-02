@@ -16,23 +16,11 @@ class UI
         return window.location.href = url;
     }
 
-    showElement(queryselector, display = 'block')
-    {
-        let element = document.querySelector(queryselector);
-        element.style.display = display;
-    }
-
-    hideElement(queryselector)
-    {
-        let element = document.querySelector(queryselector);
-        element.style.display = 'none';
-    }
-
-    cancelForm(queryselector, event, url)
+    cancelForm(queryselector, url)
     {
         let button = document.querySelector(queryselector);
 
-        button.addEventListener(event, ()=> {
+        button.addEventListener('click', ()=> {
             this.redirect(url);
         });
     }

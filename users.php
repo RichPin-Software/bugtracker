@@ -24,15 +24,15 @@ if(isset($_SESSION['login_successful']))
     else
     {
         /*
-            Display selected task
+            Set session variable for selected task
         */
         if(isset($_GET['id']))
         {
             $_SESSION['id'] = $_GET['id'];
-            $Template->load('views/v_task.php');
+            $Template->redirect('users.php');
         }
         /*
-            If user goes 'back' unset id and reload
+            If 'Back' button pressed unset id and reload
         */
         else if(isset($_GET['back']))
         {
@@ -40,7 +40,7 @@ if(isset($_SESSION['login_successful']))
             $Template->redirect('users.php');
         }
         /*
-            If add task button pressed unset id and load add task form
+            If 'Add Task' button pressed unset id and load add task form
         */
         else if(isset($_GET['addtask']))
         {
@@ -55,7 +55,7 @@ if(isset($_SESSION['login_successful']))
             }
         }
         /*
-            Selected task
+            If on selected task
         */
         else if(isset($_SESSION['id']))
         {
@@ -71,11 +71,14 @@ if(isset($_SESSION['login_successful']))
                 unset($_SESSION['id']);
                 $Template->load('views/v_users.php');
             }
-            
+            else if(isset($_GET['edittask']))
+            {
+                $Template->load('views/v_edittask.php');
+            }
             /*
                 Update
             */
-            if($_SERVER["REQUEST_METHOD"] == "POST")
+            else if($_SERVER["REQUEST_METHOD"] == "POST")
             {
                 $title = $_POST['task-title'];
                 $description = $_POST['task-description'];
@@ -94,13 +97,16 @@ if(isset($_SESSION['login_successful']))
                     $Template->load('views/v_edittask.php');
                 }
             }
+            /*
+                Display selected task
+            */
             else
             {
-                $Template->load('views/v_edittask.php');
+                $Template->load('views/v_task.php');
             }
         }
         /*
-            Add task
+            Add new task
         */
         else if($_SERVER["REQUEST_METHOD"] == "POST")
         {
@@ -116,6 +122,10 @@ if(isset($_SESSION['login_successful']))
 
                 $Auth->addTask($title, $status, $author, $description);
                 $Template->redirect('users.php');
+            }
+            else
+            {
+                $Template->load('views/v_addtask.php');
             }
         }
         /*
