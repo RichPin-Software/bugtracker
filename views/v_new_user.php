@@ -20,9 +20,13 @@
                 <label for="password">Create Password:</label>
                 <input type="password" name="password" id="password" value="<?php echo $this->getData('newuser_pass'); ?>">
                 <div class="error"><?php echo $this->getData('error_pass'); ?></div><br>
+                <input type="button" name="cancel" class="cancel cancel-newuser" value="Cancel">
                 <input type="submit" class="submit" value="Submit">
             </form>
         </div>
     </div>
+
+    <script src="../../bugtracker/models/ui.js"></script>
+    <script src="../bugtracker/app.js"></script>
 </body>
 </html>
