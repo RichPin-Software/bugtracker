@@ -81,8 +81,7 @@ table#selected-task {
 
 table#selected-task #author, #assignee, #status {
     text-align: right;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px;
 }
 
 table#tasks tr:nth-child(odd) {
@@ -166,6 +165,42 @@ div.members-body {
 
 div.error {
     color: rgb(255, 0, 0);
+}
+
+div.td-content {
+    padding:8px 12px;
+}
+
+div.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+div.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border-radius: 2px;
+    text-align: center;
+    width: fit-content;
+    overflow:auto;
+    box-shadow: 0 8px 16px 0px rgba(0,0,0,0.2);
+    padding:5px 8px;
+    z-index: 1;
+}
+
+div.dropdown-menu p a {
+    color: rgb(0,0,0);
+}
+
+.dropdown:hover span{
+    font-size: 18px;
+    color: rgb(0, 100, 0);
+    font-weight: 700;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
 }
 
 input.submit {

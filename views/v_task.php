@@ -44,9 +44,21 @@
                                 $stmt->fetch();
                                 ?>
                                 <tr><th><?php echo $result['title']; ?></th></tr>
-                                <tr><td id="author"><?php echo $result['author']; ?></td></tr>
-                                <tr><td id="assignee"><?php echo $result['assignee']; ?></td></tr>
-                                <tr><td id="status"><?php echo $result['status']; ?></td></tr>
+                                <tr><td id="author"><div class="td-content"><?php echo $result['author']; ?></div></td></tr>
+                                <tr><td id="assignee"><div class="td-content"><?php echo $result['assignee']; ?></div></td></tr>
+                                <tr>
+                                    <td id="status">
+                                        <div class="td-content dropdown">
+                                            <span><?php echo $result['status']; ?></span>
+                                            <div class="dropdown-menu">
+                                                <p><a href="users.php?status=pending">Pending</a></p>
+                                                <p><a href="users.php?status=todo">TODO</a></p>
+                                                <p><a href="users.php?status=inprogress">In Progress</a></p>
+                                                <p><a href="users.php?status=resolved">Resolved</a></p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
                                 <tr><td id="description"><?php echo $result['description']; ?></td></tr>
                                 <?php
                                 $stmt->close();
@@ -62,7 +74,12 @@
                             echo "<tr><th>Failure to connect: ($conn->errno) $conn->error</th></tr>";
                         }
                     ?>
-                            <tr><td id="edit-delete"><a id="edit-task" href="users.php?edittask=true">Edit</a><a id="delete-task" href="users.php?deletetask=true">Delete</a></td></tr>
+                    <tr>
+                        <td id="edit-delete">
+                            <a id="edit-task" href="users.php?edittask=true">Edit</a>
+                            <a id="delete-task" href="users.php?deletetask=true">Delete</a>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>
