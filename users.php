@@ -61,7 +61,7 @@ if(isset($_SESSION['login_successful']))
         {
             $id = $_SESSION['id'];
             /*
-                Delete
+                Delete selected task
             */
             if(isset($_GET['deletetask']))
             {
@@ -76,7 +76,47 @@ if(isset($_SESSION['login_successful']))
                 $Template->load('views/v_edittask.php');
             }
             /*
-                Update
+                Update status of selected task
+            */
+            else if(isset($_GET['status']))
+            {
+                $id = $_SESSION['id'];
+                $status = '';
+
+                switch($_GET['status'])
+                {
+                    case 'pending': 
+                        $status = "Pending";
+                        break;
+                    case 'inprogress': 
+                        $status = "In Progress";
+                        break;
+                    case 'todo':
+                        $status = "TODO";
+                        break;
+                    case 'resolved':
+                        $status = "Resolved";
+                        break;
+                    default:
+                        $status = "TODO";
+                }
+
+                if($stmt = $conn->prepare("UPDATE tasks SET status=? WHERE id=?"))
+                {
+                    $stmt->bind_param("si", $status, $id);
+                    $stmt->execute();
+
+                    $stmt->close();
+                    $conn->close();
+                }
+                else
+                {
+                    die("Error: could not prepare MySQLi statement");
+                }
+                $Template->redirect('users.php');
+            }
+            /*
+                Update selected task
             */
             else if($_SERVER["REQUEST_METHOD"] == "POST")
             {

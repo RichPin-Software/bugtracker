@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="views/style.css">
     <title>New User</title>
 </head>
-<body>
+<body class="login">
     <div class="container" id="login-container">
         <div id="login-form">
             <h1>New User</h1>
