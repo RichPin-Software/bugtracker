@@ -62,10 +62,11 @@ class Auth
     function addTask($title, $status, $author, $description)
     {
         global $conn;
+        $assignee = "unassigned";
 
-        if($stmt = $conn->prepare("INSERT INTO tasks (title, author, status, description) VALUES (?,?,?,?)"))
+        if($stmt = $conn->prepare("INSERT INTO tasks (title, author, assignee, status, description) VALUES (?,?,?,?,?)"))
         {
-            $stmt->bind_param("ssss", $title, $author, $status, $description);
+            $stmt->bind_param("sssss", $title, $author, $assignee, $status, $description);
             $stmt->execute();
 
             $stmt->close();

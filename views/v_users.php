@@ -32,7 +32,7 @@
                 <?php
                     echo $this->displayAlert();
                 ?>
-                <table class="display-table" id="tasks">
+                <table id="tasks">
                     <?php
                         include('includes/database.php');
 
