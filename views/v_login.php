@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="views/style.css">
     <title>Login</title>
 </head>
-<body>
+<body class="login">
     <div class="container" id="login-container">
         <div id="login-form">
             <h1>Member Login</h1>

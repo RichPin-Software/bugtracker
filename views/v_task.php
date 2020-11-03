@@ -8,13 +8,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="row">
+        <div class="row-header">
             <div class="header">
                 <h1>Bug Tracker</h1>
                 <a href="login.php?logout=1">Logout</a>
             </div>
         </div>
-        <div class="row">
+        <div class="row-nav">
             <div class="nav">
                 <ul>
                     <li><a href="users.php?addtask=1">Add Task</a></li>
@@ -24,8 +24,8 @@
                 </ul>
             </div>
         </div>
-        <div class="row">
-            <div class="members-body" id="selected-tasks-container">
+        <div class="row-body">
+            <div class="members-body">
                 <a id="back" href="users.php?back=1"><<< Back</a>
                 <table class="display-table" id="selected-task">
                     <?php
