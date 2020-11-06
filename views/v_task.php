@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/style.css">
-    <title>Members Only</title>
+    <title>BUG-<?php echo $_SESSION['id']; ?></title>
 </head>
 <body>
     <div class="container">
@@ -17,9 +17,10 @@
         <div class="row-nav">
             <div class="nav">
                 <ul>
-                    <li><a href="users.php?addtask=1">Add Task</a></li>
+                    <li><a href="users.php?addtask=1">[+] New Task</a></li>
+                    <li><a href="#">On-hold</a></li>
                     <li><a href="#">TODO</a></li>
-                    <li><a href="#">Pending</a></li>
+                    <li><a href="#">In Progress</a></li>
                     <li><a href="#">Resolved</a></li>
                 </ul>
             </div>
@@ -27,7 +28,7 @@
         <div class="row-body">
             <div class="members-body">
                 <a id="back" href="users.php?back=1"><<< Back</a>
-                <table class="display-table" id="selected-task">
+                <table id="selected-task">
                     <?php
                         include('includes/database.php');
 
@@ -44,22 +45,23 @@
                                 $stmt->fetch();
                                 ?>
                                 <tr><th><?php echo $result['title']; ?></th></tr>
-                                <tr><td id="author"><div class="td-content"><?php echo $result['author']; ?></div></td></tr>
-                                <tr><td id="assignee"><div class="td-content"><?php echo $result['assignee']; ?></div></td></tr>
+                                <tr><td id="author"><div class="td-content"><span class="task-suffix">Created by:</span> <?php echo $result['author']; ?></div></td></tr>
+                                <tr><td id="assignee"><div class="td-content"><span class="task-suffix">Assigned to:</span> <?php echo $result['assignee']; ?></div></td></tr>
                                 <tr>
                                     <td id="status">
                                         <div class="td-content dropdown">
-                                            <span><?php echo $result['status']; ?></span>
+                                            <span class="task-suffix">Status: </span> 
+                                            <span id="dropdown-status"><?php echo $result['status']; ?></span>
                                             <div class="dropdown-menu">
-                                                <p><a href="users.php?status=pending">Pending</a></p>
-                                                <p><a href="users.php?status=todo">TODO</a></p>
-                                                <p><a href="users.php?status=inprogress">In Progress</a></p>
-                                                <p><a href="users.php?status=resolved">Resolved</a></p>
+                                                <p><a href="users.php?status=onhold" id="on-hold">On-hold</a></p>
+                                                <p><a href="users.php?status=todo" id="todo">TODO</a></p>
+                                                <p><a href="users.php?status=inprogress" id="in-progress">In Progress</a></p>
+                                                <p><a href="users.php?status=resolved" id="resolved">Resolved</a></p>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr><td id="description"><?php echo $result['description']; ?></td></tr>
+                                <tr><td id="description"><div><?php echo $result['description']; ?></div></td></tr>
                                 <?php
                                 $stmt->close();
                                 $conn->close();

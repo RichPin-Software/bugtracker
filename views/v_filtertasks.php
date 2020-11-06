@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/style.css">
-    <title>All Tasks</title>
+    <title><?php echo $_SESSION['filtertasks']; ?></title>
 </head>
 <body>
     <div class="container">
@@ -25,6 +25,7 @@
                     <li><a href="users.php?filtertasks=todo">TODO</a></li>
                     <li><a href="users.php?filtertasks=inprogress">In Progress</a></li>
                     <li><a href="users.php?filtertasks=resolved">Resolved</a></li>
+                    <li><a href="users.php">All Tasks</a></li>
                 </ul>
             </div>
         </div>
@@ -37,17 +38,19 @@
                     <?php
                         include('includes/database.php');
 
-                        if ($stmt = $conn->prepare("SELECT id, title, status FROM tasks ORDER BY id"))
+                        if ($stmt = $conn->prepare("SELECT id, title FROM tasks WHERE status=? ORDER BY id"))
                         {
+                            $stmt->bind_param("s", $status);
+                            $status = $_SESSION['filtertasks'];
                             $stmt->execute();
                             $stmt->store_result();
-                            $stmt->bind_result($id, $title, $status);
+                            $stmt->bind_result($id, $title);
 
                             if ($stmt->num_rows > 0)
                             {
                                 while($stmt->fetch()) 
                                 {
-                                    echo "<tr><td><a href='users.php?id=$id'>BUG-$id: $title</a><span class='display-status'>$status</span></td></tr>";
+                                    echo "<tr><td><a href='users.php?id=$id'>BUG-$id: $title</a></td></tr>";
                                 }
                                 $stmt->free_result();
                                 $stmt->close();
