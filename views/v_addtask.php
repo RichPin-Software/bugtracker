@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/style.css">
-    <title>Add Task</title>
+    <title>New Task</title>
 </head>
 <body>
     <div class="container">
@@ -17,10 +17,11 @@
         <div class="row-nav">
             <div class="nav">
                 <ul>
-                    <li><a href="#">Add Task</a></li>
-                    <li><a href="#">TODO</a></li>
-                    <li><a href="#">Pending</a></li>
-                    <li><a href="#">Resolved</a></li>
+                    <li><a href="users.php?filtertasks=onhold">On-hold</a></li>
+                    <li><a href="users.php?filtertasks=todo">TODO</a></li>
+                    <li><a href="users.php?filtertasks=inprogress">In Progress</a></li>
+                    <li><a href="users.php?filtertasks=resolved">Resolved</a></li>
+                    <li><a href="users.php">All Tasks</a></li>
                 </ul>
             </div>
         </div>

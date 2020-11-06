@@ -40,6 +40,39 @@ if(isset($_SESSION['login_successful']))
             $Template->redirect('users.php');
         }
         /*
+            Navigation
+        */
+        else if(isset($_GET['filtertasks']))
+        {
+            $tasks = $_GET['filtertasks'];
+
+            switch($tasks)
+            {
+                case 'onhold': 
+                    $_SESSION['filtertasks'] = 'On-hold';
+                    $Template->load('views/v_filtertasks.php');
+                    break;
+
+                case 'todo': 
+                    $_SESSION['filtertasks'] = 'TODO';
+                    $Template->load('views/v_filtertasks.php');
+                    break;
+
+                case 'inprogress': 
+                    $_SESSION['filtertasks'] = 'In Progress';
+                    $Template->load('views/v_filtertasks.php');
+                    break;
+
+                case 'resolved': 
+                    $_SESSION['filtertasks'] = 'Resolved';
+                    $Template->load('views/v_filtertasks.php');
+                    break;
+
+                default: 
+                    $Template->load('views/v_users.php');
+            }
+        }
+        /*
             If 'Add Task' button pressed unset id and load add task form
         */
         else if(isset($_GET['addtask']))
@@ -85,8 +118,8 @@ if(isset($_SESSION['login_successful']))
 
                 switch($_GET['status'])
                 {
-                    case 'pending': 
-                        $status = "Pending";
+                    case 'onhold': 
+                        $status = "On-hold";
                         break;
                     case 'inprogress': 
                         $status = "In Progress";
@@ -180,5 +213,5 @@ if(isset($_SESSION['login_successful']))
 else
 {
     $Template->setAlert('Access Denied!', 'error');
-    $Template->load('views/v_login.php');
+    $Template->redirect('login.php');
 }
