@@ -18,11 +18,11 @@
             <div class="nav">
                 <ul>
                     <li><a href="users.php?addtask=1">[+] New Task</a></li>
+                    <li><a href="users.php">All Tasks</a></li>
                     <li><a href="users.php?filtertasks=onhold">On-hold</a></li>
                     <li><a href="users.php?filtertasks=todo">TODO</a></li>
                     <li><a href="users.php?filtertasks=inprogress">In Progress</a></li>
                     <li><a href="users.php?filtertasks=resolved">Resolved</a></li>
-                    <li><a href="users.php">All Tasks</a></li>
                 </ul>
             </div>
         </div>

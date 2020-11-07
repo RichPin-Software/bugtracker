@@ -18,10 +18,11 @@
             <div class="nav">
                 <ul>
                     <li><a href="users.php?addtask=1">[+] New Task</a></li>
-                    <li><a href="#">On-hold</a></li>
-                    <li><a href="#">TODO</a></li>
-                    <li><a href="#">In Progress</a></li>
-                    <li><a href="#">Resolved</a></li>
+                    <li><a href="users.php?back=1">All Tasks</a></li>
+                    <li><a href="users.php?filtertasks=onhold">On-hold</a></li>
+                    <li><a href="users.php?filtertasks=todo">TODO</a></li>
+                    <li><a href="users.php?filtertasks=inprogress">In Progress</a></li>
+                    <li><a href="users.php?filtertasks=resolved">Resolved</a></li>
                 </ul>
             </div>
         </div>
@@ -40,18 +41,64 @@
                             $stmt->store_result();
                             $stmt->bind_result($result['id'], $result['title'], $result['author'], $result['assignee'], $result['status'], $result['description']);
 
+                            
+
                             if ($stmt->num_rows > 0)
                             {
                                 $stmt->fetch();
+                                /*
+                                    For styling status in task
+                                */
+                                switch($result['status'])
+                                {
+                                    case 'On-hold':
+                                        $sts = 'onhold';
+                                        break;
+                                    case 'TODO':
+                                        $sts = 'todo';
+                                        break;
+                                    case 'In Progress':
+                                        $sts = 'inprogress';
+                                        break;
+                                    case 'Resolved':
+                                        $sts = 'resolved';
+                                        break;
+                                    default: 
+                                        $sts = 'todo';
+                                }
+                                /*
+                                    For styling assignee in task
+                                */
+                                switch($result['assignee'])
+                                {
+                                    case 'unassigned':
+                                        $assign = 'unassigned';
+                                        break;
+                                    default: 
+                                        $assign = 'unassigned';
+                                }
                                 ?>
                                 <tr><th><?php echo $result['title']; ?></th></tr>
                                 <tr><td id="author"><div class="td-content"><span class="task-suffix">Created by:</span> <?php echo $result['author']; ?></div></td></tr>
-                                <tr><td id="assignee"><div class="td-content"><span class="task-suffix">Assigned to:</span> <?php echo $result['assignee']; ?></div></td></tr>
+                                <tr>
+                                    <td id="assignee">
+                                        <div class="td-content dropdown">
+                                            <span class="task-suffix">Assigned to:</span>
+                                            <span class="<?php echo "display-$assign"; ?>" id="assignee-dropdown-sts"><?php echo $result['assignee']; ?></span>
+                                            <div class="dropdown-menu">
+                                                <p><a href="#">bopha_1234</a></p>
+                                                <p><a href="#">test_user</a></p>
+                                                <p><a href="#">richpin</a></p>
+                                                <p><a href="#">test_user2</a></p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td id="status">
                                         <div class="td-content dropdown">
                                             <span class="task-suffix">Status: </span> 
-                                            <span id="dropdown-status"><?php echo $result['status']; ?></span>
+                                            <span class="<?php echo "display-$sts"; ?>" id="dropdown-status"><?php echo $result['status']; ?></span>
                                             <div class="dropdown-menu">
                                                 <p><a href="users.php?status=onhold" id="on-hold">On-hold</a></p>
                                                 <p><a href="users.php?status=todo" id="todo">TODO</a></p>
