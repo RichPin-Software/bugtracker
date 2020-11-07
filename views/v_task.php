@@ -17,11 +17,12 @@
         <div class="row-nav">
             <div class="nav">
                 <ul>
-                    <li><a href="users.php?addtask=1">[+] New Task</a></li>
-                    <li><a href="#">On-hold</a></li>
-                    <li><a href="#">TODO</a></li>
-                    <li><a href="#">In Progress</a></li>
-                    <li><a href="#">Resolved</a></li>
+                <li><a href="users.php?addtask=1">[+] New Task</a></li>
+                    <li><a href="users.php?filtertasks=onhold">On-hold</a></li>
+                    <li><a href="users.php?filtertasks=todo">TODO</a></li>
+                    <li><a href="users.php?filtertasks=inprogress">In Progress</a></li>
+                    <li><a href="users.php?filtertasks=resolved">Resolved</a></li>
+                    <li><a href="users.php?back=1">All Tasks</a></li>
                 </ul>
             </div>
         </div>
@@ -40,9 +41,31 @@
                             $stmt->store_result();
                             $stmt->bind_result($result['id'], $result['title'], $result['author'], $result['assignee'], $result['status'], $result['description']);
 
+                            
+
                             if ($stmt->num_rows > 0)
                             {
                                 $stmt->fetch();
+                                /*
+                                    For styling status in task
+                                */
+                                switch($result['status'])
+                                {
+                                    case 'On-hold':
+                                        $class = 'onhold';
+                                        break;
+                                    case 'TODO':
+                                        $class = 'todo';
+                                        break;
+                                    case 'In Progress':
+                                        $class = 'inprogress';
+                                        break;
+                                    case 'Resolved':
+                                        $class = 'resolved';
+                                        break;
+                                    default: 
+                                        $class = 'todo';
+                                }
                                 ?>
                                 <tr><th><?php echo $result['title']; ?></th></tr>
                                 <tr><td id="author"><div class="td-content"><span class="task-suffix">Created by:</span> <?php echo $result['author']; ?></div></td></tr>
@@ -51,7 +74,7 @@
                                     <td id="status">
                                         <div class="td-content dropdown">
                                             <span class="task-suffix">Status: </span> 
-                                            <span id="dropdown-status"><?php echo $result['status']; ?></span>
+                                            <span class="<?php echo "display-$class"; ?>" id="dropdown-status"><?php echo $result['status']; ?></span>
                                             <div class="dropdown-menu">
                                                 <p><a href="users.php?status=onhold" id="on-hold">On-hold</a></p>
                                                 <p><a href="users.php?status=todo" id="todo">TODO</a></p>

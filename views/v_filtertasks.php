@@ -50,7 +50,25 @@
                             {
                                 while($stmt->fetch()) 
                                 {
-                                    echo "<tr><td><a href='users.php?id=$id'>BUG-$id: $title</a></td></tr>";
+                                    switch($status)
+                                    {
+                                        case 'On-hold':
+                                            $class = 'onhold';
+                                            break;
+                                        case 'TODO':
+                                            $class = 'todo';
+                                            break;
+                                        case 'In Progress':
+                                            $class = 'inprogress';
+                                            break;
+                                        case 'Resolved':
+                                            $class = 'resolved';
+                                            break;
+                                        default: 
+                                            $class = 'todo';
+                                    }
+
+                                    echo "<tr><td><a href='users.php?id=$id'>BUG-$id: $title</a><span class='display-$class'>$status</span></td></tr>";
                                 }
                                 $stmt->free_result();
                                 $stmt->close();
