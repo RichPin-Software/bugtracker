@@ -52,6 +52,10 @@ div#login-form {
     padding:0 120px;
 }
 
+label#groupname-label, input#groupname, div#groupname-error, br#groupname-br {
+    display:none;
+}
+
 div#addtask-container {
     width:100%;
     margin: 10px auto 0 auto;
@@ -136,8 +140,12 @@ table#tasks tr:nth-child(even) {
     text-decoration: underline;
 }
 
-a#signup {
+a#signup, a#group-signup {
     font-size: 13px;
+}
+
+a#group-signup {
+    display:block;
 }
 
 a#back {
@@ -227,7 +235,9 @@ div.error {
 div.td-content {
     padding:8px 12px;
 }
-
+/*
+    Dropdown Menu
+*/
 div.dropdown {
     position: relative;
     display: inline-block;
@@ -266,7 +276,7 @@ div.dropdown-menu p a#resolved:hover {
     color:rgb(0, 138, 7);
 }
 
-.dropdown:hover span#dropdown-status{
+.dropdown:hover span#dropdown-status {
     color: rgb(0, 50, 216);
     font-weight: 700;
 }
@@ -285,6 +295,18 @@ span.display-inprogress#dropdown-status {
 
 span.display-resolved#dropdown-status {
     color:rgb(0, 138, 7);;
+}
+/*
+    Assignee Dropdown
+*/
+.dropdown:hover span#assignee-dropdown-sts {
+    color: rgb(158, 155, 0);
+    /* font-weight: 700; */
+}
+
+span.display-unassigned#assignee-dropdown-sts {
+    font-style: italic;
+    font-weight: 500;
 }
 
 .dropdown:hover .dropdown-menu {
