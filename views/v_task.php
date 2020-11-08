@@ -86,10 +86,46 @@
                                             <span class="task-suffix">Assigned to:</span>
                                             <span class="<?php echo "display-$assign"; ?>" id="assignee-dropdown-sts"><?php echo $result['assignee']; ?></span>
                                             <div class="dropdown-menu">
-                                                <p><a href="#">bopha_1234</a></p>
-                                                <p><a href="#">test_user</a></p>
-                                                <p><a href="#">richpin</a></p>
-                                                <p><a href="#">test_user2</a></p>
+                                                <?php
+                                                    /*
+                                                        Assignee dropdown
+                                                    */
+                                                    $groupname = 'RP';
+
+                                                    if($groupname != '' || $groupname != null)
+                                                    {
+                                                        if ($stmt = $conn->prepare("SELECT username FROM users_login WHERE groupname = ?"))
+                                                        {
+                                                            $stmt->bind_param("s", $groupname);
+                                                            $stmt->execute();
+                                                            $stmt->store_result();
+                                                            $stmt->bind_result($username);
+                                
+                                                            if ($stmt->num_rows > 0)
+                                                            {
+                                                                while($stmt->fetch()) 
+                                                                {
+                                                                    echo "<p><a href='users.php?assign=$username'>$username</a></p>";
+                                                                }
+
+                                                                $stmt->free_result();
+                                                            }
+                                                            else
+                                                            {
+                                                                die("Error: No Users");
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            die("Failure to connect: ($conn->errno) $conn->error");
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        echo "<p><a href='#'>".$_SESSION['user']."</a></p>";
+                                                    }
+                                                    
+                                                ?>
                                             </div>
                                         </div>
                                     </td>

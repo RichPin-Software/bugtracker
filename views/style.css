@@ -300,7 +300,7 @@ span.display-resolved#dropdown-status {
     Assignee Dropdown
 */
 .dropdown:hover span#assignee-dropdown-sts {
-    color: rgb(158, 155, 0);
+    color:rgb(140, 161, 230);
     /* font-weight: 700; */
 }
 

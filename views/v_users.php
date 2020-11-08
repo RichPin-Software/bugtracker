@@ -47,6 +47,9 @@
                             {
                                 while($stmt->fetch()) 
                                 {
+                                    /*
+                                        For styling status
+                                    */
                                     switch($status)
                                     {
                                         case 'On-hold':
