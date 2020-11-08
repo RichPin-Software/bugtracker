@@ -149,6 +149,28 @@ if(isset($_SESSION['login_successful']))
                 $Template->redirect('users.php');
             }
             /*
+                Assign selected task
+            */
+            else if(isset($_GET['assign']))
+            {
+                $id = $_SESSION['id'];
+                $assignee = $_GET['assign'];
+
+                if($stmt = $conn->prepare("UPDATE tasks SET assignee=? WHERE id=?"))
+                {
+                    $stmt->bind_param("si", $assignee, $id);
+                    $stmt->execute();
+
+                    $stmt->close();
+                    $conn->close();
+                }
+                else
+                {
+                    die("Error: could not prepare MySQLi statement");
+                }
+                $Template->redirect('users.php');
+            }
+            /*
                 Update selected task
             */
             else if($_SERVER["REQUEST_METHOD"] == "POST")
