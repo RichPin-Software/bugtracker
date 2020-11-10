@@ -42,7 +42,7 @@ if(isset($_SESSION['login_successful']))
         /*
             Navigation
         */
-        else if(isset($_GET['filtertasks']))
+        else if(isset($_GET['filtertasks']) && !isset($_GET['page']))
         {
             $tasks = $_GET['filtertasks'];
 
@@ -231,9 +231,19 @@ if(isset($_SESSION['login_successful']))
             $Template->load('views/v_users.php');
 
             /*
-                Show 8 results per page
+                Show 8 results per page - filter results
             */
-            if(isset($_GET['page']))
+            if(isset($_GET['page']) && isset($_GET['filtertasks']))
+            {
+                $tasks = $_GET['filtertasks'];
+
+                $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
+                $Template->redirect("users.php?filtertasks=$tasks");
+            }
+            /*
+                Show 8 results per page - all tasks
+            */
+            else if(isset($_GET['page']) && !isset($_GET['filtertasks']))
             {
                 $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
                 $Template->redirect('users.php');
