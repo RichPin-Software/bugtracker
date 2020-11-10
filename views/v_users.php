@@ -37,46 +37,74 @@
                     <?php
                         include('includes/database.php');
 
+                        $offset = 0;
+                        $results = 8;
+
+                        if(isset($_SESSION['offset']))
+                        {
+                            $offset = $_SESSION['offset'];
+                        }
+
                         if ($stmt = $conn->prepare("SELECT id, title, status FROM tasks ORDER BY id"))
                         {
                             $stmt->execute();
                             $stmt->store_result();
-                            $stmt->bind_result($id, $title, $status);
+                            /*
+                                Store number of rows in num_tasks to display total results
+                            */
+                            $num_tasks = $stmt->num_rows;
+                            $count = ceil($num_tasks/8);
 
-                            if ($stmt->num_rows > 0)
+                            $stmt->free_result();
+                            $stmt->close();
+
+                            if ($stmt = $conn->prepare("SELECT id, title, status FROM tasks ORDER BY id LIMIT ?, ?"))
                             {
-                                while($stmt->fetch()) 
+                                $stmt->bind_param("ii", $offset, $results);
+                                $stmt->execute(); 
+                                $stmt->store_result();
+                                $stmt->bind_result($id, $title, $status);
+
+                                if ($stmt->num_rows > 0)
                                 {
-                                    /*
-                                        For styling status
-                                    */
-                                    switch($status)
+                                    while($stmt->fetch()) 
                                     {
-                                        case 'On-hold':
-                                            $class = 'onhold';
-                                            break;
-                                        case 'TODO':
-                                            $class = 'todo';
-                                            break;
-                                        case 'In Progress':
-                                            $class = 'inprogress';
-                                            break;
-                                        case 'Resolved':
-                                            $class = 'resolved';
-                                            break;
-                                        default: 
-                                            $class = 'todo';
-                                    }
+                                        /*
+                                            For styling status
+                                        */
+                                        switch($status)
+                                        {
+                                            case 'On-hold':
+                                                $class = 'onhold';
+                                                break;
+                                            case 'TODO':
+                                                $class = 'todo';
+                                                break;
+                                            case 'In Progress':
+                                                $class = 'inprogress';
+                                                break;
+                                            case 'Resolved':
+                                                $class = 'resolved';
+                                                break;
+                                            default: 
+                                                $class = 'todo';
+                                        }
 
-                                    echo "<tr><td><a href='users.php?id=$id'>BUG-$id: $title</a><span class='display-$class'>$status</span></td></tr>";
+                                        echo "<tr><td><a href='users.php?id=$id'>BUG-$id: $title</a><span class='display-$class'>$status</span></td></tr>";
+                                    }
+                                    $stmt->free_result();
+                                    $stmt->close();
+                                    $conn->close();
                                 }
-                                $stmt->free_result();
-                                $stmt->close();
-                                $conn->close();
+                                else
+                                {
+                                    echo "<tr><td>No Data Available</td></tr>";
+                                }
                             }
-                            else
+
+                            if(isset($_SESSION['offset']))
                             {
-                                echo "<tr><td>No Data Available</td></tr>";
+                                unset($_SESSION['offset']);
                             }
                         }
                         else
@@ -85,6 +113,13 @@
                         }
                     ?>
                 </table>
+                <span><?php echo "$num_tasks results. Showing 8 results per page."; ?></span>
+                <?php
+                    for($i=1;$i<=$count;$i++)
+                    {
+                        echo "<a style='margin-right:5px;text-decoration:underline;' href='users.php?page=$i'>$i</a>";
+                    }
+                ?>
             </div>
         </div>
     </div>

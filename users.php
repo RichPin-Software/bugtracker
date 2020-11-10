@@ -229,6 +229,15 @@ if(isset($_SESSION['login_successful']))
         else
         {
             $Template->load('views/v_users.php');
+
+            /*
+                Show 8 results per page
+            */
+            if(isset($_GET['page']))
+            {
+                $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
+                $Template->redirect('users.php');
+            }
         }
     }
 }
