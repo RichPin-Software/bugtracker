@@ -37,6 +37,11 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
             
             $Template->load('views/v_new_user.php');
         }
+        else if(!$Auth->validateNewUsername($username))
+        {
+            $Template->setData('error_user', '*username already exists!');
+            $Template->load('views/v_new_user.php');
+        }
         /*
             Create new user account
         */
