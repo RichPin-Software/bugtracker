@@ -41,6 +41,35 @@ class Auth
         }
     }
 
+    function validateNewUsername($username)
+    {
+        global $conn;
+
+        if($stmt = $conn->prepare("SELECT username FROM users_login WHERE username = ?"))
+        {
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if($stmt->num_rows > 0)
+            {
+                $stmt->close();
+                $result = false;
+            }
+            else
+            {
+                $stmt->close();
+                $result = true;
+            }
+
+            return $result;
+        }
+        else
+        {
+            die("Error: Could not prepare MySQLi statement");
+        }
+    }
+
     function addNewUser($username, $password)
     {
         global $conn;
