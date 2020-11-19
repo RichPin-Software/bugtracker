@@ -1,4 +1,16 @@
 <?php
+/**
+ *      Author: Richard Pinegar
+ *      Date: 11/19/2020
+ * 
+ *      Controller for functions to create a new user account
+ *      or group.
+ * 
+ *      - Create New Username and Password
+ *      - Form Validation
+ *      - Display New User Form
+ *
+ */
 include('includes/init.php');
 include('includes/database.php');
 
@@ -8,14 +20,14 @@ $err_key_user = 'error_user';
 $err_key_pass = 'error_pass';
 $error = '*required field!';
 /*
-    Display new user form
+    display new user form
 */
 if(isset($_GET['signup']))
 {
     $Template->load('views/v_new_user.php');
 }
 /*
-    If user submits new user form
+    if user submits new user form
 */
 else if($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -43,7 +55,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
             $Template->load('views/v_new_user.php');
         }
         /*
-            Create new user account
+            create new user account
         */
         else
         {

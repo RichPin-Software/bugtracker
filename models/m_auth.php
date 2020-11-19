@@ -1,4 +1,12 @@
 <?php
+/**
+ *      Author: Richard Pinegar
+ *      Date: 11/19/2020
+ * 
+ *      Auth file contains login validation, password protection
+ *      and functions to add, remove, and update the database.
+ *
+ */
 class Auth
 {
     private $salt = 'j4H97e021_d';
@@ -7,7 +15,7 @@ class Auth
     */
     function __construct() {}
     /*
-        Functions
+        Login Validation
     */
     function validateLogin($username, $password)
     {
@@ -40,7 +48,9 @@ class Auth
             die("Error: Could not prepare MySQLi statement");
         }
     }
-
+    /*
+        Username Validation to Prevent Duplicate Usernames
+    */
     function validateNewUsername($username)
     {
         global $conn;
@@ -69,7 +79,9 @@ class Auth
             die("Error: Could not prepare MySQLi statement");
         }
     }
-
+    /*
+        Prepared Statements - Add New User
+    */
     function addNewUser($username, $password)
     {
         global $conn;
@@ -87,7 +99,9 @@ class Auth
             die("Error: could not prepare MySQLi statement");
         }
     }
-
+    /*
+        Prepared Statements - Add Task
+    */
     function addTask($title, $status, $author, $description)
     {
         global $conn;
@@ -106,7 +120,9 @@ class Auth
             die("Error: could not prepare MySQLi statement");
         }
     }
-
+    /*
+        Prepared Statements - Edit/Update Selected Task
+    */
     function updateTask($id, $title, $status, $description)
     {
         global $conn;
@@ -124,7 +140,9 @@ class Auth
             die("Error: could not prepare MySQLi statement");
         }
     }
-
+    /*
+        Prepared Statements - Delete Selected Task
+    */
     function deleteTask($id)
     {
         global $conn;

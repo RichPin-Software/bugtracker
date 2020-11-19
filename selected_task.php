@@ -17,7 +17,7 @@ include('includes/database.php');
 */
 $id;
 /*
-    Form variables
+    form variables
 */
 $title_key = 'input_title';
 $desc_key = 'input_description';

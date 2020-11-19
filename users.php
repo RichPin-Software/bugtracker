@@ -1,8 +1,21 @@
 <?php
+/**
+ *      Author: Richard Pinegar
+ *      Date: 11/19/2020
+ * 
+ *      Controller for functions of all tasks and filter tasks views
+ *      as well as 'Back' button functionality and new task form.
+ * 
+ *      - Display All Tasks
+ *      - Display Filtered Tasks by Status
+ *      - Add New Task
+ *      - Back Button
+ *
+ */
 include('includes/init.php');
 include('includes/database.php');
 /*
-    Form variables
+    form variables
 */
 $title_key = 'input_title';
 $desc_key = 'input_description';
@@ -13,7 +26,7 @@ $error = '*required field!';
 if(isset($_SESSION['login_successful']))
 {
     /*
-        Display main page with login welcome message
+        display main page with login welcome message
     */
     if(!isset($_SESSION['currentUser']))
     {
@@ -24,7 +37,7 @@ if(isset($_SESSION['login_successful']))
     else
     {
         /*
-            If 'Back' button pressed unset id and reload
+            if 'Back' button pressed unset id and reload
         */
         if(isset($_GET['back']))
         {
@@ -32,7 +45,7 @@ if(isset($_SESSION['login_successful']))
             $Template->redirect('users.php');
         }
         /*
-            Navigation
+            navigation
         */
         else if(isset($_GET['filtertasks']) && !isset($_GET['page']))
         {
@@ -65,7 +78,7 @@ if(isset($_SESSION['login_successful']))
             }
         }
         /*
-            If 'Add Task' button pressed unset id and load add task form
+            if 'Add Task' button pressed unset id and load add task form
         */
         else if(isset($_GET['addtask']))
         {
@@ -81,7 +94,7 @@ if(isset($_SESSION['login_successful']))
         }
         
         /*
-            Add new task
+            add new task
         */
         else if($_SERVER["REQUEST_METHOD"] == "POST")
         {
@@ -104,14 +117,14 @@ if(isset($_SESSION['login_successful']))
             }
         }
         /*
-            Display main page
+            display main page
         */
         else
         {
             $Template->load('views/v_users.php');
 
             /*
-                Show 8 results per page - filter results
+                show 8 results per page - filter results by status (TODO, On-hold, In Progress, Resolved)
             */
             if(isset($_GET['page']) && isset($_GET['filtertasks']))
             {
@@ -121,7 +134,7 @@ if(isset($_SESSION['login_successful']))
                 $Template->redirect("users.php?filtertasks=$tasks");
             }
             /*
-                Show 8 results per page - all tasks
+                show 8 results per page - all tasks
             */
             else if(isset($_GET['page']) && !isset($_GET['filtertasks']))
             {

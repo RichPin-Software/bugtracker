@@ -1,8 +1,19 @@
 <?php
+/**
+ *      Author: Richard Pinegar
+ *      Date: 11/19/2020
+ * 
+ *      Controller for functions of login and logout.
+ * 
+ *      - User Login/Logout
+ *      - Form Validation
+ *      - Display Login
+ *
+ */
 include('includes/init.php');
 include('includes/database.php');
 /*
-    Form variables
+    form variables
 */
 $user_key = 'input_user';
 $pass_key = 'input_pass';
@@ -10,7 +21,7 @@ $err_key_user = 'error_user';
 $err_key_pass = 'error_pass';
 $error = '*required field!';
 /*
-    If user submits login form
+    if user submits login form
 */
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -41,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     }
 }
 /*
-    If user logs out
+    if user logs out
 */
 else if(isset($_GET['logout']))
 {
@@ -52,7 +63,7 @@ else if(isset($_GET['logout']))
     $Template->load('views/v_login.php');
 }
 /*
-    Display login form
+    display login form
 */
 else
 {

@@ -1,4 +1,14 @@
 <?php
+/**
+ *      Author: Richard Pinegar
+ *      Date: 11/19/2020
+ * 
+ *      Template file contains form validation, functions to 
+ *      redirect controller pages and load views.  Contains
+ *      set and get Data functions to clean user input data
+ *      as well as functions for alerts.
+ *
+ */
 class Templates
 {
     private $data;
