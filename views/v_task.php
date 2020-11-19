@@ -105,7 +105,7 @@
                                                             {
                                                                 while($stmt->fetch()) 
                                                                 {
-                                                                    echo "<p><a href='users.php?assign=$username'>$username</a></p>";
+                                                                    echo "<p><a href='selected_task.php?assign=$username'>$username</a></p>";
                                                                 }
 
                                                                 $stmt->free_result();
@@ -136,10 +136,10 @@
                                             <span class="task-suffix">Status: </span> 
                                             <span class="<?php echo "display-$sts"; ?>" id="dropdown-status"><?php echo $result['status']; ?></span>
                                             <div class="dropdown-menu">
-                                                <p><a href="users.php?status=onhold" id="on-hold">On-hold</a></p>
-                                                <p><a href="users.php?status=todo" id="todo">TODO</a></p>
-                                                <p><a href="users.php?status=inprogress" id="in-progress">In Progress</a></p>
-                                                <p><a href="users.php?status=resolved" id="resolved">Resolved</a></p>
+                                                <p><a href="selected_task.php?status=onhold" id="on-hold">On-hold</a></p>
+                                                <p><a href="selected_task.php?status=todo" id="todo">TODO</a></p>
+                                                <p><a href="selected_task.php?status=inprogress" id="in-progress">In Progress</a></p>
+                                                <p><a href="selected_task.php?status=resolved" id="resolved">Resolved</a></p>
                                             </div>
                                         </div>
                                     </td>
@@ -161,8 +161,8 @@
                     ?>
                     <tr>
                         <td id="edit-delete">
-                            <a id="edit-task" href="users.php?edittask=true">Edit</a>
-                            <a id="delete-task" href="users.php?deletetask=true">Delete</a>
+                            <a id="edit-task" href="selected_task.php?edittask=true">Edit</a>
+                            <a id="delete-task" href="selected_task.php?deletetask=true">Delete</a>
                         </td>
                     </tr>
                 </table>
