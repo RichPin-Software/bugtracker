@@ -1,4 +1,11 @@
 <?php
+/**
+ *      Author: Richard Pinegar
+ *      Date: 11/19/2020
+ * 
+ *      Database credentials
+ *
+ */
     $servername = '127.0.0.1';
     $username = 'richpin';
     $password = 'n@tal13R0$_3';

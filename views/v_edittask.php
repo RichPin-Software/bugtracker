@@ -34,10 +34,11 @@
 
                         include('includes/database.php');
 
+                        $id = $_SESSION['id'];
+
                         if ($stmt = $conn->prepare("SELECT * FROM tasks WHERE id = ?"))
                         {
                             $stmt->bind_param("i", $id);
-                            $id = $_SESSION['id'];
                             $stmt->execute();
                             $stmt->store_result();
                             $stmt->bind_result($result['id'], $result['title'], $result['author'], $result['assignee'], $result['status'], $result['description']);
@@ -51,6 +52,7 @@
                         <div class="error"><?php echo $this->getData('error_title'); ?></div><br>
                         <input type="text" name="task-author" id="task-author" placeholder="Created by" value="<?php echo $result['author']; ?>" disabled>
                         <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
+                        <input type="text" name="task-status" id="task-status" placeholder="Status" value="<?php echo $result['status']; ?>"><br><br>
                         <textarea type="text" name="task-description" id="task-description" form="task-form" placeholder="Description..."><?php echo $result['description']; ?></textarea>
                         <div class="error"><?php echo $this->getData('error_description'); ?></div><br>
                         <input type="button" name="cancel" class="cancel cancel-form" value="Cancel">

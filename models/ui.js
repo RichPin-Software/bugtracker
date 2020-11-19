@@ -1,3 +1,11 @@
+/**
+ *      Author: Richard Pinegar
+ *      Date: 11/19/2020
+ * 
+ *      UI class for handling basic functions
+ *      in the user interface. 
+ * 
+ */
 class UI
 {
     mQueryString;

@@ -1,4 +1,11 @@
 <?php
+/**
+ *      Author: Richard Pinegar
+ *      Date: 11/19/2020
+ * 
+ *      Initialization file
+ *
+ */
     include('models/m_template.php');
     include('models/m_auth.php');
 

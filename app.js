@@ -1,9 +1,18 @@
+/**
+ *      Author: Richard Pinegar
+ *      Date: 11/19/2020
+ * 
+ *      - Cancel button functionality
+ *      - Create New User Group display
+ * 
+ */
+
 /*
-    Create instance of UI class
+    create instance of UI class
 */ 
 let Ui = new UI();
 /*
-    Cancel form
+    cancel form
 */
 if(cancelButtonExists = document.querySelector('.cancel-newuser'))
 {
@@ -14,7 +23,7 @@ if(cancelButtonExists = document.querySelector('.cancel-form'))
     Ui.cancelForm('.cancel-form','users.php?back=1');
 }
 /*
-    Show 'Create Group' on New User signup page
+    show 'Create Group' on New User signup page
 */
 if(onNewUserSignupPage = document.querySelector('#groupname'))
 {
