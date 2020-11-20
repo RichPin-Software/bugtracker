@@ -113,7 +113,7 @@
                         }
                     ?>
                 </table>
-                <span><?php echo "$num_tasks results. Showing 8 results per page."; ?></span>
+                <span class="results"><?php echo "$num_tasks results. Showing 8 results per page."; ?></span>
                 <?php
                     for($i=1;$i<=$count;$i++)
                     {

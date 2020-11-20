@@ -78,8 +78,10 @@
                                         $assign = 'unassigned';
                                 }
                                 ?>
-                                <tr><th><?php echo $result['title']; ?></th></tr>
-                                <tr><td id="author"><div class="td-content"><span class="task-suffix">Created by:</span> <?php echo $result['author']; ?></div></td></tr>
+                                <tr>
+                                    <th rowspan="3"><?php echo $result['title']; ?></th>
+                                    <td id="author"><div class="td-content"><span class="task-suffix">Created by:</span> <?php echo $result['author']; ?></div></td>
+                                </tr>
                                 <tr>
                                     <td id="assignee">
                                         <div class="td-content dropdown">
@@ -144,7 +146,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr><td id="description"><div><?php echo $result['description']; ?></div></td></tr>
+                                <tr><td colspan="2" id="description"><div><?php echo $result['description']; ?></div></td></tr>
                                 <?php
                                 $stmt->close();
                                 $conn->close();
@@ -160,7 +162,7 @@
                         }
                     ?>
                     <tr>
-                        <td id="edit-delete">
+                        <td colspan="2" id="edit-delete">
                             <a id="edit-task" href="selected_task.php?edittask=true">Edit</a>
                             <a id="delete-task" href="selected_task.php?deletetask=true">Delete</a>
                         </td>
