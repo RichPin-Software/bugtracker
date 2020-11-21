@@ -52,9 +52,9 @@ div#login-form {
     padding:0 120px;
 }
 
-label#groupname-label, input#groupname, div#groupname-error, br#groupname-br {
+/* label#groupname-label, input#groupname, div#groupname-error, br#groupname-br {
     display:none;
-}
+} */
 
 div#addtask-container {
     width:100%;

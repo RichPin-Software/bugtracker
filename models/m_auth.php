@@ -80,6 +80,37 @@ class Auth
         }
     }
     /*
+        Username Validation to Prevent Duplicate Usernames
+    */
+    function validateNewGroupname($groupname)
+    {
+        global $conn;
+
+        if($stmt = $conn->prepare("SELECT groupname FROM users_login WHERE groupname = ?"))
+        {
+            $stmt->bind_param("s", $groupname);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if($stmt->num_rows > 0)
+            {
+                $stmt->close();
+                $result = false;
+            }
+            else
+            {
+                $stmt->close();
+                $result = true;
+            }
+
+            return $result;
+        }
+        else
+        {
+            die("Error: Could not prepare MySQLi statement");
+        }
+    }
+    /*
         Prepared Statements - Add New User
     */
     function addNewUser($username, $password)
