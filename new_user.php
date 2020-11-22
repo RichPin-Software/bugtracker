@@ -80,7 +80,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['group']))
             $Template->load('views/v_new_user_group.php');
         }
         /*
-            create new user group account
+            create new user group account and table
         */
         else
         {
@@ -137,10 +137,12 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
         {
             $Template->setData($user_key, $_POST['username']);
             $Template->setData($pass_key, $_POST['password']);
-            $new_user = $Template->getData($user_key);
+            /* $new_user = $Template->getData($user_key); */
+            $new_user = $_POST['username'];
             $new_password = $Template->getData($pass_key);
 
             $Auth->addNewUser($new_user, $new_password);
+
             $Template->setAlert("Welcome $new_user! Please sign in with your new username and password!", 'success');
             $Template->redirect("login.php");
         }

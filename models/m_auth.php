@@ -117,17 +117,33 @@ class Auth
     {
         global $conn;
         $secure_password = md5($password.$this->salt);
-
+        /*
+            add new username and password to table 'users_login'
+        */
         if($stmt = $conn->prepare("INSERT INTO users_login (username, password) VALUES (?, ?)"))
         {
             $stmt->bind_param("ss", $username, $secure_password);
             $stmt->execute();
             $stmt->close();
+            /*
+                create new table for new user account
+            */
+            $sql = "CREATE TABLE $username (
+                id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                title varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                author varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                assignee varchar(255) COLLATE utf8_unicode_ci NULL,
+                status varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                description text COLLATE utf8_unicode_ci NOT NULL
+                )";
+
+            echo ($conn->query($sql)===TRUE) ? : "Error: $conn->error";
+
             $conn->close();
         }
         else
         {
-            die("Error: could not prepare MySQLi statement");
+            die("Error: could not prepare MySQLi statement::username and password");
         }
     }
 
@@ -135,12 +151,41 @@ class Auth
     {
         global $conn;
         $secure_password = md5($password.$this->salt);
-
+        /*
+            add new username, groupname and password to table 'users_login'
+        */
         if($stmt = $conn->prepare("INSERT INTO users_login (username, groupname, password) VALUES (?, ?, ?)"))
         {
             $stmt->bind_param("sss", $username, $groupname, $secure_password);
             $stmt->execute();
             $stmt->close();
+            /*
+                create new table for new user account
+            */
+            $sql = "CREATE TABLE $username (
+                id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                title varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                author varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                assignee varchar(255) COLLATE utf8_unicode_ci NULL,
+                status varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                description text COLLATE utf8_unicode_ci NOT NULL
+                )";
+
+            echo ($conn->query($sql)===TRUE) ? : "Error: $conn->error";
+            /*
+                create new table for group
+            */
+            $sql = "CREATE TABLE group_$groupname (
+                id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                title varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                author varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                assignee varchar(255) COLLATE utf8_unicode_ci NULL,
+                status varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                description text COLLATE utf8_unicode_ci NOT NULL
+                )";
+
+            echo ($conn->query($sql)===TRUE) ? : "Error: $conn->error";
+
             $conn->close();
         }
         else
