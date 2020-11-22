@@ -92,7 +92,35 @@
                                                     /*
                                                         Assignee dropdown
                                                     */
-                                                    $groupname = 'RP';
+                                                    $groupname;
+                                                    
+                                                    if($stmt = $conn->prepare("SELECT groupname FROM users_login WHERE username = ?"))
+                                                    {
+                                                        $username = $_SESSION['user'];
+
+                                                        $stmt->bind_param("s", $username);
+                                                        $stmt->execute();
+                                                        $stmt->store_result();
+                                                        $stmt->bind_result($group_name);
+
+                                                        if ($stmt->num_rows > 0)
+                                                        {
+                                                            while($stmt->fetch()) 
+                                                            {
+                                                                $groupname = $group_name;
+                                                            }
+
+                                                            $stmt->free_result();
+                                                        }
+                                                        else
+                                                        {
+                                                            die("Error: No Group");
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        die("Failure to connect: ($conn->errno) $conn->error");
+                                                    }
 
                                                     if($groupname != '' || $groupname != null)
                                                     {

@@ -56,45 +56,44 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['group']))
         {
             if(strlen($username) < 8)
             {
-                $Template->setData('error_user', '*must be at least 8 characters');
+                $Template->setData($err_key_user, '*must be at least 8 characters');
             }
             if(strlen($password) < 8)
             {
-                $Template->setData('error_pass', '*must be at least 8 characters');
+                $Template->setData($err_key_pass, '*must be at least 8 characters');
             }
             if(strlen($groupname) < 2)
             {
-                $Template->setData('error_group', '*must be at least 2 characters');
+                $Template->setData($err_key_group, '*must be at least 2 characters');
             }
             
             $Template->load('views/v_new_user_group.php');
         }
         else if(!$Auth->validateNewUsername($username))
         {
-            $Template->setData('error_user', '*username already exists!');
+            $Template->setData($err_key_user, '*username already exists!');
             $Template->load('views/v_new_user_group.php');
         }
         else if(!$Auth->validateNewGroupname($groupname))
         {
-            $Template->setData('error_group', '*group name already exists!');
+            $Template->setData($err_key_group, '*group name already exists!');
             $Template->load('views/v_new_user_group.php');
         }
         /*
-            create new user account
+            create new user group account
         */
         else
         {
-            echo "Success!";
-            /*
-            $Template->setData('new_user', $_POST['username']);
-            $Template->setData('newuser_pass', $_POST['password']);
-            $new_user = $Template->getData('new_user');
-            $new_password = $Template->getData('newuser_pass');
+            $Template->setData($group_key, $_POST['groupname']);
+            $Template->setData($user_key, $_POST['username']);
+            $Template->setData($pass_key, $_POST['password']);
+            $new_group = $Template->getData($group_key);
+            $new_user = $Template->getData($user_key);
+            $new_password = $Template->getData($pass_key);
 
-            $Auth->addNewUser($new_user, $new_password);
+            $Auth->addNewUserGroup($new_user, $new_group, $new_password);
             $Template->setAlert("Welcome $new_user! Please sign in with your new username and password!", 'success');
             $Template->redirect("login.php");
-            */
         }
     }
     else
@@ -117,18 +116,18 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
         {
             if(strlen($username) < 8)
             {
-                $Template->setData('error_user', '*must be at least 8 characters');
+                $Template->setData($err_key_user, '*must be at least 8 characters');
             }
             if(strlen($password) < 8)
             {
-                $Template->setData('error_pass', '*must be at least 8 characters');
+                $Template->setData($err_key_pass, '*must be at least 8 characters');
             }
             
             $Template->load('views/v_new_user.php');
         }
         else if(!$Auth->validateNewUsername($username))
         {
-            $Template->setData('error_user', '*username already exists!');
+            $Template->setData($err_key_user, '*username already exists!');
             $Template->load('views/v_new_user.php');
         }
         /*
@@ -136,10 +135,10 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
         */
         else
         {
-            $Template->setData('new_user', $_POST['username']);
-            $Template->setData('newuser_pass', $_POST['password']);
-            $new_user = $Template->getData('new_user');
-            $new_password = $Template->getData('newuser_pass');
+            $Template->setData($user_key, $_POST['username']);
+            $Template->setData($pass_key, $_POST['password']);
+            $new_user = $Template->getData($user_key);
+            $new_password = $Template->getData($pass_key);
 
             $Auth->addNewUser($new_user, $new_password);
             $Template->setAlert("Welcome $new_user! Please sign in with your new username and password!", 'success');

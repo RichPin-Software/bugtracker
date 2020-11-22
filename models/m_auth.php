@@ -130,6 +130,24 @@ class Auth
             die("Error: could not prepare MySQLi statement");
         }
     }
+
+    function addNewUserGroup($username, $groupname, $password)
+    {
+        global $conn;
+        $secure_password = md5($password.$this->salt);
+
+        if($stmt = $conn->prepare("INSERT INTO users_login (username, groupname, password) VALUES (?, ?, ?)"))
+        {
+            $stmt->bind_param("sss", $username, $groupname, $secure_password);
+            $stmt->execute();
+            $stmt->close();
+            $conn->close();
+        }
+        else
+        {
+            die("Error: could not prepare MySQLi statement");
+        }
+    }
     /*
         Prepared Statements - Add Task
     */
