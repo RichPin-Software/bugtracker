@@ -1,13 +1,16 @@
 <?php
-    echo md5('admin'.'j4H97e021_d');
+    $spec_char = ["/!/","/@/","/#/",'/\$/',"/%/",'/\^/',"/&/",'/\*/',"/\(/","/\)/","/-/","/\+/","/=/","/|/","/\</","/\>/","/?/","/\//","/[/","/]/","/{/","/}/","/;/","/:/","/'/",'/"/',"/~/","/`/","/./"];
+    $spec_char2 = ["!","@","#","$","%","^","&","*","(",")","-","+","=","|","]","[","}","{","'",'"',":",";","?","/",">","<",",",".","`","~"];
+    /* $spec_char3 = [^a-zA-Z0-9](\_); */
 
+    /* foreach($spec_char2 as $char)
+    {
+        echo preg_match('/'.$char.'/', "rich.pin!@yahhoo+[met");
+    } */
 
-    $sql = "CREATE TABLE $username (
-        id int(11) NOT NULL AUTO_INCREMENT,
-        title varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        author varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        assignee varchar(255) COLLATE utf8_unicode_ci NULL,
-        status varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        description text COLLATE utf8_unicode_ci NOT NULL,
-        PRIMARY KEY (id)
-        )";
+    /* echo htmlspecialchars("$");
+
+    echo htmlentities("$", ENT_QUOTES); */
+
+    echo preg_match('/\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\+|\=|\]|\[|\}|\{|\"|\'|\:|\;|\?|\/|\>|\<|\,|\./', "cat.dog!>><<.@#!");
+

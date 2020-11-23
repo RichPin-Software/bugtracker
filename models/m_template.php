@@ -91,6 +91,7 @@ class Templates
     {
         $this->setData($input_1_key, $input_1);
         $this->setData($input_2_key, $input_2);
+        $special_char = '/\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\+|\=|\]|\[|\}|\{|\"|\'|\:|\;|\?|\/|\>|\<|\,|\./';
 
         $validate;
 
@@ -98,6 +99,12 @@ class Templates
         {
             if($input_1=='') { $this->setData($err_key_1, $error); }
             if($input_2=='') { $this->setData($err_key_2, $error); }
+
+            $validate = false;
+        }
+        else if(preg_match($special_char, $input_1)===1)
+        {
+            $this->setData($err_key_1, "*letters, numbers and underscore only!");
 
             $validate = false;
         }
@@ -114,6 +121,7 @@ class Templates
         $this->setData($input_1_key, $input_1);
         $this->setData($input_2_key, $input_2);
         $this->setData($input_3_key, $input_3);
+        $special_char = '/\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\+|\=|\]|\[|\}|\{|\"|\'|\:|\;|\?|\/|\>|\<|\,|\./';
 
         $validate;
 
@@ -122,6 +130,13 @@ class Templates
             if($input_1=='') { $this->setData($err_key_1, $error); }
             if($input_2=='') { $this->setData($err_key_2, $error); }
             if($input_3=='') { $this->setData($err_key_3, $error); }
+
+            $validate = false;
+        }
+        else if((preg_match($special_char, $input_1)===1) || (preg_match($special_char, $input_3)===1))
+        {
+            if(preg_match($special_char, $input_1)===1) { $this->setData($err_key_1, "*letters, numbers and underscore only!"); }
+            if(preg_match($special_char, $input_3)===1) { $this->setData($err_key_3, "*letters, numbers and underscore only!"); }
 
             $validate = false;
         }
