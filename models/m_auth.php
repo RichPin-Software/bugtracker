@@ -196,12 +196,12 @@ class Auth
     /*
         Prepared Statements - Add Task
     */
-    function addTask($title, $status, $author, $description)
+    function addTask($db_table, $title, $status, $author, $description)
     {
         global $conn;
         $assignee = "unassigned";
 
-        if($stmt = $conn->prepare("INSERT INTO tasks (title, author, assignee, status, description) VALUES (?,?,?,?,?)"))
+        if($stmt = $conn->prepare("INSERT INTO $db_table (title, author, assignee, status, description) VALUES (?,?,?,?,?)"))
         {
             $stmt->bind_param("sssss", $title, $author, $assignee, $status, $description);
             $stmt->execute();
@@ -217,11 +217,11 @@ class Auth
     /*
         Prepared Statements - Edit/Update Selected Task
     */
-    function updateTask($id, $title, $status, $description)
+    function updateTask($db_table, $id, $title, $status, $description)
     {
         global $conn;
 
-        if($stmt = $conn->prepare("UPDATE tasks SET title=?, status=?, description=? WHERE id=?"))
+        if($stmt = $conn->prepare("UPDATE $db_table SET title=?, status=?, description=? WHERE id=?"))
         {
             $stmt->bind_param("sssi", $title, $status, $description, $id);
             $stmt->execute();

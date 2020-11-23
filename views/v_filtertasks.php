@@ -1,3 +1,11 @@
+<?php
+
+/*
+    set variable for user database
+*/
+$db_user_table = $_SESSION['user'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +55,7 @@
                             $offset = $_SESSION['offset'];
                         }
 
-                        if ($stmt = $conn->prepare("SELECT id, title FROM tasks WHERE status=? ORDER BY id"))
+                        if ($stmt = $conn->prepare("SELECT id, title FROM $db_user_table WHERE status=? ORDER BY id"))
                         {
                             $stmt->bind_param("s", $status);
                             $stmt->execute();
@@ -62,7 +70,7 @@
                             $stmt->close();
 
 
-                            if ($stmt = $conn->prepare("SELECT id, title FROM tasks WHERE status=? ORDER BY id LIMIT ?,?"))
+                            if ($stmt = $conn->prepare("SELECT id, title FROM $db_user_table WHERE status=? ORDER BY id LIMIT ?,?"))
                             {
                                 $stmt->bind_param("sii", $status, $offset, $results);
                                 $stmt->execute();

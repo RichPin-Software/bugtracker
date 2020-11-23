@@ -257,6 +257,7 @@ div.members-body {
 
 div.error {
     color: rgb(255, 0, 0);
+    font-size: 13px;
 }
 
 div.td-content {

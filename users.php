@@ -22,6 +22,10 @@ $desc_key = 'input_description';
 $err_key_title = 'error_title';
 $err_key_desc = 'error_description';
 $error = '*required field!';
+/*
+    set variable for user database
+*/
+$db_user_table = $_SESSION['user'];
 
 if(isset($_SESSION['login_successful']))
 {
@@ -108,7 +112,7 @@ if(isset($_SESSION['login_successful']))
                 $author = $_SESSION['user'];
                 $description = $Template->getData($desc_key);
 
-                $Auth->addTask($title, $status, $author, $description);
+                $Auth->addTask($db_user_table, $title, $status, $author, $description);
                 $Template->redirect('users.php');
             }
             else

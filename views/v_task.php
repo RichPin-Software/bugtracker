@@ -1,3 +1,11 @@
+<?php
+
+/*
+    set variable for user database
+*/
+$db_user_table = $_SESSION['user'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +41,7 @@
                     <?php
                         include('includes/database.php');
 
-                        if ($stmt = $conn->prepare("SELECT * FROM tasks WHERE id = ?"))
+                        if ($stmt = $conn->prepare("SELECT * FROM $db_user_table WHERE id = ?"))
                         {
                             $stmt->bind_param("i", $id);
                             $id = $_SESSION['id'];

@@ -17,6 +17,10 @@ include('includes/database.php');
 */
 $id;
 /*
+    set variable for user database
+*/
+$db_user_table = $_SESSION['user'];
+/*
     form variables
 */
 $title_key = 'input_title';
@@ -67,7 +71,7 @@ if(isset($_SESSION['id']))
             $title = $Template->getData($title_key);
             $description = $Template->getData($desc_key);
 
-            $Auth->updateTask($id, $title, $status, $description);
+            $Auth->updateTask($db_user_table, $id, $title, $status, $description);
             $Template->load('views/v_task.php');
         }
         else
