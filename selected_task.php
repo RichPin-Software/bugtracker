@@ -104,11 +104,10 @@ if(isset($_SESSION['id']))
                 $status = "TODO";
         }
 
-        if($stmt = $conn->prepare("UPDATE tasks SET status=? WHERE id=?"))
+        if($stmt = $conn->prepare("UPDATE $db_user_table SET status=? WHERE id=?"))
         {
             $stmt->bind_param("si", $status, $id);
             $stmt->execute();
-
             $stmt->close();
             $conn->close();
         }
@@ -125,11 +124,10 @@ if(isset($_SESSION['id']))
     {
         $assignee = $_GET['assign'];
 
-        if($stmt = $conn->prepare("UPDATE tasks SET assignee=? WHERE id=?"))
+        if($stmt = $conn->prepare("UPDATE $db_user_table SET assignee=? WHERE id=?"))
         {
             $stmt->bind_param("si", $assignee, $id);
             $stmt->execute();
-
             $stmt->close();
             $conn->close();
         }

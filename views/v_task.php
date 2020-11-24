@@ -1,11 +1,4 @@
-<?php
-
-/*
-    set variable for user database
-*/
-$db_user_table = $_SESSION['user'];
-
-?>
+<?php $db_user_table = $_SESSION['user']; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

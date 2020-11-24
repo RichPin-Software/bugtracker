@@ -1,17 +1,7 @@
-<?php
-
-/*
-    set variable for user database
-*/
-$db_user_table = $_SESSION['user'];
-
-?>
+<?php $db_user_table = $_SESSION['user']; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
-        window.history.forward();
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/style.css">
