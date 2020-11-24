@@ -151,12 +151,13 @@ class Auth
     {
         global $conn;
         $secure_password = md5($password.$this->salt);
+        $admin = 'yes';
         /*
             add new username, groupname and password to table 'users_login'
         */
-        if($stmt = $conn->prepare("INSERT INTO users_login (username, groupname, password) VALUES (?, ?, ?)"))
+        if($stmt = $conn->prepare("INSERT INTO users_login (username, groupname, password, admin) VALUES (?, ?, ?, ?)"))
         {
-            $stmt->bind_param("sss", $username, $groupname, $secure_password);
+            $stmt->bind_param("ssss", $username, $groupname, $secure_password, $admin);
             $stmt->execute();
             $stmt->close();
             /*
