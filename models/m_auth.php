@@ -152,18 +152,19 @@ class Auth
         global $conn;
         $secure_password = md5($password.$this->salt);
         $admin = 'yes';
+        $user_group = "$username@$groupname";
         /*
             add new username, groupname and password to table 'users_login'
         */
         if($stmt = $conn->prepare("INSERT INTO users_login (username, groupname, password, admin) VALUES (?, ?, ?, ?)"))
         {
-            $stmt->bind_param("ssss", $username, $groupname, $secure_password, $admin);
+            $stmt->bind_param("ssss", $user_group, $groupname, $secure_password, $admin);
             $stmt->execute();
             $stmt->close();
             /*
                 create new table for new user account
             */
-            $sql = "CREATE TABLE $username (
+            /* $sql = "CREATE TABLE $username (
                 id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 title varchar(255) COLLATE utf8_unicode_ci NOT NULL,
                 author varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -172,7 +173,7 @@ class Auth
                 description text COLLATE utf8_unicode_ci NOT NULL
                 )";
 
-            echo ($conn->query($sql)===TRUE) ? : "Error: $conn->error";
+            echo ($conn->query($sql)===TRUE) ? : "Error: $conn->error"; */
             /*
                 create new table for group
             */
@@ -238,11 +239,11 @@ class Auth
     /*
         Prepared Statements - Delete Selected Task
     */
-    function deleteTask($id)
+    function deleteTask($db_table, $id)
     {
         global $conn;
 
-        if($stmt = $conn->prepare("DELETE FROM tasks WHERE id=?"))
+        if($stmt = $conn->prepare("DELETE FROM $db_table WHERE id=?"))
         {
             $stmt->bind_param("i", $id);
             $stmt->execute();
