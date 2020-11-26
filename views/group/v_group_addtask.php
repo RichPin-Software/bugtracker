@@ -26,28 +26,23 @@
             </div>
         </div>
         <div class="row-body">
-            <div class="members-body" id="add-task-container">
+            <div class="members-body">
                 <div id="addtask-container">
-                    <?php
-                        echo $this->displayAlert();
-                    ?>
+                    <?php echo $this->displayAlert(); ?>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">
-                        <!-- task title -->
                         <input type="text" name="task-title" cols="100" id="task-title" placeholder="New Task Title" value="<?php echo $this->getData('input_title'); ?>">
                         <div class="error"><?php echo $this->getData('error_title'); ?></div><br>
-                        <!-- task author -->
                         <input type="text" name="task-author" id="task-author" value="<?php echo $_SESSION['user']; ?>" disabled>
                         <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
-                        <!-- task description -->
                         <textarea type="text" name="task-description" id="task-description" form="task-form" placeholder="Description..."><?php echo $this->getData('input_description'); ?></textarea>
                         <div class="error"><?php echo $this->getData('error_description'); ?></div><br>
                         <input type="button" name="cancel" class="cancel cancel-form" value="Cancel">
                         <input type="submit" class="submit" value="Submit">
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                </div><!-- .addtask-container -->
+            </div><!-- .members-body -->
+        </div><!-- .row-body -->
+    </div><!-- .container -->
 
     <script src="../../bugtracker/models/ui.js"></script>
     <script src="../bugtracker/group_app.js"></script>

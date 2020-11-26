@@ -325,6 +325,13 @@ span.display-resolved#dropdown-status {
     color:rgb(0, 138, 7);;
 }
 /*
+    Pagination
+*/
+a.page-link {
+    margin-right: 5px;
+    text-decoration:underline;
+}
+/*
     Assignee Dropdown
 */
 .dropdown:hover span#assignee-dropdown-sts {
@@ -332,7 +339,7 @@ span.display-resolved#dropdown-status {
     /* font-weight: 700; */
 }
 
-span.display-unassigned#assignee-dropdown-sts {
+span.display-assignee#assignee-dropdown-sts {
     font-style: italic;
     font-weight: 500;
 }

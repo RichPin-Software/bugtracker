@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
-        window.history.forward();
-    </script>
+    <script>window.history.forward();</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/style.css">
@@ -14,9 +12,7 @@
         <div id="login-form">
             <h1>Member Login</h1>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-                <?php 
-                    echo $this->displayAlert();
-                ?>
+                <?php echo $this->displayAlert(); ?>
                 <label for="username">Username:</label><br>
                 <input type="text" name="username" id="username" value="<?php echo $this->getData('input_user'); ?>">
                 <div class="error"><?php echo $this->getData('error_user'); ?></div><br>

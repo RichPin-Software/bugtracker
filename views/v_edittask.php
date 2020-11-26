@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="row-body">
-            <div class="members-body" id="add-task-container">
+            <div class="members-body">
                 <div id="addtask-container">
                     <?php
                         echo $this->displayAlert();
