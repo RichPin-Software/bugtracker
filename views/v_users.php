@@ -15,7 +15,12 @@ include('includes/database.php');
         <div class="row-header">
             <div class="header">
                 <h1>Bug Tracker</h1>
-                <a href="login.php?logout=1">Logout</a>
+                <div class="header-dropdown dropdown">
+                    <img src="images/list.svg" alt="">
+                    <div class="dropdown-menu-header">
+                        <p><a id="logout" href="login.php?logout=1">Logout</a></p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row-nav">

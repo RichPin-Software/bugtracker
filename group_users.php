@@ -121,30 +121,50 @@ if(isset($_SESSION['login_successful']))
             }
         }
         /*
-            display main page
+            TEST
         */
-        else
+        else if(isset($_GET['page']))
         {
-            $Template->load('views/group/v_group_users.php');
-
-            /*
-                show 8 results per page - filter results by status (TODO, On-hold, In Progress, Resolved)
-            */
-            if(isset($_GET['page']) && isset($_GET['filtertasks']))
+            if(isset($_GET['filtertasks']))
             {
                 $tasks = $_GET['filtertasks'];
 
                 $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
                 $Template->redirect("group_users.php?filtertasks=$tasks");
             }
-            /*
-                show 8 results per page - all tasks
-            */
-            else if(isset($_GET['page']) && !isset($_GET['filtertasks']))
+            else
             {
                 $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
                 $Template->redirect('group_users.php');
             }
+        }
+        /*
+            display main page
+        */
+        else
+        {
+            /* $Template->load('views/group/v_group_users.php'); */
+
+            /*
+                show 8 results per page - filter results by status (TODO, On-hold, In Progress, Resolved)
+            */
+            /* if(isset($_GET['page']) && isset($_GET['filtertasks']))
+            {
+                $tasks = $_GET['filtertasks'];
+
+                $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
+                $Template->redirect("group_users.php?filtertasks=$tasks");
+            } */
+            /*
+                show 8 results per page - all tasks
+            */
+            /* else if(isset($_GET['page']) && !isset($_GET['filtertasks']))
+            {
+                $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
+                $Template->redirect('group_users.php');
+            }*/
+
+            $Template->load('views/group/v_group_users.php');
         }
     }
 }

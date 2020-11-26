@@ -121,30 +121,29 @@ if(isset($_SESSION['login_successful']))
             }
         }
         /*
-            display main page
+            Pagination
         */
-        else
+        else if(isset($_GET['page']))
         {
-            $Template->load('views/v_users.php');
-
-            /*
-                show 8 results per page - filter results by status (TODO, On-hold, In Progress, Resolved)
-            */
-            if(isset($_GET['page']) && isset($_GET['filtertasks']))
+            if(isset($_GET['filtertasks']))
             {
                 $tasks = $_GET['filtertasks'];
 
                 $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
                 $Template->redirect("users.php?filtertasks=$tasks");
             }
-            /*
-                show 8 results per page - all tasks
-            */
-            else if(isset($_GET['page']) && !isset($_GET['filtertasks']))
+            else
             {
                 $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
                 $Template->redirect('users.php');
             }
+        }
+        /*
+            display main page
+        */
+        else
+        {
+            $Template->load('views/v_users.php');
         }
     }
 }
