@@ -36,8 +36,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         if($Auth->validateLogin($username, $password))
         {
             $_SESSION['login_successful'] = true;
-            $_SESSION['user'] = $Template->getData($user_key);
-            $Template->redirect('users.php');
+            /*
+                group redirect
+            */
+            if(preg_match("/@/", $username)===1)
+            {
+                $pos = strpos($username, '@') + 1;
+                $groupname = substr($username, $pos);
+
+                $_SESSION['user'] = $Template->getData($user_key);
+                $_SESSION['group_table'] = "group_$groupname";
+                $Template->redirect('group_users.php');
+            }
+            /*
+                regular user - no group redirect
+            */
+            else
+            {
+                $_SESSION['user'] = $Template->getData($user_key);
+                $Template->redirect('users.php');
+            }
         }
         else
         {

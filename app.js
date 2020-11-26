@@ -25,6 +25,7 @@ if(cancelButtonExists = document.querySelector('.cancel-form'))
 /*
     show 'Create Group' on New User signup page
 */
+/*
 if(onNewUserSignupPage = document.querySelector('#groupname'))
 {
     const groupnameLabel = document.querySelector('#groupname-label');
@@ -41,3 +42,4 @@ if(onNewUserSignupPage = document.querySelector('#groupname'))
         groupSignup.style.display = "none";
     });
 }
+*/

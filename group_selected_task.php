@@ -3,7 +3,7 @@
  *      Author: Richard Pinegar
  *      Date: 11/19/2020
  * 
- *      Controller for all functions of a selected task.
+ *      Controller for all group functions of a selected task.
  * 
  *      - Display Task
  *      - Edit/Update Task
@@ -19,7 +19,7 @@ $id;
 /*
     set variable for user database
 */
-$db_user_table = $_SESSION['user'];
+$db_user_table = $_SESSION['group_table'];
 /*
     form variables
 */
@@ -43,18 +43,18 @@ if(isset($_SESSION['id']))
     */
     if(isset($_GET['deletetask']))
     {
-        $Auth->deleteTask($id);
+        $Auth->deleteTask($db_user_table, $id);
 
         $Template->setAlert("BUG-$id Deleted Successfully", 'success');
         unset($_SESSION['id']);
-        $Template->redirect('users.php');
+        $Template->redirect('group_users.php');
     }
     /*
         edit selected task
     */
     else if(isset($_GET['edittask']))
     {
-        $Template->load('views/v_edittask.php');
+        $Template->load('views/group/v_group_edittask.php');
     }
     /*
         edit selected task form submitted
@@ -72,11 +72,11 @@ if(isset($_SESSION['id']))
             $description = $Template->getData($desc_key);
 
             $Auth->updateTask($db_user_table, $id, $title, $status, $description);
-            $Template->load('views/v_task.php');
+            $Template->load('views/group/v_group_task.php');
         }
         else
         {
-            $Template->load('views/v_edittask.php');
+            $Template->load('views/group/v_group_edittask.php');
         }
     }
     /*
@@ -115,7 +115,7 @@ if(isset($_SESSION['id']))
         {
             die("Error: could not prepare MySQLi statement");
         }
-        $Template->redirect('selected_task.php');
+        $Template->redirect('group_selected_task.php');
     }
     /*
         set assignee for selected task
@@ -135,14 +135,14 @@ if(isset($_SESSION['id']))
         {
             die("Error: could not prepare MySQLi statement");
         }
-        $Template->redirect('selected_task.php');
+        $Template->redirect('group_selected_task.php');
     }
     /*
         display selected task
     */
     else
     {
-        $Template->load('views/v_task.php');
+        $Template->load('views/group/v_group_task.php');
     }
 }
 else

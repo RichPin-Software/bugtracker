@@ -52,9 +52,9 @@ div#login-form {
     padding:0 120px;
 }
 
-label#groupname-label, input#groupname, div#groupname-error, br#groupname-br {
+/* label#groupname-label, input#groupname, div#groupname-error, br#groupname-br {
     display:none;
-}
+} */
 
 div#addtask-container {
     width:100%;
@@ -257,6 +257,7 @@ div.members-body {
 
 div.error {
     color: rgb(255, 0, 0);
+    font-size: 13px;
 }
 
 div.td-content {
@@ -324,6 +325,13 @@ span.display-resolved#dropdown-status {
     color:rgb(0, 138, 7);;
 }
 /*
+    Pagination
+*/
+a.page-link {
+    margin-right: 5px;
+    text-decoration:underline;
+}
+/*
     Assignee Dropdown
 */
 .dropdown:hover span#assignee-dropdown-sts {
@@ -331,7 +339,7 @@ span.display-resolved#dropdown-status {
     /* font-weight: 700; */
 }
 
-span.display-unassigned#assignee-dropdown-sts {
+span.display-assignee#assignee-dropdown-sts {
     font-style: italic;
     font-weight: 500;
 }

@@ -1,9 +1,9 @@
 <?php
 /**
  *      Author: Richard Pinegar
- *      Date: 11/19/2020
+ *      Date: 11/24/2020
  * 
- *      Controller for functions of all tasks and filter tasks views
+ *      Controller for functions of all group tasks and filter tasks views
  *      as well as 'Back' button functionality and new task form.
  * 
  *      - Display All Tasks
@@ -23,9 +23,9 @@ $err_key_title = 'error_title';
 $err_key_desc = 'error_description';
 $error = '*required field!';
 /*
-    set variable for user database
+    set variable for group database
 */
-$db_user_table = $_SESSION['user'];
+$db_user_table = $_SESSION['group_table'];
 
 if(isset($_SESSION['login_successful']))
 {
@@ -36,7 +36,7 @@ if(isset($_SESSION['login_successful']))
     {
         $Template->setAlert('Welcome '.$_SESSION['user'].'!', 'success');
         $_SESSION['currentUser'] = true;
-        $Template->load('views/v_users.php');
+        $Template->load('views/group/v_group_users.php');
     }
     else
     {
@@ -46,7 +46,7 @@ if(isset($_SESSION['login_successful']))
         if(isset($_GET['back']))
         {
             unset($_SESSION['id']);
-            $Template->redirect('users.php');
+            $Template->redirect('group_users.php');
         }
         /*
             navigation
@@ -59,26 +59,26 @@ if(isset($_SESSION['login_successful']))
             {
                 case 'onhold': 
                     $_SESSION['filtertasks'] = 'On-hold';
-                    $Template->load('views/v_filtertasks.php');
+                    $Template->load('views/group/v_group_filtertasks.php');
                     break;
 
                 case 'todo': 
                     $_SESSION['filtertasks'] = 'TODO';
-                    $Template->load('views/v_filtertasks.php');
+                    $Template->load('views/group/v_group_filtertasks.php');
                     break;
 
                 case 'inprogress': 
                     $_SESSION['filtertasks'] = 'In Progress';
-                    $Template->load('views/v_filtertasks.php');
+                    $Template->load('views/group/v_group_filtertasks.php');
                     break;
 
                 case 'resolved': 
                     $_SESSION['filtertasks'] = 'Resolved';
-                    $Template->load('views/v_filtertasks.php');
+                    $Template->load('views/group/v_group_filtertasks.php');
                     break;
 
                 default: 
-                    $Template->load('views/v_users.php');
+                    $Template->load('views/group/v_group_users.php');
             }
         }
         /*
@@ -89,11 +89,11 @@ if(isset($_SESSION['login_successful']))
             if(isset($_SESSION['id'])) 
             { 
                 unset($_SESSION['id']);
-                $Template->load('views/v_addtask.php');
+                $Template->load('views/group/v_group_addtask.php');
             }
             else
             {
-                $Template->load('views/v_addtask.php');
+                $Template->load('views/group/v_group_addtask.php');
             }
         }
         
@@ -113,11 +113,11 @@ if(isset($_SESSION['login_successful']))
                 $description = $Template->getData($desc_key);
 
                 $Auth->addTask($db_user_table, $title, $status, $author, $description);
-                $Template->redirect('users.php');
+                $Template->redirect('group_users.php');
             }
             else
             {
-                $Template->load('views/v_addtask.php');
+                $Template->load('views/group/v_group_addtask.php');
             }
         }
         /*
@@ -125,7 +125,7 @@ if(isset($_SESSION['login_successful']))
         */
         else
         {
-            $Template->load('views/v_users.php');
+            $Template->load('views/group/v_group_users.php');
 
             /*
                 show 8 results per page - filter results by status (TODO, On-hold, In Progress, Resolved)
@@ -135,7 +135,7 @@ if(isset($_SESSION['login_successful']))
                 $tasks = $_GET['filtertasks'];
 
                 $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
-                $Template->redirect("users.php?filtertasks=$tasks");
+                $Template->redirect("group_users.php?filtertasks=$tasks");
             }
             /*
                 show 8 results per page - all tasks
@@ -143,7 +143,7 @@ if(isset($_SESSION['login_successful']))
             else if(isset($_GET['page']) && !isset($_GET['filtertasks']))
             {
                 $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
-                $Template->redirect('users.php');
+                $Template->redirect('group_users.php');
             }
         }
     }

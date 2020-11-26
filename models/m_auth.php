@@ -80,18 +80,114 @@ class Auth
         }
     }
     /*
+        Username Validation to Prevent Duplicate Usernames
+    */
+    function validateNewGroupname($groupname)
+    {
+        global $conn;
+
+        if($stmt = $conn->prepare("SELECT groupname FROM users_login WHERE groupname = ?"))
+        {
+            $stmt->bind_param("s", $groupname);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if($stmt->num_rows > 0)
+            {
+                $stmt->close();
+                $result = false;
+            }
+            else
+            {
+                $stmt->close();
+                $result = true;
+            }
+
+            return $result;
+        }
+        else
+        {
+            die("Error: Could not prepare MySQLi statement");
+        }
+    }
+    /*
         Prepared Statements - Add New User
     */
     function addNewUser($username, $password)
     {
         global $conn;
         $secure_password = md5($password.$this->salt);
-
+        /*
+            add new username and password to table 'users_login'
+        */
         if($stmt = $conn->prepare("INSERT INTO users_login (username, password) VALUES (?, ?)"))
         {
             $stmt->bind_param("ss", $username, $secure_password);
             $stmt->execute();
             $stmt->close();
+            /*
+                create new table for new user account
+            */
+            $sql = "CREATE TABLE $username (
+                id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                title varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                author varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                assignee varchar(255) COLLATE utf8_unicode_ci NULL,
+                status varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                description text COLLATE utf8_unicode_ci NOT NULL
+                )";
+
+            echo ($conn->query($sql)===TRUE) ? : "Error: $conn->error";
+
+            $conn->close();
+        }
+        else
+        {
+            die("Error: could not prepare MySQLi statement::username and password");
+        }
+    }
+
+    function addNewUserGroup($username, $groupname, $password)
+    {
+        global $conn;
+        $secure_password = md5($password.$this->salt);
+        $admin = 'yes';
+        $user_group = "$username@$groupname";
+        /*
+            add new username, groupname and password to table 'users_login'
+        */
+        if($stmt = $conn->prepare("INSERT INTO users_login (username, groupname, password, admin) VALUES (?, ?, ?, ?)"))
+        {
+            $stmt->bind_param("ssss", $user_group, $groupname, $secure_password, $admin);
+            $stmt->execute();
+            $stmt->close();
+            /*
+                create new table for new user account
+            */
+            /* $sql = "CREATE TABLE $username (
+                id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                title varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                author varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                assignee varchar(255) COLLATE utf8_unicode_ci NULL,
+                status varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                description text COLLATE utf8_unicode_ci NOT NULL
+                )";
+
+            echo ($conn->query($sql)===TRUE) ? : "Error: $conn->error"; */
+            /*
+                create new table for group
+            */
+            $sql = "CREATE TABLE group_$groupname (
+                id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                title varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                author varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                assignee varchar(255) COLLATE utf8_unicode_ci NULL,
+                status varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                description text COLLATE utf8_unicode_ci NOT NULL
+                )";
+
+            echo ($conn->query($sql)===TRUE) ? : "Error: $conn->error";
+
             $conn->close();
         }
         else
@@ -102,12 +198,12 @@ class Auth
     /*
         Prepared Statements - Add Task
     */
-    function addTask($title, $status, $author, $description)
+    function addTask($db_table, $title, $status, $author, $description)
     {
         global $conn;
         $assignee = "unassigned";
 
-        if($stmt = $conn->prepare("INSERT INTO tasks (title, author, assignee, status, description) VALUES (?,?,?,?,?)"))
+        if($stmt = $conn->prepare("INSERT INTO $db_table (title, author, assignee, status, description) VALUES (?,?,?,?,?)"))
         {
             $stmt->bind_param("sssss", $title, $author, $assignee, $status, $description);
             $stmt->execute();
@@ -123,11 +219,11 @@ class Auth
     /*
         Prepared Statements - Edit/Update Selected Task
     */
-    function updateTask($id, $title, $status, $description)
+    function updateTask($db_table, $id, $title, $status, $description)
     {
         global $conn;
 
-        if($stmt = $conn->prepare("UPDATE tasks SET title=?, status=?, description=? WHERE id=?"))
+        if($stmt = $conn->prepare("UPDATE $db_table SET title=?, status=?, description=? WHERE id=?"))
         {
             $stmt->bind_param("sssi", $title, $status, $description, $id);
             $stmt->execute();
@@ -143,11 +239,11 @@ class Auth
     /*
         Prepared Statements - Delete Selected Task
     */
-    function deleteTask($id)
+    function deleteTask($db_table, $id)
     {
         global $conn;
 
-        if($stmt = $conn->prepare("DELETE FROM tasks WHERE id=?"))
+        if($stmt = $conn->prepare("DELETE FROM $db_table WHERE id=?"))
         {
             $stmt->bind_param("i", $id);
             $stmt->execute();

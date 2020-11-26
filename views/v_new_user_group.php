@@ -12,13 +12,15 @@
             <h1>New User</h1>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <?php echo $this->displayAlert(); ?>
+                <label id="groupname-label" for="groupname">Create Group:</label><br>
+                <input type="text" name="groupname" id="groupname" value="<?php echo $this->getData('new_group'); ?>">
+                <div id="groupname-error" class="error"><?php echo $this->getData('error_group'); ?></div><br id="groupname-br">
                 <label for="username">Create Username:</label><br>
                 <input type="text" name="username" id="username" value="<?php echo $this->getData('new_user'); ?>">
                 <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
                 <label for="password">Create Password:</label>
                 <input type="password" name="password" id="password" value="<?php echo $this->getData('newuser_pass'); ?>">
                 <div class="error"><?php echo $this->getData('error_pass'); ?></div><br>
-                <a id="group-signup" href="new_user.php?group=1">Are you creating a group or team?</a><br>
                 <input type="button" name="cancel" class="cancel cancel-newuser" value="Cancel">
                 <input type="submit" class="submit" value="Submit">
             </form>
