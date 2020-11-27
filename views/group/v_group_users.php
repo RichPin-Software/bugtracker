@@ -15,7 +15,13 @@ $db_user_table = $_SESSION['group_table'];
         <div class="row-header">
             <div class="header">
                 <h1>Bug Tracker</h1>
-                <a href="login.php?logout=1">Logout</a>
+                <div class="header-dropdown dropdown">
+                    <img src="images/list.svg" alt="">
+                    <div class="dropdown-menu-header">
+                        <p><a href="admin.php" id="admin">Admin</a></p>
+                        <p><a id="logout" href="login.php?logout=1">Logout</a></p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row-nav">
@@ -36,6 +42,8 @@ $db_user_table = $_SESSION['group_table'];
                     <?php
                     $offset = 0;
                     $results = 8;
+                    $count;
+                    $num_tasks;
 
                     if(isset($_SESSION['offset'])) { $offset = $_SESSION['offset']; }
 

@@ -45,6 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 $groupname = substr($username, $pos);
 
                 $_SESSION['user'] = $Template->getData($user_key);
+                $_SESSION['groupname'] = $groupname;
                 $_SESSION['group_table'] = "group_$groupname";
                 $Template->redirect('group_users.php');
             }
