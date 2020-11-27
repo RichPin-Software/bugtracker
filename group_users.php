@@ -121,7 +121,7 @@ if(isset($_SESSION['login_successful']))
             }
         }
         /*
-            TEST
+            Pagination
         */
         else if(isset($_GET['page']))
         {
@@ -143,27 +143,6 @@ if(isset($_SESSION['login_successful']))
         */
         else
         {
-            /* $Template->load('views/group/v_group_users.php'); */
-
-            /*
-                show 8 results per page - filter results by status (TODO, On-hold, In Progress, Resolved)
-            */
-            /* if(isset($_GET['page']) && isset($_GET['filtertasks']))
-            {
-                $tasks = $_GET['filtertasks'];
-
-                $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
-                $Template->redirect("group_users.php?filtertasks=$tasks");
-            } */
-            /*
-                show 8 results per page - all tasks
-            */
-            /* else if(isset($_GET['page']) && !isset($_GET['filtertasks']))
-            {
-                $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
-                $Template->redirect('group_users.php');
-            }*/
-
             $Template->load('views/group/v_group_users.php');
         }
     }

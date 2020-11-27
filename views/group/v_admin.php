@@ -1,10 +1,43 @@
+<?php
+include('includes/database.php');
+
+$groupname;
+$admin = $_SESSION['user'];
+
+if($stmt = $conn->prepare("SELECT groupname FROM users_login WHERE username=?"))
+{
+    $stmt->bind_param("s", $admin);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($result);
+    
+    if($stmt->num_rows > 0)
+    {
+        while($stmt->fetch())
+        {
+            $groupname = $result;
+        }
+        $stmt->free_result();
+        $stmt->close();
+        $conn->close();
+    }
+    else
+    {
+        $groupname = "not found";
+    }
+}
+else
+{
+    die("Error: could not prepare MySQLi statement::groupname");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/style.css">
-    <title>New Task</title>
+    <title>Admin</title>
 </head>
 <body>
     <div class="container">
@@ -14,7 +47,7 @@
                 <div class="header-dropdown dropdown">
                     <img src="images/list.svg" alt="">
                     <div class="dropdown-menu-header">
-                        <p><a href="admin.php" id="admin">Admin</a></p>
+                        <p><a href="group_users.php" id="admin">Home</a></p>
                         <p><a id="logout" href="login.php?logout=1">Logout</a></p>
                     </div>
                 </div>
@@ -33,19 +66,20 @@
         </div>
         <div class="row-body">
             <div class="members-body">
-                <div id="addtask-container">
-                    <?php echo $this->displayAlert(); ?>
+                <?php echo $this->displayAlert(); ?>
+                <div id="admin-container">
+                    <h2>Add New Member</h2>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">
-                        <input type="text" name="task-title" cols="100" id="task-title" placeholder="New Task Title" value="<?php echo $this->getData('input_title'); ?>">
-                        <div class="error"><?php echo $this->getData('error_title'); ?></div><br>
-                        <input type="text" name="task-author" id="task-author" value="<?php echo $_SESSION['user']; ?>" disabled>
-                        <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
-                        <textarea type="text" name="task-description" id="task-description" form="task-form" placeholder="Description..."><?php echo $this->getData('input_description'); ?></textarea>
-                        <div class="error"><?php echo $this->getData('error_description'); ?></div><br>
+                        <select id="group-name" name="group-name">
+                            <option value="<?php echo $groupname; ?>"><?php echo $groupname; ?></option>
+                        </select>
+                        <br><br>
+                        <input type="text" name="add-user" id="add-user" placeholder="Add User (example: abc123)" value="<?php echo $this->getData('input_add-user'); ?>">
+                        <div class="error"><?php echo $this->getData('error_add-user'); ?></div><br>
                         <input type="button" name="cancel" class="cancel cancel-form" value="Cancel">
                         <input type="submit" class="submit" value="Submit">
                     </form>
-                </div><!-- .addtask-container -->
+                </div><!-- .admin-container -->
             </div><!-- .members-body -->
         </div><!-- .row-body -->
     </div><!-- .container -->

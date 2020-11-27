@@ -52,10 +52,14 @@ div#login-form {
     padding:0 120px;
 }
 
-div#addtask-container {
+div#addtask-container, div#admin-container {
     width:100%;
     margin: 10px auto 0 auto;
     padding:0 100px 50px 100px;
+}
+
+div#admin-container {
+    width: 70%;
 }
 
 td#edit-delete a {
@@ -340,9 +344,7 @@ a.page-link {
     margin-right: 5px;
     text-decoration:underline;
 }
-/*
-    Assignee Dropdown
-*/
+
 .dropdown:hover span#assignee-dropdown-sts {
     color:rgb(140, 161, 230);
 }
@@ -353,14 +355,18 @@ span.display-assignee#assignee-dropdown-sts {
 }
 
 .dropdown:hover .dropdown-menu-header {
-    right:23px;
-    top:23px;
+    right:6px;
+    top:25px;
     display: block;
 }
 
 .dropdown:hover .dropdown-menu {
     float: right;
     display: block;
+}
+
+.dropdown-menu-header p a:hover {
+    color: rgb(0, 50, 216);
 }
 
 span.task-suffix {

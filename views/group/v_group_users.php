@@ -18,7 +18,7 @@ $db_user_table = $_SESSION['group_table'];
                 <div class="header-dropdown dropdown">
                     <img src="images/list.svg" alt="">
                     <div class="dropdown-menu-header">
-                        <p><a href="#" id="admin">Admin</a></p>
+                        <p><a href="admin.php" id="admin">Admin</a></p>
                         <p><a id="logout" href="login.php?logout=1">Logout</a></p>
                     </div>
                 </div>

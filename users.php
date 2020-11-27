@@ -121,7 +121,7 @@ if(isset($_SESSION['login_successful']))
             }
         }
         /*
-            Pagination
+            Pagination - display 8 results per page
         */
         else if(isset($_GET['page']))
         {

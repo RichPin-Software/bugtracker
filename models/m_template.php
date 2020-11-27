@@ -133,6 +133,26 @@ class Templates
         return $validate;
     }
 
+    function adminFormValidate($user_key, $user, $error_key, $error)
+    {
+        $this->setData($user_key, $user);
+
+        $validate;
+
+        if($user=='')
+        {
+            if($user=='') { $this->setData($error_key, $error); }
+
+            $validate = false;
+        }
+        else
+        {
+            $validate = true;
+        }
+
+        return $validate;
+    }
+
     function displayAlert()
     {
         $alert = $this->getAlerts();

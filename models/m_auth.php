@@ -110,6 +110,40 @@ class Auth
             die("Error: Could not prepare MySQLi statement");
         }
     }
+
+    function validateAdmin($user)
+    {
+        global $conn;
+        $validate;
+
+        if($stmt = $conn->prepare("SELECT admin FROM users_login WHERE username=?"))
+        {
+            $stmt->bind_param("s", $user);
+            $stmt->execute();
+            $stmt->store_result();
+            $stmt->bind_result($result);
+            
+            if($stmt->num_rows > 0)
+            {
+                while($stmt->fetch())
+                {
+                    $validate = ($result==="yes") ? true : false;
+                }
+                $stmt->free_result();
+                $stmt->close();
+            }
+            else
+            {
+                $validate = false;
+            }
+        }
+        else
+        {
+            die("Error: could not prepare MySQLi statement::groupname");
+        }
+
+        return $validate;
+    }
     /*
         Prepared Statements - Add New User
     */
@@ -193,6 +227,54 @@ class Auth
         else
         {
             die("Error: could not prepare MySQLi statement");
+        }
+    }
+
+    function addGroupMember($admin, $username)
+    {
+        global $conn;
+        $groupname;
+
+        if($stmt = $conn->prepare("SELECT groupname FROM users_login WHERE username=?"))
+        {
+            $stmt->bind_param("s", $admin);
+            $stmt->execute();
+            $stmt->store_result();
+            $stmt->bind_result($result);
+            
+            if($stmt->num_rows > 0)
+            {
+                while($stmt->fetch())
+                {
+                    $groupname = $result;
+                }
+                $stmt->free_result();
+                $stmt->close();
+            }
+            else
+            {
+                $groupname = "not found";
+            }
+        }
+        else
+        {
+            die("Error: could not prepare MySQLi statement::groupname");
+        }
+
+        $group_user_login = $username."@".$groupname;
+        $default_password = md5($groupname.$this->salt);
+        $admin_status = "no";
+
+        if($stmt = $conn->prepare("INSERT INTO users_login (username, groupname, password, admin) VALUES (?, ?, ?, ?)"))
+        {
+            $stmt->bind_param("ssss", $group_user_login, $groupname, $default_password, $admin_status);
+            $stmt->execute();
+            $stmt->close();
+            $conn->close();
+        }
+        else
+        {
+            die("Error: could not prepare MySQLi statement::username and password");
         }
     }
     /*
