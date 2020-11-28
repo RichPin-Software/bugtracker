@@ -10,8 +10,8 @@
  *      - Delete Task
  *
  */
-include('includes/init.php');
-include('includes/database.php');
+include('../../includes/init.php');
+include('../../includes/database.php');
 /*
     identifies selected task
 */
@@ -47,14 +47,14 @@ if(isset($_SESSION['id']))
 
         $Template->setAlert("BUG-$id Deleted Successfully", 'success');
         unset($_SESSION['id']);
-        $Template->redirect('users.php');
+        $Template->redirect('controllers/single-users/all_tasks.php');
     }
     /*
         edit selected task
     */
     else if(isset($_GET['edittask']))
     {
-        $Template->load('views/v_edittask.php');
+        $Template->load('../../views/v_edittask.php');
     }
     /*
         edit selected task form submitted
@@ -72,11 +72,11 @@ if(isset($_SESSION['id']))
             $description = $Template->getData($desc_key);
 
             $Auth->updateTask($db_user_table, $id, $title, $status, $description);
-            $Template->load('views/v_task.php');
+            $Template->load('../../views/v_selected_task.php');
         }
         else
         {
-            $Template->load('views/v_edittask.php');
+            $Template->load('../../views/v_edittask.php');
         }
     }
     /*
@@ -142,7 +142,7 @@ if(isset($_SESSION['id']))
     */
     else
     {
-        $Template->load('views/v_task.php');
+        $Template->load('../../views/v_selected_task.php');
     }
 }
 else

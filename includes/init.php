@@ -6,12 +6,24 @@
  *      Initialization file
  *
  */
-    include('models/m_template.php');
-    include('models/m_auth.php');
+if(file_exists('../../models'))
+{
+   include('../../models/m_template.php');
+   include('../../models/m_auth.php');
 
-    $Template = new Templates();
-    $Template->setAlertType(array('success', 'error', 'warning'));
+   clearstatcache();
+}
+else
+{
+   include('models/m_template.php');
+   include('models/m_auth.php');
 
-    $Auth = new Auth();
+   clearstatcache();
+}
 
-    session_start();
+$Template = new Templates();
+$Template->setAlertType(array('success', 'error', 'warning'));
+
+$Auth = new Auth();
+
+session_start();

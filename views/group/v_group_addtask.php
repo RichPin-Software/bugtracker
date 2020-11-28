@@ -15,7 +15,7 @@
                     <img src="images/list.svg" alt="">
                     <div class="dropdown-menu-header">
                         <p><a href="admin.php" id="admin">Admin</a></p>
-                        <p><a id="logout" href="login.php?logout=1">Logout</a></p>
+                        <p><a id="logout" href="logout.php">Logout</a></p>
                     </div>
                 </div>
             </div>

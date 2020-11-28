@@ -1,10 +1,13 @@
-<?php $db_user_table = $_SESSION['user']; ?>
+<?php 
+$db_user_table = $_SESSION['user']; 
+include('../../includes/database.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="views/style.css">
+    <link rel="stylesheet" href="../../views/style.css">
     <title>BUG-<?php echo $_SESSION['id']; ?></title>
 </head>
 <body>
@@ -12,18 +15,23 @@
         <div class="row-header">
             <div class="header">
                 <h1>Bug Tracker</h1>
-                <a href="login.php?logout=1">Logout</a>
+                <div class="header-dropdown dropdown">
+                    <img src="../../images/list.svg" alt="">
+                    <div class="dropdown-menu-header">
+                        <p><a id="logout" href="../../logout.php">Logout</a></p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row-nav">
             <div class="nav">
                 <ul>
-                    <li><a href="users.php?addtask=1">[+] New Task</a></li>
-                    <li><a href="users.php">All Tasks</a></li>
-                    <li><a href="users.php?filtertasks=onhold">On-hold</a></li>
-                    <li><a href="users.php?filtertasks=todo">TODO</a></li>
-                    <li><a href="users.php?filtertasks=inprogress">In Progress</a></li>
-                    <li><a href="users.php?filtertasks=resolved">Resolved</a></li>
+                    <li><a href="all_tasks.php?addtask=1">[+] New Task</a></li>
+                    <li><a href="all_tasks.php">All Tasks</a></li>
+                    <li><a href="all_tasks.php?filtertasks=onhold">On-hold</a></li>
+                    <li><a href="all_tasks.php?filtertasks=todo">TODO</a></li>
+                    <li><a href="all_tasks.php?filtertasks=inprogress">In Progress</a></li>
+                    <li><a href="all_tasks.php?filtertasks=resolved">Resolved</a></li>
                 </ul>
             </div>
         </div>
@@ -33,7 +41,7 @@
                     <?php
                         echo $this->displayAlert();
 
-                        include('includes/database.php');
+                        
 
                         $id = $_SESSION['id'];
 
@@ -85,7 +93,7 @@
         </div>
     </div>
 
-    <script src="../../bugtracker/models/ui.js"></script>
-    <script src="../bugtracker/app.js"></script>
+    <script src="../../../../bugtracker/models/ui.js"></script>
+    <script src="../../../bugtracker/app.js"></script>
 </body>
 </html>

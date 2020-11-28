@@ -20,7 +20,7 @@ if(cancelButtonExists = document.querySelector('.cancel-newuser'))
 }
 if(cancelButtonExists = document.querySelector('.cancel-form'))
 {
-    Ui.cancelForm('.cancel-form','users.php?back=1');
+    Ui.cancelForm('.cancel-form','all_tasks.php?back=1');
 }
 /*
     show 'Create Group' on New User signup page
