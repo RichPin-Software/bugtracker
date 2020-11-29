@@ -1,13 +1,13 @@
 <?php 
 $db_user_table = $_SESSION['group_table'];
-include('includes/database.php');
+include('../../includes/database.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="views/style.css">
+    <link rel="stylesheet" href="../../views/style.css">
     <title>BUG-<?php echo $_SESSION['id']; ?></title>
 </head>
 <body>
@@ -16,10 +16,10 @@ include('includes/database.php');
             <div class="header">
                 <h1>Bug Tracker</h1>
                 <div class="header-dropdown dropdown">
-                    <img src="images/list.svg" alt="">
+                    <img src="../../images/list.svg" alt="">
                     <div class="dropdown-menu-header">
-                        <p><a href="admin.php" id="admin">Admin</a></p>
-                        <p><a id="logout" href="logout.php">Logout</a></p>
+                        <p><a href="../../admin.php" id="admin">Admin</a></p>
+                        <p><a id="logout" href="../../logout.php">Logout</a></p>
                     </div>
                 </div>
             </div>
@@ -27,18 +27,18 @@ include('includes/database.php');
         <div class="row-nav">
             <div class="nav">
                 <ul>
-                    <li><a href="group_users.php?addtask=1">[+] New Task</a></li>
-                    <li><a href="group_users.php?back=1">All Tasks</a></li>
-                    <li><a href="group_users.php?filtertasks=onhold">On-hold</a></li>
-                    <li><a href="group_users.php?filtertasks=todo">TODO</a></li>
-                    <li><a href="group_users.php?filtertasks=inprogress">In Progress</a></li>
-                    <li><a href="group_users.php?filtertasks=resolved">Resolved</a></li>
+                    <li><a href="group_all_tasks.php?addtask=1">[+] New Task</a></li>
+                    <li><a href="group_all_tasks.php?back=1">All Tasks</a></li>
+                    <li><a href="group_all_tasks.php?filtertasks=onhold">On-hold</a></li>
+                    <li><a href="group_all_tasks.php?filtertasks=todo">TODO</a></li>
+                    <li><a href="group_all_tasks.php?filtertasks=inprogress">In Progress</a></li>
+                    <li><a href="group_all_tasks.php?filtertasks=resolved">Resolved</a></li>
                 </ul>
             </div>
         </div>
         <div class="row-body">
             <div class="members-body">
-                <a id="back" href="group_users.php?back=1"><<< Back</a>
+                <a id="back" href="group_all_tasks.php?back=1"><<< Back</a>
                 <table id="selected-task">
                     <?php
                     if ($stmt = $conn->prepare("SELECT * FROM $db_user_table WHERE id = ?")) // begin if statement
@@ -196,7 +196,7 @@ include('includes/database.php');
         </div>
     </div>
 
-    <script src="../../bugtracker/models/ui.js"></script>
-    <script src="../bugtracker/group_app.js"></script>
+    <script src="../../../bugtracker/models/ui.js"></script>
+    <script src="../../../bugtracker/js/group_app.js"></script>
 </body>
 </html>

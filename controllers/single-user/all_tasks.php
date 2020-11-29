@@ -1,9 +1,9 @@
 <?php
 /**
  *      Author: Richard Pinegar
- *      Date: 11/24/2020
+ *      Date: 11/19/2020
  * 
- *      Controller for functions of all group tasks and filter tasks views
+ *      Controller for functions of all tasks and filter tasks views
  *      as well as 'Back' button functionality and new task form.
  * 
  *      - Display All Tasks
@@ -12,8 +12,8 @@
  *      - Back Button
  *
  */
-include('includes/init.php');
-include('includes/database.php');
+include('../../includes/init.php');
+include('../../includes/database.php');
 /*
     form variables
 */
@@ -23,9 +23,9 @@ $err_key_title = 'error_title';
 $err_key_desc = 'error_description';
 $error = '*required field!';
 /*
-    set variable for group database
+    set variable for user database
 */
-$db_user_table = $_SESSION['group_table'];
+$db_user_table = $_SESSION['user'];
 
 if(isset($_SESSION['login_successful']))
 {
@@ -36,7 +36,7 @@ if(isset($_SESSION['login_successful']))
     {
         $Template->setAlert('Welcome '.$_SESSION['user'].'!', 'success');
         $_SESSION['currentUser'] = true;
-        $Template->load('views/group/v_group_users.php');
+        $Template->load('../../views/single-user/v_all_tasks.php');
     }
     else
     {
@@ -46,7 +46,7 @@ if(isset($_SESSION['login_successful']))
         if(isset($_GET['back']))
         {
             unset($_SESSION['id']);
-            $Template->redirect('group_users.php');
+            $Template->redirect('all_tasks.php');
         }
         /*
             navigation
@@ -59,26 +59,26 @@ if(isset($_SESSION['login_successful']))
             {
                 case 'onhold': 
                     $_SESSION['filtertasks'] = 'On-hold';
-                    $Template->load('views/group/v_group_filtertasks.php');
+                    $Template->load('../../views/single-user/v_filtertasks.php');
                     break;
 
                 case 'todo': 
                     $_SESSION['filtertasks'] = 'TODO';
-                    $Template->load('views/group/v_group_filtertasks.php');
+                    $Template->load('../../views/single-user/v_filtertasks.php');
                     break;
 
                 case 'inprogress': 
                     $_SESSION['filtertasks'] = 'In Progress';
-                    $Template->load('views/group/v_group_filtertasks.php');
+                    $Template->load('../../views/single-user/v_filtertasks.php');
                     break;
 
                 case 'resolved': 
                     $_SESSION['filtertasks'] = 'Resolved';
-                    $Template->load('views/group/v_group_filtertasks.php');
+                    $Template->load('../../views/single-user/v_filtertasks.php');
                     break;
 
                 default: 
-                    $Template->load('views/group/v_group_users.php');
+                    $Template->load('../../views/single-user/v_all_tasks.php');
             }
         }
         /*
@@ -89,11 +89,11 @@ if(isset($_SESSION['login_successful']))
             if(isset($_SESSION['id'])) 
             { 
                 unset($_SESSION['id']);
-                $Template->load('views/group/v_group_addtask.php');
+                $Template->load('../../views/single-user/v_addtask.php');
             }
             else
             {
-                $Template->load('views/group/v_group_addtask.php');
+                $Template->load('../../views/single-user/v_addtask.php');
             }
         }
         
@@ -113,15 +113,15 @@ if(isset($_SESSION['login_successful']))
                 $description = $Template->getData($desc_key);
 
                 $Auth->addTask($db_user_table, $title, $status, $author, $description);
-                $Template->redirect('group_users.php');
+                $Template->redirect('all_tasks.php');
             }
             else
             {
-                $Template->load('views/group/v_group_addtask.php');
+                $Template->load('../../views/single-user/v_addtask.php');
             }
         }
         /*
-            Pagination
+            Pagination - display 8 results per page
         */
         else if(isset($_GET['page']))
         {
@@ -130,12 +130,12 @@ if(isset($_SESSION['login_successful']))
                 $tasks = $_GET['filtertasks'];
 
                 $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
-                $Template->redirect("group_users.php?filtertasks=$tasks");
+                $Template->redirect("all_tasks.php?filtertasks=$tasks");
             }
             else
             {
                 $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
-                $Template->redirect('group_users.php');
+                $Template->redirect('all_tasks.php');
             }
         }
         /*
@@ -143,7 +143,7 @@ if(isset($_SESSION['login_successful']))
         */
         else
         {
-            $Template->load('views/group/v_group_users.php');
+            $Template->load('../../views/single-user/v_all_tasks.php');
         }
     }
 }

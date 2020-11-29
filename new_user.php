@@ -39,7 +39,7 @@ if(isset($_GET['signup']))
 else if(isset($_GET['group']))
 {
     $_SESSION['group'] = true;
-    $Template->load('views/v_new_user_group.php');
+    $Template->load('views/v_group_new_user.php');
 }
 /*
     if user submits new user group form
@@ -76,17 +76,17 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['group']))
                 $Template->setData($err_key_group, "*letters, numbers and underscore only!");
             }
             
-            $Template->load('views/v_new_user_group.php');
+            $Template->load('views/v_group_new_user.php');
         }
         else if(!$Auth->validateNewUsername($username))
         {
             $Template->setData($err_key_user, '*username already exists!');
-            $Template->load('views/v_new_user_group.php');
+            $Template->load('views/v_group_new_user.php');
         }
         else if(!$Auth->validateNewGroupname($groupname))
         {
             $Template->setData($err_key_group, '*group name already exists!');
-            $Template->load('views/v_new_user_group.php');
+            $Template->load('views/v_group_new_user.php');
         }
         /*
             create new user group account and table
@@ -108,7 +108,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['group']))
     else
     {
         $Template->setAlert('Must complete required fields', 'error');
-        $Template->load('views/v_new_user_group.php');
+        $Template->load('views/v_group_new_user.php');
     }
 }
 /*

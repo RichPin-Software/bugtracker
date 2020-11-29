@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 $_SESSION['user'] = $Template->getData($user_key);
                 $_SESSION['groupname'] = $groupname;
                 $_SESSION['group_table'] = "group_$groupname";
-                $Template->redirect('group_users.php');
+                $Template->redirect('controllers/group/group_all_tasks.php');
             }
             /*
                 single user redirect
@@ -55,7 +55,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             else
             {
                 $_SESSION['user'] = $Template->getData($user_key);
-                $Template->redirect('controllers/single-users/all_tasks.php');
+                $Template->redirect('controllers/single-user/all_tasks.php');
             }
         }
         else
