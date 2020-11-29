@@ -6,10 +6,10 @@
  *      Database credentials
  *
  */
-    $servername = '127.0.0.1';
-    $username = 'richpin';
-    $password = 'n@tal13R0$_3';
-    $database = 'richardpinegar';
+    $servername = ''; // enter server ip address (example: 127.0.0.1)
+    $username = ''; // enter database usernmame (example: myUsername)
+    $password = ''; // enter database password (example: 1234_!@$pw)
+    $database = ''; // enter name of database (example: myDatabase)
 
     $conn = new mysqli($servername, $username, $password, $database);
 
