@@ -3,9 +3,9 @@
  *      Author: Richard Pinegar
  *      Date: 11/19/2020
  * 
- *      Controller for functions of login and logout.
+ *      Controller for login.
  * 
- *      - User Login/Logout
+ *      - User Login
  *      - Form Validation
  *      - Display Login
  *
@@ -47,15 +47,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 $_SESSION['user'] = $Template->getData($user_key);
                 $_SESSION['groupname'] = $groupname;
                 $_SESSION['group_table'] = "group_$groupname";
-                $Template->redirect('group_users.php');
+                $Template->redirect('controllers/group/group_all_tasks.php');
             }
             /*
-                regular user - no group redirect
+                single user redirect
             */
             else
             {
                 $_SESSION['user'] = $Template->getData($user_key);
-                $Template->redirect('users.php');
+                $Template->redirect('controllers/single-user/all_tasks.php');
             }
         }
         else
@@ -69,17 +69,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $Template->setAlert('Must complete required fields', 'error');
         $Template->load('views/v_login.php');
     }
-}
-/*
-    if user logs out
-*/
-else if(isset($_GET['logout']))
-{
-    session_unset();
-    session_destroy();
-
-    $Template->setAlert('Logout Successful', 'success');
-    $Template->load('views/v_login.php');
 }
 /*
     display login form

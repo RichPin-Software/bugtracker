@@ -12,8 +12,8 @@
  *      - Back Button
  *
  */
-include('includes/init.php');
-include('includes/database.php');
+include('../../includes/init.php');
+include('../../includes/database.php');
 /*
     form variables
 */
@@ -36,7 +36,7 @@ if(isset($_SESSION['login_successful']))
     {
         $Template->setAlert('Welcome '.$_SESSION['user'].'!', 'success');
         $_SESSION['currentUser'] = true;
-        $Template->load('views/group/v_group_users.php');
+        $Template->load('../../views/group/v_group_all_tasks.php');
     }
     else
     {
@@ -46,7 +46,7 @@ if(isset($_SESSION['login_successful']))
         if(isset($_GET['back']))
         {
             unset($_SESSION['id']);
-            $Template->redirect('group_users.php');
+            $Template->redirect('group_all_tasks.php');
         }
         /*
             navigation
@@ -59,26 +59,26 @@ if(isset($_SESSION['login_successful']))
             {
                 case 'onhold': 
                     $_SESSION['filtertasks'] = 'On-hold';
-                    $Template->load('views/group/v_group_filtertasks.php');
+                    $Template->load('../../views/group/v_group_filtertasks.php');
                     break;
 
                 case 'todo': 
                     $_SESSION['filtertasks'] = 'TODO';
-                    $Template->load('views/group/v_group_filtertasks.php');
+                    $Template->load('../../views/group/v_group_filtertasks.php');
                     break;
 
                 case 'inprogress': 
                     $_SESSION['filtertasks'] = 'In Progress';
-                    $Template->load('views/group/v_group_filtertasks.php');
+                    $Template->load('../../views/group/v_group_filtertasks.php');
                     break;
 
                 case 'resolved': 
                     $_SESSION['filtertasks'] = 'Resolved';
-                    $Template->load('views/group/v_group_filtertasks.php');
+                    $Template->load('../../views/group/v_group_filtertasks.php');
                     break;
 
                 default: 
-                    $Template->load('views/group/v_group_users.php');
+                    $Template->load('../../views/group/v_group_all_tasks.php');
             }
         }
         /*
@@ -89,11 +89,11 @@ if(isset($_SESSION['login_successful']))
             if(isset($_SESSION['id'])) 
             { 
                 unset($_SESSION['id']);
-                $Template->load('views/group/v_group_addtask.php');
+                $Template->load('../../views/group/v_group_addtask.php');
             }
             else
             {
-                $Template->load('views/group/v_group_addtask.php');
+                $Template->load('../../views/group/v_group_addtask.php');
             }
         }
         
@@ -113,11 +113,11 @@ if(isset($_SESSION['login_successful']))
                 $description = $Template->getData($desc_key);
 
                 $Auth->addTask($db_user_table, $title, $status, $author, $description);
-                $Template->redirect('group_users.php');
+                $Template->redirect('group_all_tasks.php');
             }
             else
             {
-                $Template->load('views/group/v_group_addtask.php');
+                $Template->load('../../views/group/v_group_addtask.php');
             }
         }
         /*
@@ -130,12 +130,12 @@ if(isset($_SESSION['login_successful']))
                 $tasks = $_GET['filtertasks'];
 
                 $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
-                $Template->redirect("group_users.php?filtertasks=$tasks");
+                $Template->redirect("group_all_tasks.php?filtertasks=$tasks");
             }
             else
             {
                 $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
-                $Template->redirect('group_users.php');
+                $Template->redirect('group_all_tasks.php');
             }
         }
         /*
@@ -143,7 +143,7 @@ if(isset($_SESSION['login_successful']))
         */
         else
         {
-            $Template->load('views/group/v_group_users.php');
+            $Template->load('../../views/group/v_group_all_tasks.php');
         }
     }
 }

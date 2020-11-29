@@ -1,5 +1,5 @@
 <?php
-include('includes/database.php');
+include('../../includes/database.php');
 $db_user_table = $_SESSION['group_table']; 
 ?>
 <!DOCTYPE html>
@@ -7,19 +7,20 @@ $db_user_table = $_SESSION['group_table'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="views/style.css">
+    <link rel="stylesheet" href="../../views/style.css">
     <title>All Tasks</title>
 </head>
 <body>
     <div class="container">
         <div class="row-header">
             <div class="header">
+                <div class="ghost"></div>
                 <h1>Bug Tracker</h1>
                 <div class="header-dropdown dropdown">
-                    <img src="images/list.svg" alt="">
+                    <img src="../../images/list.svg" alt="">
                     <div class="dropdown-menu-header">
-                        <p><a href="admin.php" id="admin">Admin</a></p>
-                        <p><a id="logout" href="login.php?logout=1">Logout</a></p>
+                        <p><a href="../../admin.php" id="admin">Admin</a></p>
+                        <p><a id="logout" href="../../logout.php">Logout</a></p>
                     </div>
                 </div>
             </div>
@@ -27,11 +28,11 @@ $db_user_table = $_SESSION['group_table'];
         <div class="row-nav">
             <div class="nav">
                 <ul>
-                    <li><a href="group_users.php?addtask=1">[+] New Task</a></li>
-                    <li><a href="group_users.php?filtertasks=onhold">On-hold</a></li>
-                    <li><a href="group_users.php?filtertasks=todo">TODO</a></li>
-                    <li><a href="group_users.php?filtertasks=inprogress">In Progress</a></li>
-                    <li><a href="group_users.php?filtertasks=resolved">Resolved</a></li>
+                    <li><a href="group_all_tasks.php?addtask=1">[+] New Task</a></li>
+                    <li><a href="group_all_tasks.php?filtertasks=onhold">On-hold</a></li>
+                    <li><a href="group_all_tasks.php?filtertasks=todo">TODO</a></li>
+                    <li><a href="group_all_tasks.php?filtertasks=inprogress">In Progress</a></li>
+                    <li><a href="group_all_tasks.php?filtertasks=resolved">Resolved</a></li>
                 </ul>
             </div>
         </div>
@@ -116,14 +117,14 @@ $db_user_table = $_SESSION['group_table'];
                 <?php
                 for($i=1;$i<=$count;$i++)
                 {
-                    echo "<a class='page-link' href='group_users.php?page=$i'>$i</a>";
+                    echo "<a class='page-link' href='group_all_tasks.php?page=$i'>$i</a>";
                 }
                 ?>
             </div>
         </div>
     </div>
 
-    <script src="../../bugtracker/models/ui.js"></script>
-    <script src="../bugtracker/group_app.js"></script>
+    <script src="../../../bugtracker/models/ui.js"></script>
+    <script src="../../../bugtracker/js/group_app.js"></script>
 </body>
 </html>
