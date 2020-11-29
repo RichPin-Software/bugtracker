@@ -14,6 +14,7 @@ $db_user_table = $_SESSION['group_table'];
     <div class="container">
         <div class="row-header">
             <div class="header">
+                <div class="ghost"></div>
                 <h1>Bug Tracker</h1>
                 <div class="header-dropdown dropdown">
                     <img src="../../images/list.svg" alt="">
