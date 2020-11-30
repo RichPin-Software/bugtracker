@@ -47,8 +47,11 @@
                         </select>
                         <br><br>
                         <label for="password">New Password</label>
-                        <input type="text" name="password" id="password" placeholder="Enter new password" value="<?php echo $this->getData('input_user'); ?>">
+                        <input type="password" name="password" id="password" placeholder="Enter new password" value="<?php echo $this->getData('input_pass'); ?>">
                         <div class="error"><?php echo $this->getData('error_pass'); ?></div><br>
+                        <label for="password_confirm">Confirm Password</label>
+                        <input type="password" name="password_confirm" id="password_confirm" placeholder="Confirm new password" value="<?php echo $this->getData('input_pass_confirm'); ?>">
+                        <div class="error"><?php echo $this->getData('error_pass_confirm'); ?></div><br>
                         <button class="cancel"><a href="all_tasks.php">Cancel</a></button>
                         <input type="submit" class="submit" value="Submit">
                     </form>

@@ -277,6 +277,25 @@ class Auth
             die("Error: could not prepare MySQLi statement::username and password");
         }
     }
+
+    function changePassword($username, $new_password)
+    {
+        global $conn;
+
+        $secure_password = md5($new_password.$this->salt);
+
+        if($stmt = $conn->prepare("UPDATE users_login SET password=? WHERE username=?"))
+        {
+            $stmt->bind_param("ss", $secure_password, $username);
+            $stmt->execute();
+            $stmt->close();
+            $conn->close();
+        }
+        else
+        {
+            die("Error: could not prepare MySQLi statement::username and password");
+        }
+    }
     /*
         Prepared Statements - Add Task
     */

@@ -17,6 +17,7 @@
                         <div class="header-dropdown dropdown">
                             <img src="../../images/list.svg" alt="">
                             <div class="dropdown-menu-header">
+                                <p><a href="../../admin.php" id="admin">Admin</a></p>
                                 <p><a id="logout" href="../../logout.php">Logout</a></p>
                             </div>
                         </div>
@@ -46,14 +47,12 @@
                             <option value="<?php echo $_SESSION['user']; ?>"><?php echo $_SESSION['user']; ?></option>
                         </select>
                         <br><br>
-                        <label for="groupname">Group: </label><br>
-                        <select id="groupname" name="groupname">
-                            <option value="<?php echo $_SESSION['groupname']; ?>"><?php echo $_SESSION['groupname']; ?></option>
-                        </select>
-                        <br><br>
                         <label for="password">New Password</label>
-                        <input type="text" name="password" id="password" placeholder="Enter new password" value="<?php echo $this->getData('input_user'); ?>">
+                        <input type="password" name="password" id="password" placeholder="Enter new password" value="<?php echo $this->getData('input_pass'); ?>">
                         <div class="error"><?php echo $this->getData('error_pass'); ?></div><br>
+                        <label for="password_confirm">Confirm Password</label>
+                        <input type="password" name="password_confirm" id="password_confirm" placeholder="Confirm new password" value="<?php echo $this->getData('input_pass_confirm'); ?>">
+                        <div class="error"><?php echo $this->getData('error_pass_confirm'); ?></div><br>
                         <button class="cancel"><a href="group_all_tasks.php">Cancel</a></button>
                         <input type="submit" class="submit" value="Submit">
                     </form>

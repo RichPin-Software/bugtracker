@@ -50,6 +50,7 @@ else
                         <div class="header-dropdown dropdown">
                             <img src="images/list.svg" alt="">
                             <div class="dropdown-menu-header">
+                                <p><a href="controllers/group/group_account.php">Account</a></p>
                                 <p><a id="logout" href="logout.php">Logout</a></p>
                             </div>
                         </div>
