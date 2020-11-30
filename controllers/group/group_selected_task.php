@@ -47,7 +47,7 @@ if(isset($_SESSION['id']))
 
         $Template->setAlert("BUG-$id Deleted Successfully", 'success');
         unset($_SESSION['id']);
-        $Template->redirect('group_all_tatsks.php');
+        $Template->redirect('group_all_tasks.php');
     }
     /*
         edit selected task

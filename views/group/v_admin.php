@@ -42,17 +42,20 @@ else
 <body>
     <div class="container">
         <div class="row-header">
-            <div class="header">
-                <div class="ghost"></div>
-                <h1>Bug Tracker</h1>
-                <div class="header-dropdown dropdown">
-                    <img src="images/list.svg" alt="">
-                    <div class="dropdown-menu-header">
-                        <p><a href="controllers/group/group_all_tasks.php" id="admin">Home</a></p>
-                        <p><a id="logout" href="logout.php">Logout</a></p>
-                    </div>
-                </div>
-            </div>
+            <table id="header-table">
+                <tr></tr>
+                <tr>
+                    <td id="header-label">Bug Tracker</td>
+                    <td id="header-icon">
+                        <div class="header-dropdown dropdown">
+                            <img src="images/list.svg" alt="">
+                            <div class="dropdown-menu-header">
+                                <p><a id="logout" href="logout.php">Logout</a></p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="row-nav">
             <div class="nav">

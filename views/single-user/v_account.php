@@ -27,11 +27,11 @@
         <div class="row-nav">
             <div class="nav">
                 <ul>
-                    <li><a href="group_all_tasks.php">All Tasks</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=onhold">On-hold</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=todo">TODO</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=inprogress">In Progress</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=resolved">Resolved</a></li>
+                    <li><a href="all_tasks.php">All Tasks</a></li>
+                    <li><a href="all_tasks.php?filtertasks=onhold">On-hold</a></li>
+                    <li><a href="all_tasks.php?filtertasks=todo">TODO</a></li>
+                    <li><a href="all_tasks.php?filtertasks=inprogress">In Progress</a></li>
+                    <li><a href="all_tasks.php?filtertasks=resolved">Resolved</a></li>
                 </ul>
             </div>
         </div>
@@ -46,15 +46,10 @@
                             <option value="<?php echo $_SESSION['user']; ?>"><?php echo $_SESSION['user']; ?></option>
                         </select>
                         <br><br>
-                        <label for="groupname">Group: </label><br>
-                        <select id="groupname" name="groupname">
-                            <option value="<?php echo $_SESSION['groupname']; ?>"><?php echo $_SESSION['groupname']; ?></option>
-                        </select>
-                        <br><br>
                         <label for="password">New Password</label>
                         <input type="text" name="password" id="password" placeholder="Enter new password" value="<?php echo $this->getData('input_user'); ?>">
                         <div class="error"><?php echo $this->getData('error_pass'); ?></div><br>
-                        <button class="cancel"><a href="group_all_tasks.php">Cancel</a></button>
+                        <button class="cancel"><a href="all_tasks.php">Cancel</a></button>
                         <input type="submit" class="submit" value="Submit">
                     </form>
                 </div><!-- .admin-container -->
