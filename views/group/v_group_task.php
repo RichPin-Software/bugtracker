@@ -22,7 +22,7 @@ include('../../includes/database.php');
                             <img src="../../images/list.svg" alt="">
                             <div class="dropdown-menu-header">
                                 <p><a href="group_account.php">Account</a></p>
-                                <p><a href="../../admin.php" id="admin">Admin</a></p>
+                                <p><a href="admin.php" id="admin">Admin</a></p>
                                 <p><a id="logout" href="../../logout.php">Logout</a></p>
                             </div>
                         </div>
@@ -194,7 +194,7 @@ include('../../includes/database.php');
                     <tr>
                         <td colspan="2" id="edit-delete">
                             <a id="edit-task" href="group_selected_task.php?edittask=true">Edit</a>
-                            <a id="delete-task" href="group_selected_task.php?deletetask=true">Delete</a>
+                            <a id="delete-task-group" href="#">Delete</a>
                         </td>
                     </tr>
                 </table>
@@ -203,6 +203,6 @@ include('../../includes/database.php');
     </div>
 
     <script src="../../../bugtracker/models/ui.js"></script>
-    <script src="../../../bugtracker/js/group_app.js"></script>
+    <script src="../../../bugtracker/js/app.js"></script>
 </body>
 </html>

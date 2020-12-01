@@ -22,7 +22,7 @@ $db_user_table = $_SESSION['group_table'];
                             <img src="../../images/list.svg" alt="">
                             <div class="dropdown-menu-header">
                                 <p><a href="group_account.php">Account</a></p>
-                                <p><a href="../../admin.php" id="admin">Admin</a></p>
+                                <p><a href="admin.php" id="admin">Admin</a></p>
                                 <p><a id="logout" href="../../logout.php">Logout</a></p>
                             </div>
                         </div>
@@ -130,6 +130,6 @@ $db_user_table = $_SESSION['group_table'];
     </div>
 
     <script src="../../../bugtracker/models/ui.js"></script>
-    <script src="../../../bugtracker/js/group_app.js"></script>
+    <script src="../../../bugtracker/js/app.js"></script>
 </body>
 </html>

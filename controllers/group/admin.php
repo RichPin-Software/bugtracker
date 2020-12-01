@@ -6,8 +6,8 @@
  *      Controller for admin functions.
  *
  */
-include('includes/init.php');
-include('includes/database.php');
+include('../../includes/init.php');
+include('../../includes/database.php');
 
 $user_key = 'input_add-user';
 $error_user = 'error_add-user';
@@ -37,17 +37,17 @@ if(isset($_SESSION['currentUser']))
                     $Template->setData($error_user, "*letters, numbers and underscore only!");
                 }
 
-                $Template->load('views/group/v_admin.php');
+                $Template->load('../../views/group/v_admin.php');
             }
             else if(!$Auth->validateNewUsername($new_group_username))
             {
                 $Template->setData($error_user, '*username already exists!');
-                $Template->load('views/group/v_admin.php');
+                $Template->load('../../views/group/v_admin.php');
             }
             else if(!$Auth->validateAdmin($admin))
             {
                 $Template->setData($error_user, '*only administrator can add users!');
-                $Template->load('views/group/v_admin.php');
+                $Template->load('../../views/group/v_admin.php');
             }
             else
             {
@@ -59,16 +59,16 @@ if(isset($_SESSION['currentUser']))
         }
         else
         {
-            $Template->load('views/group/v_admin.php');
+            $Template->load('../../views/group/v_admin.php');
         }
     }
     else
     {
-        $Template->load('views/group/v_admin.php');
+        $Template->load('../../views/group/v_admin.php');
     }
 }
 else
 {
     $Template->setAlert('Access Denied!', 'error');
-    $Template->redirect('login.php');
+    $Template->redirect('../../login.php');
 }
