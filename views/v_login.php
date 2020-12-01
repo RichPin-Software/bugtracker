@@ -19,7 +19,14 @@
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password" value="<?php echo $this->getData('input_pass'); ?>">
                 <div class="error"><?php echo $this->getData('error_pass'); ?></div><br>
+                
                 <a id="signup" href="new_user.php?signup=true">Don't have an account? Sign up.</a><br>
+                <div class="dropdown">
+                    <a id="login-group-message" href="#">Logging into a group?</a>
+                    <div class="dropdown-menu-login">
+                        <p>Group username:<br> <span>myUsername@groupname</span></p>
+                    </div>
+                </div><br>
                 <input type="submit" class="submit" value="Submit">
             </form>
         </div>

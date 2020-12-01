@@ -19,7 +19,7 @@ include('../../includes/database.php');
                     <td id="header-label">Bug Tracker</td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
-                            <img src="../../images/list.svg" alt="">
+                            <img src="../../images/list.svg" alt="dropdown">
                             <div class="dropdown-menu-header">
                                 <p><a href="group_account.php">Account</a></p>
                                 <p><a href="admin.php" id="admin">Admin</a></p>
@@ -44,7 +44,7 @@ include('../../includes/database.php');
         </div>
         <div class="row-body">
             <div class="members-body">
-                <a id="back" href="group_all_tasks.php?back=1"><<< Back</a>
+                <a id="back" href="group_all_tasks.php?back=1"><img src="../../images/arrow-left.svg" alt="back"></a>
                 <table id="selected-task">
                     <?php
                     if ($stmt = $conn->prepare("SELECT * FROM $db_user_table WHERE id = ?")) // begin if statement
@@ -193,8 +193,8 @@ include('../../includes/database.php');
                     ?>
                     <tr>
                         <td colspan="2" id="edit-delete">
-                            <a id="edit-task" href="group_selected_task.php?edittask=true">Edit</a>
-                            <a id="delete-task-group" href="#">Delete</a>
+                            <a id="edit-task" href="group_selected_task.php?edittask=true"><img src="../../images/pencil-square.svg" alt="edit"></a>
+                            <a id="delete-task" href="#"><img src="../../images/trash-fill.svg" alt="delete"></a>
                         </td>
                     </tr>
                 </table>

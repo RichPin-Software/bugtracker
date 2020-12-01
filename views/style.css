@@ -86,8 +86,12 @@ table#header-table tr td#header-icon img {
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
+td#edit-delete {
+    border-top: 1px solid rgb(0,0,0);
+}
+
 td#edit-delete a {
-    text-align: left;
+    float: right;
 }
 
 textarea#task-description {
@@ -100,37 +104,26 @@ textarea#task-description {
 }
 
 table#selected-task {
-    padding:10px 15px;
     max-width: 950px;
     margin:10px auto;
+    border: 1px solid rgb(0,0,0);
 }
 
 table#selected-task tr th {
-    border: 1px solid rgb(0,0,0);
+    padding: 10px 0;
     text-align: center;
     width:70%;
 }
 
-table#selected-task #author {
-    border-top: 1px solid rgb(0,0,0);
-}
-
-table#selected-task #status {
-    border-bottom: 1px solid rgb(0,0,0);
-}
-
 table#selected-task #author, #assignee, #status {
-    border-right: 1px solid rgb(0,0,0);
     width:30%;
-    text-align: right;
+    text-align: left;
     font-weight: 600;
     padding: 0;
 }
 
 table#selected-task tr td#description {
-    border-left: 1px solid rgb(0,0,0);
-    border-right: 1px solid rgb(0,0,0);
-    border-bottom: 1px solid rgb(0,0,0);
+    border-top: 1px solid rgb(0,0,0);
     padding: 10px;
 }
 
@@ -186,12 +179,11 @@ span.results {
     padding: 0 10px;
 }
 
-#edit-task, #delete-task, #delete-task-group {
-    padding:10px;
-    text-decoration: underline;
+#delete-task {
+    margin-right: 50px;
 }
 
-a#signup, a#group-signup {
+a#signup, a#group-signup, a#login-group-message {
     font-size: 13px;
 }
 
@@ -200,8 +192,12 @@ a#group-signup {
 }
 
 a#back {
-    padding:40px;
+    padding-left: 30px;
+}
 
+a#back img {
+    padding-top:10px;
+    width: 30px;
 }
 
 body.login {
@@ -283,7 +279,7 @@ div.dropdown {
     display: inline-block;
 }
 
-div.dropdown-menu, div.dropdown-menu-header {
+div.dropdown-menu, div.dropdown-menu-header, div.dropdown-menu-login {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
@@ -294,6 +290,17 @@ div.dropdown-menu, div.dropdown-menu-header {
     box-shadow: 0 8px 16px 0px rgba(0,0,0,0.2);
     padding:5px 8px;
     z-index: 1;
+}
+
+div.dropdown-menu-login p {
+    line-height: 1.5;
+    font-size: 13px;
+    text-align:left;
+}
+
+div.dropdown-menu-login p span {
+    font-style: italic;
+    color: rgb(112, 112, 112);
 }
 
 div.dropdown-menu, div.dropdown-menu-header p a {
@@ -357,6 +364,10 @@ span.display-assignee#assignee-dropdown-sts {
     font-weight: 500;
 }
 
+.dropdown:hover .dropdown-menu-login {
+    display: block;
+}
+
 .dropdown:hover .dropdown-menu-header {
     display: block;
     right:5px;
@@ -418,6 +429,6 @@ input.cancel {
 
 .alerts li.error {
     border:3px solid rgb(255, 0, 0);
-    background-color: rgb(255, 188, 188);
+    background-color: rgb(213, 248, 203);
     color:rgb(255, 0, 0);
 }
