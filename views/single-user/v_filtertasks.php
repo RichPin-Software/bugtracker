@@ -148,7 +148,7 @@ include('../../includes/database.php');
         </div>
     </div>
 
-    <script src="../../bugtracker/models/ui.js"></script>
-    <script src="../bugtracker/js/app.js"></script>
+    <script src="../../../bugtracker/models/ui.js"></script>
+    <script src="../../../bugtracker/js/app.js"></script>
 </body>
 </html>

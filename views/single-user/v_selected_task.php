@@ -127,7 +127,7 @@ include('../../includes/database.php');
                     <tr>
                         <td colspan="2" id="edit-delete">
                             <a id="edit-task" href="selected_task.php?edittask=true">Edit</a>
-                            <a id="delete-task" href="selected_task.php?deletetask=true">Delete</a>
+                            <a id="delete-task" href="#">Delete</a>
                         </td>
                     </tr>
                 </table><!-- #selected-task -->
@@ -135,7 +135,7 @@ include('../../includes/database.php');
         </div><!-- .row-body -->
     </div><!-- .container -->
 
-    <script src="../../bugtracker/models/ui.js"></script>
-    <script src="../bugtracker/js/app.js"></script>
+    <script src="../../../bugtracker/models/ui.js"></script>
+    <script src="../../../bugtracker/js/app.js"></script>
 </body>
 </html>

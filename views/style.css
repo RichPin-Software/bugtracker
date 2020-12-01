@@ -186,7 +186,7 @@ span.results {
     padding: 0 10px;
 }
 
-#edit-task, #delete-task {
+#edit-task, #delete-task, #delete-task-group {
     padding:10px;
     text-decoration: underline;
 }

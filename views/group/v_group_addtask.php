@@ -18,7 +18,7 @@
                             <img src="../../images/list.svg" alt="">
                             <div class="dropdown-menu-header">
                                 <p><a href="group_account.php">Account</a></p>
-                                <p><a href="../../admin.php" id="admin">Admin</a></p>
+                                <p><a href="admin.php" id="admin">Admin</a></p>
                                 <p><a id="logout" href="../../logout.php">Logout</a></p>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                         <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
                         <textarea type="text" name="task-description" id="task-description" form="task-form" placeholder="Description..."><?php echo $this->getData('input_description'); ?></textarea>
                         <div class="error"><?php echo $this->getData('error_description'); ?></div><br>
-                        <input type="button" name="cancel" class="cancel cancel-form" value="Cancel">
+                        <input type="button" name="cancel" class="cancel cancel-form-group" value="Cancel">
                         <input type="submit" class="submit" value="Submit">
                     </form>
                 </div><!-- .addtask-container -->
@@ -57,6 +57,6 @@
     </div><!-- .container -->
 
     <script src="../../../bugtracker/models/ui.js"></script>
-    <script src="../../../bugtracker/js/group_app.js"></script>
+    <script src="../../../bugtracker/js/app.js"></script>
 </body>
 </html>

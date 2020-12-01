@@ -52,7 +52,7 @@
                         <label for="password_confirm">Confirm Password</label>
                         <input type="password" name="password_confirm" id="password_confirm" placeholder="Confirm new password" value="<?php echo $this->getData('input_pass_confirm'); ?>">
                         <div class="error"><?php echo $this->getData('error_pass_confirm'); ?></div><br>
-                        <button class="cancel"><a href="all_tasks.php">Cancel</a></button>
+                        <input type="button" name="cancel" class="cancel cancel-form" value="Cancel">
                         <input type="submit" class="submit" value="Submit">
                     </form>
                 </div><!-- .admin-container -->
@@ -61,6 +61,6 @@
     </div><!-- .container -->
 
     <script src="../../../bugtracker/models/ui.js"></script>
-    <script src="../../../bugtracker/js/group_app.js"></script>
+    <script src="../../../bugtracker/js/app.js"></script>
 </body>
 </html>

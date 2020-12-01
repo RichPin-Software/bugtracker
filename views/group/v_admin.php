@@ -1,5 +1,5 @@
 <?php
-include('includes/database.php');
+include('../../includes/database.php');
 
 $groupname;
 $admin = $_SESSION['user'];
@@ -36,7 +36,7 @@ else
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="views/style.css">
+    <link rel="stylesheet" href="../../views/style.css">
     <title>Admin</title>
 </head>
 <body>
@@ -48,10 +48,10 @@ else
                     <td id="header-label">Bug Tracker</td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
-                            <img src="images/list.svg" alt="">
+                            <img src="../../images/list.svg" alt="">
                             <div class="dropdown-menu-header">
-                                <p><a href="controllers/group/group_account.php">Account</a></p>
-                                <p><a id="logout" href="logout.php">Logout</a></p>
+                                <p><a href="group_account.php">Account</a></p>
+                                <p><a id="logout" href="../../logout.php">Logout</a></p>
                             </div>
                         </div>
                     </td>
@@ -61,11 +61,11 @@ else
         <div class="row-nav">
             <div class="nav">
                 <ul>
-                    <li><a href="controllers/group/group_all_tasks.php">All Tasks</a></li>
-                    <li><a href="controllers/group/group_all_tasks.php?filtertasks=onhold">On-hold</a></li>
-                    <li><a href="controllers/group/group_all_tasks.php?filtertasks=todo">TODO</a></li>
-                    <li><a href="controllers/group/group_all_tasks.php?filtertasks=inprogress">In Progress</a></li>
-                    <li><a href="controllers/group/group_all_tasks.php?filtertasks=resolved">Resolved</a></li>
+                    <li><a href="group_all_tasks.php">All Tasks</a></li>
+                    <li><a href="group_all_tasks.php?filtertasks=onhold">On-hold</a></li>
+                    <li><a href="group_all_tasks.php?filtertasks=todo">TODO</a></li>
+                    <li><a href="group_all_tasks.php?filtertasks=inprogress">In Progress</a></li>
+                    <li><a href="group_all_tasks.php?filtertasks=resolved">Resolved</a></li>
                 </ul>
             </div>
         </div>
@@ -81,8 +81,7 @@ else
                         <br><br>
                         <input type="text" name="add-user" id="add-user" placeholder="Add User (example: abc123)" value="<?php echo $this->getData('input_add-user'); ?>">
                         <div class="error"><?php echo $this->getData('error_add-user'); ?></div><br>
-                        <!-- <input type="button" name="cancel" class="cancel cancel-form" value="Cancel"> -->
-                        <button class="cancel"><a href="controllers/group/group_all_tasks.php">Cancel</a></button>
+                        <input type="button" name="cancel" class="cancel cancel-form-group" value="Cancel">
                         <input type="submit" class="submit" value="Submit">
                     </form>
                 </div><!-- .admin-container -->
@@ -91,6 +90,6 @@ else
     </div><!-- .container -->
 
     <script src="../../../bugtracker/models/ui.js"></script>
-    <script src="../../../bugtracker/js/group_app.js"></script>
+    <script src="../../../bugtracker/js/app.js"></script>
 </body>
 </html>

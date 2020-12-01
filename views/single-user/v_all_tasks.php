@@ -127,7 +127,7 @@ include('../../includes/database.php');
         </div><!-- .row-body -->
     </div><!-- .container -->
 
-    <script src="../../bugtracker/models/ui.js"></script>
-    <script src="../bugtracker/js/app.js"></script>
+    <script src="../../../bugtracker/models/ui.js"></script>
+    <script src="../../../bugtracker/js/app.js"></script>
 </body>
 </html>
