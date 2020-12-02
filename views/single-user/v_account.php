@@ -36,12 +36,12 @@
             </div>
         </div>
         <div class="row-body">
+            <h3 class="task-header">Change Password</h3>
             <div class="members-body">
                 <?php echo $this->displayAlert(); ?>
                 <div id="admin-container">
-                    <h2>Change Password</h2>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">
-                        <label for="username">Username: </label><br>
+                        <label id="account-user-label" for="username">Username: </label>
                         <select id="username" name="username">
                             <option value="<?php echo $_SESSION['user']; ?>"><?php echo $_SESSION['user']; ?></option>
                         </select>

@@ -42,13 +42,12 @@ include('../../includes/database.php');
             </div>
         </div>
         <div class="row-body">
+            <h3 class="task-header">Edit Task | BUG-<?php echo $_SESSION['id']; ?></h3>
             <div class="members-body">
                 <div id="addtask-container">
                     <?php
                         echo $this->displayAlert();
-
                         
-
                         $id = $_SESSION['id'];
 
                         if ($stmt = $conn->prepare("SELECT * FROM $db_user_table WHERE id = ?"))

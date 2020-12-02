@@ -34,14 +34,15 @@ include('../../includes/database.php');
                 <ul>
                     <li><a href="all_tasks.php?addtask=1">[+] New Task</a></li>
                     <li><a href="all_tasks.php">All Tasks</a></li>
-                    <li><a href="all_tasks.php?filtertasks=onhold">On-hold</a></li>
-                    <li><a href="all_tasks.php?filtertasks=todo">TODO</a></li>
-                    <li><a href="all_tasks.php?filtertasks=inprogress">In Progress</a></li>
-                    <li><a href="all_tasks.php?filtertasks=resolved">Resolved</a></li>
+                    <li id="li-onhold"><a href="all_tasks.php?filtertasks=onhold">On-hold</a></li>
+                    <li id="li-todo"><a href="all_tasks.php?filtertasks=todo">TODO</a></li>
+                    <li id="li-inprogress"><a href="all_tasks.php?filtertasks=inprogress">In Progress</a></li>
+                    <li id="li-resolved"><a href="all_tasks.php?filtertasks=resolved">Resolved</a></li>
                 </ul>
             </div>
         </div>
         <div class="row-body">
+            <h3 class="task-header"><?php echo $_SESSION['filtertasks']; ?></h3>
             <div class="members-body">
                 <?php echo $this->displayAlert(); ?>
                 <table id="tasks">

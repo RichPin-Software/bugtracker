@@ -60,3 +60,31 @@ if(deleteButtonExists = document.querySelector('#delete-task-group'))
         }
     });
 }
+/*
+    button sorting
+*/
+if(navExists = document.querySelector('.nav'))
+{
+    var url = window.location.href;
+    var filtertask = ['onhold', 'todo', 'inprogress', 'resolved'];
+
+    function sortButton(button)
+    {
+        if(url.includes(button))
+        {
+            document.getElementById(`li-${button}`).style.display = 'none';
+        }
+    }
+
+    window.addEventListener('load', ()=> {
+        filtertask.forEach(sortButton);
+    });
+    
+
+
+    /* switch(url)
+    {
+        case url.includes('onhold'):
+            li = 
+    } */
+}

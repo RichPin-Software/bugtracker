@@ -37,6 +37,7 @@
             </div>
         </div>
         <div class="row-body">
+            <h3 class="task-header">New Task</h3>
             <div class="members-body">
                 <div id="addtask-container">
                     <?php

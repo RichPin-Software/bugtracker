@@ -21,7 +21,7 @@ include('../../includes/database.php');
                         <div class="header-dropdown dropdown">
                             <img src="../../images/list.svg" alt="">
                             <div class="dropdown-menu-header">
-                                <p><a href="account.php">Account</a></p>
+                                <p><a id="account" href="account.php">Account</a></p>
                                 <p><a id="logout" href="../../logout.php">Logout</a></p>
                             </div>
                         </div>
@@ -41,6 +41,7 @@ include('../../includes/database.php');
             </div>
         </div>
         <div class="row-body">
+            <h3 class="task-header">All Tasks</h3>
             <div class="members-body">
                 <?php echo $this->displayAlert(); ?>
                 <table id="tasks">
