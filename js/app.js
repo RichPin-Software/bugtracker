@@ -4,6 +4,7 @@
  * 
  *      - form cancel button
  *      - confirm delete task
+ *      - sort nav buttons
  * 
  */
 
@@ -61,7 +62,7 @@ if(deleteButtonExists = document.querySelector('#delete-task-group'))
     });
 }
 /*
-    button sorting
+    sort nav buttons
 */
 if(navExists = document.querySelector('.nav'))
 {
@@ -79,12 +80,4 @@ if(navExists = document.querySelector('.nav'))
     window.addEventListener('load', ()=> {
         filtertask.forEach(sortButton);
     });
-    
-
-
-    /* switch(url)
-    {
-        case url.includes('onhold'):
-            li = 
-    } */
 }

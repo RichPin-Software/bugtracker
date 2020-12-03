@@ -46,7 +46,7 @@ table th {
 }
 
 table td {
-    padding:20px;
+    padding:15px;
 }
 
 input {
@@ -56,6 +56,7 @@ input {
 
 textarea {
     padding:5px;
+    resize: none;
 }
 
 a {
@@ -70,21 +71,15 @@ div#login-container {
     padding: 10% 0;
 }
 
-div#addtask-container, div#admin-container {
+div#addtask-container, div#edittask-container, div#admin-container {
     width:100%;
     margin: 10px auto 0 auto;
-    padding:50px 100px 50px 100px;
-}
-
-div#admin-container {
-    width: 70%;
-}
-
-div#selected-task-container {
-    padding-top: 20px;
+    padding:30px 100px 30px 100px;
+    border: 1px solid rgb(0,0,0);
 }
 
 div#login-form {
+    position: relative;
     width:500px;
     height:fit-content;
     margin:0 auto;
@@ -99,7 +94,8 @@ div.container {
 
 div.row-header {
     height: 65px;
-    background-color: rgb(0, 50, 216);
+    background-color: rgba(0, 50, 216, 0.9);
+    box-shadow: 0 8px 8px 0px rgba(0,0,0,0.25);
 }
 
 div.row-body {
@@ -107,11 +103,11 @@ div.row-body {
 }
 
 div.members-body {
-    padding: 0 0 20px 0;
+    padding: 0;
     margin:0 auto;
     width:60%;
     height: fit-content;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
 }
 
 /*
@@ -120,7 +116,7 @@ div.members-body {
 
 div.nav {
     float:left;
-    width:10%;
+    width:180px;
     height: 100%;
     margin:0;
 }
@@ -133,21 +129,41 @@ div.nav ul {
 }
 
 div.nav ul li {
-    text-align: center;
+    text-align: left;
 }
 
 div.nav ul li a {
     display:block;
     padding:30px;
-    text-decoration: none;
+    height: 80px;
+    position: relative;
     font-weight: 600;
     font-size:13px;
     color: black;
 }
 
+div.nav ul li a img {
+    height: 18px;
+    margin-right: 20px;
+    filter:none;
+}
+
+div.nav ul li a span {
+    display: inline-block;
+    height:20px;
+    position: absolute;
+    top:50%;
+    margin-top:-8px;
+    
+}
+
 div.nav ul li a:hover {
     background-color:rgb(0, 50, 216);
     color:rgb(255, 255, 255);
+}
+
+div.nav ul li a:hover .nav-img {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
 /*
@@ -180,18 +196,40 @@ table#header-table tr td#header-icon img {
 
 table#selected-task {
     max-width: 950px;
-    margin:10px auto ;
+    margin:0 auto;
     border: 1px solid rgb(0,0,0);
+}
+
+td#edit-delete {
+    border-top: 1px solid rgb(0,0,0);
+}
+
+td#edit-delete a {
+    float: right;
+}
+
+td#edit-delete a#delete-task,
+td#edit-delete a#delete-task-group {
+    margin-right: 50px;
+}
+
+td div.td-content {
+    padding:4px 12px;
+}
+
+td div span.task-suffix {
+    color: rgb(97, 97, 97);
+    font-weight: 500;
 }
 
 table#selected-task tr th {
     padding: 10px 0;
     text-align: center;
-    width:70%;
+    width:67%;
 }
 
 table#selected-task #author, #assignee, #status {
-    width:30%;
+    width:33%;
     text-align: left;
     font-weight: 600;
     padding: 0;
@@ -199,11 +237,11 @@ table#selected-task #author, #assignee, #status {
 
 table#selected-task tr td#description {
     border-top: 1px solid rgb(0,0,0);
-    padding: 10px;
+    padding: 20px;
 }
 
 table#selected-task tr td#description div {
-    min-height: 350px;
+    min-height: 300px;
     white-space: pre-wrap;
 }
 
@@ -211,7 +249,7 @@ table#tasks {
     margin-bottom: 20px;
 }
 
-table#tasks tr td a{
+table#tasks tr td a {
     color: rgb(20, 29, 75);
     font-weight: 600;
 }
@@ -248,27 +286,6 @@ table#tasks tr:nth-child(odd) {
 
 table#tasks tr:nth-child(even) {
     background-color: rgba(0, 50, 216, 0.3);
-}
-
-td#edit-delete {
-    border-top: 1px solid rgb(0,0,0);
-}
-
-td#edit-delete a {
-    float: right;
-}
-
-td#edit-delete a#delete-task {
-    margin-right: 50px;
-}
-
-td div.td-content {
-    padding:8px 12px;
-}
-
-td div span.task-suffix {
-    color: rgb(97, 97, 97);
-    font-weight: 500;
 }
 
 /*
@@ -451,8 +468,9 @@ a.page-link {
     text-decoration:underline;
 }
 
-span.results {
-    padding: 0 10px;
+div.results {
+    padding-bottom: 15px;
+    padding-left: 15px;
 }
 
 /*
@@ -464,6 +482,23 @@ div.error {
     font-size: 13px;
 }
 
+.alert-banner, .alert-banner-login {
+    margin:0 auto;
+}
+
+.alert-banner {
+    width:60%;
+    position: absolute;
+    top: 30%;
+}
+
+.alert-banner-login {
+    width:500px;
+    position: absolute;
+    top:20%;
+    right: 0px;
+}
+
 .alerts {
     list-style-type: none;
     overflow: hidden;
@@ -471,25 +506,28 @@ div.error {
 }
 
 .alerts li {
-    padding:5px;
+    padding:50px 40px;
     font-weight: 600;
     text-align: center;
 }
 
 .alerts li.success {
     border:3px solid rgb(4, 201, 4);
+    border-radius: 10px;
     background-color: rgb(213, 248, 203);
     color:rgb(4, 201, 4);
 }
 
 .alerts li.warning {
     border:3px solid rgb(255, 196, 0);
+    border-radius: 10px;
     background-color: rgb(245, 226, 165);
     color:rgb(255, 196, 0);
 }
 
 .alerts li.error {
     border:3px solid rgb(255, 0, 0);
+    border-radius: 10px;
     background-color: rgb(213, 248, 203);
     color:rgb(255, 0, 0);
 }
