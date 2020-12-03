@@ -130,7 +130,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
             }
             if(preg_match($special_char, $username)===1)
             {
-                $Template->setData($err_key_user, "*letters, numbers and underscore only!!!");
+                $Template->setData($err_key_user, "*letters, numbers and underscore only!");
             }
             if(strlen($password) < 8)
             {

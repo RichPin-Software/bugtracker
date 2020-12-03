@@ -33,17 +33,38 @@ $db_user_table = $_SESSION['group_table'];
         <div class="row-nav">
             <div class="nav">
                 <ul>
-                    <li><a href="group_all_tasks.php?addtask=1">[+] New Task</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=onhold">On-hold</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=todo">TODO</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=inprogress">In Progress</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=resolved">Resolved</a></li>
+                    <li>
+                        <a href="group_all_tasks.php?addtask=1">
+                            <img class="nav-img" src="../../images/plus-square.svg" alt="new task"><span>New Task</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_all_tasks.php?filtertasks=onhold">
+                            <img class="nav-img"  src="../../images/x-octagon-fill.svg" alt="on-hold"><span>On-hold</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_all_tasks.php?filtertasks=todo">
+                            <img class="nav-img"  src="../../images/card-checklist.svg" alt="todo"><span>TODO</span>    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_all_tasks.php?filtertasks=inprogress">
+                            <img class="nav-img"  src="../../images/hourglass-split.svg" alt="in progress"><span>In Progress</span>    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_all_tasks.php?filtertasks=resolved">
+                            <img class="nav-img"  src="../../images/check2-square.svg" alt="resolved"><span>Resolved</span>  
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="row-body">
+            <h3 class="task-header">All Tasks</h3>
             <div class="members-body">
-                <?php echo $this->displayAlert(); ?>
+                <div class="alert-banner"><?php echo $this->displayAlert(); ?></div>
                 <table id="tasks">
                     <?php
                     $offset = 0;
@@ -118,16 +139,18 @@ $db_user_table = $_SESSION['group_table'];
                     }
                     ?>
                 </table>
-                <span class="results"><?php echo "$num_tasks results. Showing 8 results per page."; ?></span>
-                <?php
-                for($i=1;$i<=$count;$i++)
-                {
-                    echo "<a class='page-link' href='group_all_tasks.php?page=$i'>$i</a>";
-                }
-                ?>
-            </div>
-        </div>
-    </div>
+                <div class="results">
+                    <span><?php echo "$num_tasks results. Showing 8 results per page."; ?></span>
+                    <?php
+                    for($i=1;$i<=$count;$i++)
+                    {
+                        echo "<a class='page-link' href='group_all_tasks.php?page=$i'>$i</a>";
+                    }
+                    ?>
+                </div><!-- .results -->
+            </div><!-- .members-body -->
+        </div><!-- .row-body -->
+    </div><!-- .container -->
 
     <script src="../../../bugtracker/models/ui.js"></script>
     <script src="../../../bugtracker/js/app.js"></script>

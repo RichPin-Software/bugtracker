@@ -66,7 +66,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     }
     else
     {
-        $Template->setAlert('Must complete required fields', 'error');
+        $Template->setAlert('Must complete required fields!', 'error');
         $Template->load('views/v_login.php');
     }
 }

@@ -61,19 +61,44 @@ else
         <div class="row-nav">
             <div class="nav">
                 <ul>
-                    <li><a href="group_all_tasks.php">All Tasks</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=onhold">On-hold</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=todo">TODO</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=inprogress">In Progress</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=resolved">Resolved</a></li>
+                    <li>
+                        <a href="group_all_tasks.php?addtask=1">
+                            <img class="nav-img" src="../../images/plus-square.svg" alt="new task"><span>New Task</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_all_tasks.php?back=1">
+                            <img class="nav-img" src="../../images/asterisk.svg" alt="all tasks"><span>All Tasks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_all_tasks.php?filtertasks=onhold">
+                            <img class="nav-img"  src="../../images/x-octagon-fill.svg" alt="on-hold"><span>On-hold</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_all_tasks.php?filtertasks=todo">
+                            <img class="nav-img"  src="../../images/card-checklist.svg" alt="todo"><span>TODO</span>    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_all_tasks.php?filtertasks=inprogress">
+                            <img class="nav-img"  src="../../images/hourglass-split.svg" alt="in progress"><span>In Progress</span>    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_all_tasks.php?filtertasks=resolved">
+                            <img class="nav-img"  src="../../images/check2-square.svg" alt="resolved"><span>Resolved</span>  
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="row-body">
+            <h3 class="task-header">Add New Member</h3>
             <div class="members-body">
                 <?php echo $this->displayAlert(); ?>
                 <div id="admin-container">
-                    <h2>Add New Member</h2>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">
                         <select id="group-name" name="group-name">
                             <option value="<?php echo $groupname; ?>"><?php echo $groupname; ?></option>

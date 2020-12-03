@@ -4,6 +4,7 @@
  * 
  *      - form cancel button
  *      - confirm delete task
+ *      - sort nav buttons
  * 
  */
 
@@ -58,5 +59,25 @@ if(deleteButtonExists = document.querySelector('#delete-task-group'))
         {
             Ui.redirect('group_selected_task.php?deletetask=true');
         }
+    });
+}
+/*
+    sort nav buttons
+*/
+if(navExists = document.querySelector('.nav'))
+{
+    var url = window.location.href;
+    var filtertask = ['onhold', 'todo', 'inprogress', 'resolved'];
+
+    function sortButton(button)
+    {
+        if(url.includes(button))
+        {
+            document.getElementById(`li-${button}`).style.display = 'none';
+        }
+    }
+
+    window.addEventListener('load', ()=> {
+        filtertask.forEach(sortButton);
     });
 }

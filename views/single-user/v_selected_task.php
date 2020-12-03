@@ -19,7 +19,7 @@ include('../../includes/database.php');
                     <td id="header-label">Bug Tracker</td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
-                            <img src="../../images/list.svg" alt="">
+                            <img src="../../images/list.svg" alt="dropdown">
                             <div class="dropdown-menu-header">
                                 <p><a href="account.php">Account</a></p>
                                 <p><a id="logout" href="../../logout.php">Logout</a></p>
@@ -32,18 +32,42 @@ include('../../includes/database.php');
         <div class="row-nav">
             <div class="nav">
                 <ul>
-                    <li><a href="all_tasks.php?addtask=1">[+] New Task</a></li>
-                    <li><a href="all_tasks.php?back=1">All Tasks</a></li>
-                    <li><a href="all_tasks.php?filtertasks=onhold">On-hold</a></li>
-                    <li><a href="all_tasks.php?filtertasks=todo">TODO</a></li>
-                    <li><a href="all_tasks.php?filtertasks=inprogress">In Progress</a></li>
-                    <li><a href="all_tasks.php?filtertasks=resolved">Resolved</a></li>
+                    <li>
+                        <a href="all_tasks.php?addtask=1">
+                            <img class="nav-img" src="../../images/plus-square.svg" alt="new task"><span>New Task</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="all_tasks.php?back=1">
+                            <img class="nav-img" src="../../images/asterisk.svg" alt="all tasks"><span>All Tasks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="all_tasks.php?filtertasks=onhold">
+                            <img class="nav-img"  src="../../images/x-octagon-fill.svg" alt="on-hold"><span>On-hold</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="all_tasks.php?filtertasks=todo">
+                            <img class="nav-img"  src="../../images/card-checklist.svg" alt="todo"><span>TODO</span>    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="all_tasks.php?filtertasks=inprogress">
+                            <img class="nav-img"  src="../../images/hourglass-split.svg" alt="in progress"><span>In Progress</span>    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="all_tasks.php?filtertasks=resolved">
+                            <img class="nav-img"  src="../../images/check2-square.svg" alt="resolved"><span>Resolved</span>  
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="row-body">
+            <h3 class="task-header">BUG-<?php echo $_SESSION['id']; ?></h3>
             <div class="members-body">
-                <a id="back" href="all_tasks.php?back=1"><<< Back</a>
                 <table id="selected-task">
                 <?php
                 if ($stmt = $conn->prepare("SELECT * FROM $db_user_table WHERE id = ?")) // begin if statement
@@ -123,11 +147,11 @@ include('../../includes/database.php');
                 {
                     echo "<tr><th>Failure to connect: ($conn->errno) $conn->error</th></tr>";
                 }
-                ?>
+                    ?>
                     <tr>
                         <td colspan="2" id="edit-delete">
-                            <a id="edit-task" href="selected_task.php?edittask=true">Edit</a>
-                            <a id="delete-task" href="#">Delete</a>
+                            <a id="edit-task" href="selected_task.php?edittask=true"><img src="../../images/pencil-square.svg" alt="edit"></a>
+                            <a id="delete-task" href="#"><img src="../../images/trash-fill.svg" alt="delete"></a>
                         </td>
                     </tr>
                 </table><!-- #selected-task -->

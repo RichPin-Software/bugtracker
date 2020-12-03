@@ -19,7 +19,7 @@ include('../../includes/database.php');
                     <td id="header-label">Bug Tracker</td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
-                            <img src="../../images/list.svg" alt="">
+                            <img src="../../images/list.svg" alt="dropdown">
                             <div class="dropdown-menu-header">
                                 <p><a href="group_account.php">Account</a></p>
                                 <p><a href="admin.php" id="admin">Admin</a></p>
@@ -33,18 +33,42 @@ include('../../includes/database.php');
         <div class="row-nav">
             <div class="nav">
                 <ul>
-                    <li><a href="group_all_tasks.php?addtask=1">[+] New Task</a></li>
-                    <li><a href="group_all_tasks.php?back=1">All Tasks</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=onhold">On-hold</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=todo">TODO</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=inprogress">In Progress</a></li>
-                    <li><a href="group_all_tasks.php?filtertasks=resolved">Resolved</a></li>
+                    <li>
+                        <a href="group_all_tasks.php?addtask=1">
+                            <img class="nav-img" src="../../images/plus-square.svg" alt="new task"><span>New Task</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_all_tasks.php?back=1">
+                            <img class="nav-img" src="../../images/asterisk.svg" alt="all tasks"><span>All Tasks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_all_tasks.php?filtertasks=onhold">
+                            <img class="nav-img"  src="../../images/x-octagon-fill.svg" alt="on-hold"><span>On-hold</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_all_tasks.php?filtertasks=todo">
+                            <img class="nav-img"  src="../../images/card-checklist.svg" alt="todo"><span>TODO</span>    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_all_tasks.php?filtertasks=inprogress">
+                            <img class="nav-img"  src="../../images/hourglass-split.svg" alt="in progress"><span>In Progress</span>    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="group_all_tasks.php?filtertasks=resolved">
+                            <img class="nav-img"  src="../../images/check2-square.svg" alt="resolved"><span>Resolved</span>  
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="row-body">
+            <h3 class="task-header">BUG-<?php echo $_SESSION['id']; ?></h3>
             <div class="members-body">
-                <a id="back" href="group_all_tasks.php?back=1"><<< Back</a>
                 <table id="selected-task">
                     <?php
                     if ($stmt = $conn->prepare("SELECT * FROM $db_user_table WHERE id = ?")) // begin if statement
@@ -193,14 +217,14 @@ include('../../includes/database.php');
                     ?>
                     <tr>
                         <td colspan="2" id="edit-delete">
-                            <a id="edit-task" href="group_selected_task.php?edittask=true">Edit</a>
-                            <a id="delete-task-group" href="#">Delete</a>
+                            <a id="edit-task" href="group_selected_task.php?edittask=true"><img src="../../images/pencil-square.svg" alt="edit"></a>
+                            <a id="delete-task-group" href="#"><img src="../../images/trash-fill.svg" alt="delete"></a>
                         </td>
                     </tr>
                 </table>
-            </div>
-        </div>
-    </div>
+            </div><!-- .members-body -->
+        </div><!-- .row-body -->
+    </div><!-- .container -->
 
     <script src="../../../bugtracker/models/ui.js"></script>
     <script src="../../../bugtracker/js/app.js"></script>
