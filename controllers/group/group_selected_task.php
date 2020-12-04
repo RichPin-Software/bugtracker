@@ -72,7 +72,7 @@ if(isset($_SESSION['id']))
             $description = $Template->getData($desc_key);
 
             $Auth->updateTask($db_user_table, $id, $title, $status, $description);
-            $Template->load('../../views/group/v_group_task.php');
+            $Template->load('../../views/group/v_group_selected_task.php');
         }
         else
         {
@@ -142,7 +142,7 @@ if(isset($_SESSION['id']))
     */
     else
     {
-        $Template->load('../../views/group/v_group_task.php');
+        $Template->load('../../views/group/v_group_selected_task.php');
     }
 }
 else

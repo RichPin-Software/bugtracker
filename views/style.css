@@ -42,7 +42,7 @@ table {
 }
 
 table th {
-    font-size: 30px;
+    font-size: 25px;
 }
 
 table td {
@@ -71,11 +71,22 @@ div#login-container {
     padding: 10% 0;
 }
 
-div#addtask-container, div#edittask-container, div#admin-container {
-    width:100%;
-    margin: 10px auto 0 auto;
-    padding:30px 100px 30px 100px;
+div#addtask-container,
+div#edittask-container, 
+div#admin-container {
+    width: 100%;
     border: 1px solid rgb(0,0,0);
+}
+
+div#addtask-container,
+div#edittask-container {
+    margin: 10px auto 0 auto;
+    padding: 30px 150px;
+}
+
+div#admin-container {
+    margin: 0 auto;
+    padding: 30px 0px;
 }
 
 div#login-form {
@@ -102,12 +113,37 @@ div.row-body {
     height: fit-content;
 }
 
+div.row2-body {
+    float: left;
+    width:300px;
+    height: fit-content;
+}
+
+div#selected-task-row-body-container {
+    float:left;
+    width:65%;
+}
+
 div.members-body {
     padding: 0;
-    margin:0 auto;
-    width:60%;
+    margin: 0 auto;
+    width: 50%;
     height: fit-content;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
+}
+
+div#selected-task-members-body-container {
+    width: 65%;
+}
+
+div.form-container {
+    max-width: 250px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+div.selected-task-container {
+    width:100%;
 }
 
 /*
@@ -115,17 +151,17 @@ div.members-body {
 */
 
 div.nav {
-    float:left;
-    width:180px;
+    float: left;
+    width: 180px;
     height: 100%;
-    margin:0;
+    margin: 0;
 }
 
 div.nav ul {
     list-style-type: none;
     overflow: hidden;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
 
 div.nav ul li {
@@ -184,20 +220,57 @@ table#header-table tr td#header-label {
 }
 
 table#header-table tr td#header-icon {
-    float:right;
-    height:100%;
+    float: right;
+    height: 100%;
     padding-right: 30px;
 }
 
 table#header-table tr td#header-icon img {
-    width:25px;
+    width: 25px;
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
 table#selected-task {
-    max-width: 950px;
-    margin:0 auto;
+    margin: 0 auto;
+    width: 100%;
     border: 1px solid rgb(0,0,0);
+}
+
+table#selected-task tr th {
+    padding: 10px 0;
+    text-align: center;
+    width: 67%;
+}
+
+table#selected-task #author,
+table#selected-task #assignee, 
+table#selected-task #status {
+    width:33%;
+    text-align: left;
+    font-weight: 600;
+    padding: 0;
+}
+
+table#selected-task-data-table {
+    margin:76px 0;
+    padding: 0 30px;
+}
+
+table#selected-task-data-table #author,
+table#selected-task-data-table #assignee,
+table#selected-task-data-table #status {
+    padding: 0;
+    margin-bottom: 5px;
+}
+
+table#selected-task tr td#description {
+    border-top: 1px solid rgb(0,0,0);
+    padding: 20px;
+}
+
+table#selected-task tr td#description div {
+    min-height: 300px;
+    white-space: pre-wrap;
 }
 
 td#edit-delete {
@@ -214,35 +287,13 @@ td#edit-delete a#delete-task-group {
 }
 
 td div.td-content {
-    padding:4px 12px;
+    padding: 4px 12px;
 }
 
 td div span.task-suffix {
     color: rgb(97, 97, 97);
     font-weight: 500;
-}
-
-table#selected-task tr th {
-    padding: 10px 0;
-    text-align: center;
-    width:67%;
-}
-
-table#selected-task #author, #assignee, #status {
-    width:33%;
-    text-align: left;
-    font-weight: 600;
-    padding: 0;
-}
-
-table#selected-task tr td#description {
-    border-top: 1px solid rgb(0,0,0);
-    padding: 20px;
-}
-
-table#selected-task tr td#description div {
-    min-height: 300px;
-    white-space: pre-wrap;
+    font-style: italic;
 }
 
 table#tasks {
@@ -292,16 +343,44 @@ table#tasks tr:nth-child(even) {
     5. Forms
 */
 
+form#task-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+form#task-form label#account-label-username,
+form#task-form label#admin-label-groupname {
+    color: rgb(112, 112, 112);
+}
+
+form#task-form select {
+    margin-top: 5px;
+    padding: 5px;
+}
+
+form#task-form input#password,
+form#task-form input#default-password,
+form#task-form input#password_confirm,
+form#task-form input#add-user {
+    margin-top: 5px;
+}
+
+form#task-form input#default-password {
+    border: 1px solid rgb(90, 90, 90);
+}
+
 textarea#task-description {
-    width:100%;
-    height:260px;
+    width: 100%;
+    min-height: 180px;
 }
 
 #login-form h1{
     text-align: center;
 }
 
-a#signup, a#group-signup, a#login-group-message {
+a#signup,
+a#group-signup, 
+a#login-group-message {
     font-size: 13px;
 }
 
@@ -312,7 +391,7 @@ a#group-signup {
 input.submit {
     background-color: rgb(25, 65, 247);
     width:fit-content;
-    padding:4px;
+    padding:6px;
     border-radius:7px;
     float:right;
     color:rgb(255, 255, 255);
@@ -337,12 +416,20 @@ a#back img {
 
 h3.task-header {
     margin:30px auto;
-    width:60%;
+    width:50%;
     height: fit-content;
+}
+
+h3#selected-task-task-header {
+    width: 65%;
 }
 
 label#account-user-label {
     font-weight: 600;
+}
+
+div.form-container form#task-form p {
+    font-size: 13px;
 }
 
 /*
@@ -358,7 +445,9 @@ div.header-dropdown {
     float: right;
 }
 
-div.dropdown-menu, div.dropdown-menu-header, div.dropdown-menu-login {
+div.dropdown-menu, 
+div.dropdown-menu-header, 
+div.dropdown-menu-login {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
@@ -487,7 +576,7 @@ div.error {
 }
 
 .alert-banner {
-    width:60%;
+    width:50%;
     position: absolute;
     top: 30%;
 }

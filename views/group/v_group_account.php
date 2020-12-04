@@ -66,21 +66,23 @@
             <div class="members-body">
                 <?php echo $this->displayAlert(); ?>
                 <div id="admin-container">
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">
-                        <label for="username">Username: </label><br>
-                        <select id="username" name="username">
-                            <option value="<?php echo $_SESSION['user']; ?>"><?php echo $_SESSION['user']; ?></option>
-                        </select>
-                        <br><br>
-                        <label for="password">New Password</label>
-                        <input type="password" name="password" id="password" placeholder="Enter new password" value="<?php echo $this->getData('input_pass'); ?>">
-                        <div class="error"><?php echo $this->getData('error_pass'); ?></div><br>
-                        <label for="password_confirm">Confirm Password</label>
-                        <input type="password" name="password_confirm" id="password_confirm" placeholder="Confirm new password" value="<?php echo $this->getData('input_pass_confirm'); ?>">
-                        <div class="error"><?php echo $this->getData('error_pass_confirm'); ?></div><br>
-                        <input type="button" name="cancel" class="cancel cancel-form-group" value="Cancel">
-                        <input type="submit" class="submit" value="Submit">
-                    </form>
+                    <div class="form-container">
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">
+                            <label id="account-label-username" for="username">Username:</label>
+                            <select id="username" name="username">
+                                <option value="<?php echo $_SESSION['user']; ?>"><?php echo $_SESSION['user']; ?></option>
+                            </select>
+                            <br><br><br>
+                            <label id="account-label-password" for="password">New Password</label><br>
+                            <input type="password" name="password" id="password" placeholder="Enter new password" value="<?php echo $this->getData('input_pass'); ?>">
+                            <div class="error"><?php echo $this->getData('error_pass'); ?></div><br>
+                            <label id="account-label-confirm" for="password_confirm">Confirm Password</label><br>
+                            <input type="password" name="password_confirm" id="password_confirm" placeholder="Confirm new password" value="<?php echo $this->getData('input_pass_confirm'); ?>">
+                            <div class="error"><?php echo $this->getData('error_pass_confirm'); ?></div><br>
+                            <input type="button" name="cancel" class="cancel cancel-form-group" value="Cancel">
+                            <input type="submit" class="submit" value="Submit">
+                        </form>
+                    </div><!-- .form-container -->
                 </div><!-- .admin-container -->
             </div><!-- .members-body -->
         </div><!-- .row-body -->
