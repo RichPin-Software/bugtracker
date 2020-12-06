@@ -107,7 +107,7 @@ else
                             </select>
                             <br><br><br>
                             <label id="admin-label-username" for="username">Create Username:</label><br>
-                            <input type="text" name="add-user" id="add-user" placeholder="Add User (example: abc123)" value="<?php echo $this->getData('input_add-user'); ?>">
+                            <input type="text" name="add-user" id="add-user" placeholder="Add User (example: abcd1234)" value="<?php echo $this->getData('input_add-user'); ?>">
                             <div class="error"><?php echo $this->getData('error_add-user'); ?></div><br>
                             <label id="admin-label-password" for="password">Default Password:</label><br>
                             <input type="text" name="password" id="default-password" value="<?php echo $groupname; ?>" disabled><br>

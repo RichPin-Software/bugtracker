@@ -237,7 +237,7 @@ table#selected-task {
 }
 
 table#selected-task tr th {
-    padding: 10px 0;
+    padding: 10px 50px;
     text-align: center;
     width: 67%;
 }
@@ -265,7 +265,7 @@ table#selected-task-data-table #status {
 
 table#selected-task tr td#description {
     border-top: 1px solid rgb(0,0,0);
-    padding: 20px;
+    padding: 20px 50px;
 }
 
 table#selected-task tr td#description div {
@@ -571,21 +571,14 @@ div.error {
     font-size: 13px;
 }
 
-.alert-banner, .alert-banner-login {
+.alert-banner {
     margin:0 auto;
 }
 
 .alert-banner {
     width:50%;
     position: absolute;
-    top: 30%;
-}
-
-.alert-banner-login {
-    width:500px;
-    position: absolute;
-    top:20%;
-    right: 0px;
+    top: 150px;
 }
 
 .alerts {

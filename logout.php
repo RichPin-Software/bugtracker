@@ -17,7 +17,6 @@ if(isset($_SESSION['currentUser']))
     session_unset();
     session_destroy();
 
-    $Template->setAlert('Logout Successful', 'success');
     $Template->redirect('login.php');
 }
 else
