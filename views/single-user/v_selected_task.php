@@ -111,6 +111,11 @@ include('../../includes/database.php');
                         <tr>
                             <th><?php echo $result['title']; ?></th>
                         </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
                         <tr>
                             <td colspan="2" id="description">
                                 <div><?php echo $result['description']; ?></div>
@@ -131,16 +136,17 @@ include('../../includes/database.php');
                 <tr>
                     <td id="author">
                         <div class="td-content">
-                            <span class="task-suffix">Created by: </span><?php echo $result['author']; ?>
+                            <span class="task-suffix">Created by:</span><br>
+                            <?php echo $result['author']; ?>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td id="status">
                         <div class="td-content dropdown">
-                            <span class="task-suffix">Status: </span>
+                            <span class="task-suffix">Status: </span><br>
                             <span class="<?php echo "display-$sts"; ?>" id="dropdown-status"><?php echo $result['status']; ?></span>
-                            <div class="dropdown-menu">
+                            <div id="dropdown-menu-status" class="dropdown-menu">
                                 <p><a href="selected_task.php?status=onhold" id="on-hold">On-hold</a></p>
                                 <p><a href="selected_task.php?status=todo" id="todo">TODO</a></p>
                                 <p><a href="selected_task.php?status=inprogress" id="in-progress">In Progress</a></p>

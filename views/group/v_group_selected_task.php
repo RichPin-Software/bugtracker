@@ -30,7 +30,7 @@ include('../../includes/database.php');
                 </tr>
             </table>
         </div>
-        <div class="row-nav">
+        <div class="row-nav" id="row-nav-selected-task">
             <div class="nav">
                 <ul>
                     <li>
@@ -110,8 +110,13 @@ include('../../includes/database.php');
                                 }
                         ?>
                         <tr>
-                            <th><?php echo $result['title']; ?></th>
+                            <th><div class="title"><?php echo $result['title']; ?></div></th>
                         </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
                         <tr><td colspan="2" id="description"><div><?php echo $result['description']; ?></div></td></tr>
                         <tr>
                             <td colspan="2" id="edit-delete">
@@ -128,16 +133,16 @@ include('../../includes/database.php');
                 <tr>
                     <td id="author">
                         <div class="td-content">
-                            <span class="task-suffix">Created by: </span><?php echo $result['author']; ?>
+                            <span class="task-suffix">Created by: </span><br><?php echo $result['author']; ?>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td id="assignee">
                         <div class="td-content dropdown">
-                            <span class="task-suffix">Assigned to:</span>
+                            <span class="task-suffix">Assigned to:</span><br>
                             <span class="display-assignee" id="assignee-dropdown-sts"><?php echo $result['assignee']; ?></span>
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu" id="dropdown-menu-assignee">
                         <?php
                         // Assignee dropdown
                         $groupname = '';
@@ -182,7 +187,7 @@ include('../../includes/database.php');
                                 {
                                     while($stmt->fetch()) 
                                     {
-                                        echo "<p><a href='group_selected_task.php?assign=$username'>$username</a></p>";
+                                        echo "<p><a class='assignee' href='group_selected_task.php?assign=$username'>$username</a></p>";
                                     }
 
                                     $stmt->free_result();
@@ -209,9 +214,9 @@ include('../../includes/database.php');
                 <tr>
                     <td id="status">
                         <div class="td-content dropdown">
-                            <span class="task-suffix">Status: </span> 
+                            <span class="task-suffix">Status: </span><br>
                             <span class="<?php echo "display-$sts"; ?>" id="dropdown-status"><?php echo $result['status']; ?></span>
-                            <div class="dropdown-menu">
+                            <div id="dropdown-menu-status" class="dropdown-menu">
                                 <p><a href="group_selected_task.php?status=onhold" id="on-hold">On-hold</a></p>
                                 <p><a href="group_selected_task.php?status=todo" id="todo">TODO</a></p>
                                 <p><a href="group_selected_task.php?status=inprogress" id="in-progress">In Progress</a></p>

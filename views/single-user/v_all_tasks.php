@@ -67,7 +67,7 @@ include('../../includes/database.php');
                 <table id="tasks">
                 <?php
                 $offset = 0;
-                $results = 8;
+                $results = 5;
 
                 if(isset($_SESSION['offset'])) { $offset = $_SESSION['offset']; }
 

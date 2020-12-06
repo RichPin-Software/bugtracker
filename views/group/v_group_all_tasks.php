@@ -68,7 +68,7 @@ $db_user_table = $_SESSION['group_table'];
                 <table id="tasks">
                     <?php
                     $offset = 0;
-                    $results = 8;
+                    $results = 5;
                     $count;
                     $num_tasks;
 
