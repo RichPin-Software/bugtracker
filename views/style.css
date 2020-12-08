@@ -284,7 +284,7 @@ table#selected-task tr th {
 
 table#selected-task tr td#description {
     margin: 10px 0;
-    padding: 10px;
+    padding: 20px;
     height: 220px;
     border: 1px solid rgb(0,0,0);
 }
@@ -402,6 +402,9 @@ form#task-form input#default-password {
 
 textarea#task-description {
     width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    font-family: sans-serif;
     min-height: 180px;
 }
 
@@ -512,7 +515,7 @@ div.dropdown-menu p a {
 
 .dropdown #dropdown-menu-status p a,
 .dropdown #dropdown-menu-assignee p a {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -581,7 +584,7 @@ span.display-assignee#assignee-dropdown-sts {
 .dropdown:hover #dropdown-menu-assignee {
     display: block;
     position: absolute;
-    left:0;
+    left: -50%;
 }
 
 .dropdown-menu-header p a:hover {
