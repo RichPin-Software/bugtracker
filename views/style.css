@@ -100,47 +100,37 @@ div#login-form {
 div.container {
     width:100%;
     height:100%;
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    /* box-shadow: 0 8px 8px 0px rgba(0,0,0,0.25); */
 }
 
 div.row-header {
     height: 65px;
     background-color: rgba(0, 50, 216, 0.9);
-    box-shadow: 0 8px 8px 0px rgba(0,0,0,0.25);
+    box-shadow: 0 8px 8px 0px rgba(0,0,0,0.1);
+}
+
+div.row-nav {
+    width: 15%;
+    float:left;
 }
 
 div.row-body {
-    height: fit-content;
-}
-
-div.row2-body {
-    float: left;
-    padding: 0;
-    margin: 0;
-    width: 35%;
-    height: fit-content;
-}
-
-div#row-nav-selected-task {
+    width:85%;
     float:left;
-    width: 15%;
-}
-
-div#selected-task-row-body-container {
-    float:left;
-    width:50%;
+    height: fit-content;
 }
 
 div.members-body {
+    width: 70%;
     padding: 0;
     margin: 0 auto;
-    width: 50%;
     height: fit-content;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
 }
 
 div#selected-task-members-body-container {
-    width: 90%;
+    width: 70%;
 }
 
 div.form-container {
@@ -159,7 +149,7 @@ div.selected-task-container {
 
 div.nav {
     float: left;
-    width: 180px;
+    width: 100%;
     height: 100%;
     margin: 0;
 }
@@ -172,32 +162,39 @@ div.nav ul {
 }
 
 div.nav ul li {
-    text-align: left;
+    margin: 0 auto;
+    border-right: 1px solid gray;
+}
+
+div.nav ul li:last-child {
+    border-bottom: 1px solid gray;
 }
 
 div.nav ul li a {
     display:block;
-    padding:30px;
-    height: 80px;
-    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 35px 30px;
     font-weight: 600;
     font-size:13px;
     color: rgb(0,0,0);
+}
+
+div.nav ul li a table {
+    width:120px;
+    margin: 0 auto;
+}
+
+div.nav ul li a table tr td {
+    margin:0;
+    padding:0;
+    text-align:left;
 }
 
 div.nav ul li a img {
     height: 18px;
     margin-right: 20px;
     filter:none;
-}
-
-div.nav ul li a span {
-    display: inline-block;
-    height:20px;
-    position: absolute;
-    top:50%;
-    margin-top:-8px;
-    
 }
 
 div.nav ul li a:hover {
@@ -217,19 +214,33 @@ table#header-table {
     height:100%;
 }
 
-table#header-table tr td#header-label {
-    float:left;
+table#header-table tr td#header-label,
+table#header-table tr td#header-icon {
+    width: 15%;
     height:100%;
     color:rgb(255, 255, 255);
+}
+
+table#header-table tr td#header-label {
+    float:left;
+    color:rgb(255, 255, 255);
     font-size:20px;
-    padding-left:30px;
     font-weight:600;
+}
+
+table#header-table tr td#header-label span {
+    display: block;
+    width: 120px;
+    margin: 0 auto;
 }
 
 table#header-table tr td#header-icon {
     float: right;
-    height: 100%;
-    padding-right: 30px;
+    width: 12%;
+}
+
+table#header-table tr td#header-icon div.header-dropdown {
+    margin: 0 35% 0 auto;
 }
 
 table#header-table tr td#header-icon img {
@@ -237,12 +248,32 @@ table#header-table tr td#header-icon img {
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
+table.row-body-header-table {
+    width: 70%;
+    margin:0 auto;
+    padding:0;
+}
+
+table.row-body-header-table tr td.task-header {
+    text-align:left;
+    margin:0;
+    padding:30px 0;
+    font-weight:600;
+    font-size:21px;
+}
+
+table.selected-task-layout {
+    border: 1px solid rgb(0,0,0);
+}
+
+table.selected-task-layout tr td:nth-child(1) {
+    width: 70%;
+}
+
 table#selected-task {
     margin: 0 auto;
     padding: 10px;
     width: 100%;
-    border-radius: 2px;
-    border: 1px solid rgb(0,0,0);
 }
 
 table#selected-task tr th {
@@ -254,23 +285,24 @@ table#selected-task tr th {
 table#selected-task tr td#description {
     margin: 10px 0;
     padding: 10px;
+    height: 220px;
     border: 1px solid rgb(0,0,0);
 }
 
 table#selected-task tr td#description div {
     max-height: 243px;
-    min-height: 243px;
+    min-height: 220px;
     white-space: pre-wrap;
     overflow-y: scroll;
 }
 
-td#edit-delete a {
+td#edit-delete {
     float: right;
+    padding-top: 50px;
 }
 
-td#edit-delete a#delete-task,
-td#edit-delete a#delete-task-group {
-    margin-right: 50px;
+td#edit-delete a#delete-task {
+    margin-left: 50px;
 }
 
 table#selected-task-data-table {
@@ -281,6 +313,11 @@ table#selected-task-data-table {
 
 table#selected-task-data-table tr td {
     padding: 5px;
+}
+
+table#selected-task-data-table tr td#status {
+    height:100px;
+    padding-bottom:50px;
 }
 
 td div span.task-suffix {
@@ -404,18 +441,14 @@ a#back {
 }
 
 a#back img {
-    padding-top:10px;
+    padding-top: 10px;
     width: 30px;
 }
 
 h3.task-header {
-    margin:30px auto;
-    width:50%;
+    margin: 30px auto;
+    width: 70%;
     height: fit-content;
-}
-
-h3#selected-task-task-header {
-    width: 90%;
 }
 
 label#account-user-label {
@@ -450,7 +483,7 @@ div.dropdown-menu-login {
     width: fit-content;
     overflow:auto;
     box-shadow: 0 8px 16px 0px rgba(0,0,0,0.2);
-    padding:5px 8px;
+    padding: 5px 25px;
     z-index: 1;
 }
 
@@ -582,44 +615,32 @@ div.error {
     font-size: 13px;
 }
 
-.alert-banner {
-    margin:0 auto;
-}
-
-.alert-banner {
-    width:50%;
-    position: absolute;
-    top: 150px;
-}
-
 .alerts {
     list-style-type: none;
     overflow: hidden;
-    padding:0;
+    padding: 0;
+    margin: 0;
 }
 
 .alerts li {
-    padding:50px 40px;
     font-weight: 600;
     text-align: center;
 }
 
 .alerts li.success {
-    border:3px solid rgb(4, 201, 4);
-    border-radius: 10px;
-    background-color: rgb(213, 248, 203);
-    color:rgb(4, 201, 4);
+    font-size: 21px;
+    color:rgb(99, 99, 99);
 }
 
 .alerts li.warning {
-    border:3px solid rgb(255, 196, 0);
+    border: 3px solid rgb(255, 196, 0);
     border-radius: 10px;
     background-color: rgb(245, 226, 165);
     color:rgb(255, 196, 0);
 }
 
 .alerts li.error {
-    border:3px solid rgb(255, 0, 0);
+    border: 3px solid rgb(255, 0, 0);
     border-radius: 10px;
     background-color: rgb(213, 248, 203);
     color:rgb(255, 0, 0);
@@ -632,7 +653,7 @@ div.error {
 
         1400-2. Containers
         1400-4. Tables
-        1400-6. Micellaneous
+        1400-6. Miscellaneous
 
 */
 
@@ -646,9 +667,9 @@ div.error {
         1400-2. Containers
     */
 
-    div#selected-task-row-body-container {
+    /* div#selected-task-row-body-container {
         width:50%;
-    }
+    } */
     
     div#selected-task-members-body-container {
         width: 90%;
@@ -675,7 +696,7 @@ div.error {
     }
 
     /*
-        1400-6. Micellaneous
+        1400-6. Miscellaneous
     */
 
     h3#selected-task-task-header {

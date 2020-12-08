@@ -16,7 +16,7 @@ include('../../includes/database.php');
             <table id="header-table">
                 <tr></tr>
                 <tr>
-                    <td id="header-label">Bug Tracker</td>
+                    <td id="header-label"><span>Bug Tracker</span></td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
                             <img src="../../images/list.svg" alt="">
@@ -30,43 +30,78 @@ include('../../includes/database.php');
             </table>
         </div>
         <div class="row-nav">
-            <div class="nav">
+        <div class="nav">
                 <ul>
                     <li>
                         <a href="all_tasks.php?addtask=1">
-                            <img class="nav-img" src="../../images/plus-square.svg" alt="new task"><span>New Task</span>
+                            <table>
+                                <tr>
+                                    <td><img class="nav-img" src="../../images/plus-square.svg" alt="new task"></td>
+                                    <td>New Task</td>
+                                </tr>
+                            </table>
                         </a>
                     </li>
                     <li>
                         <a href="all_tasks.php?back=1">
-                            <img class="nav-img" src="../../images/asterisk.svg" alt="all tasks"><span>All Tasks</span>
+                            <table>
+                                <tr>
+                                    <td><img class="nav-img" src="../../images/asterisk.svg" alt="all tasks"></td>
+                                    <td>All Tasks</td>
+                                </tr>
+                            </table>
                         </a>
                     </li>
                     <li>
                         <a href="all_tasks.php?filtertasks=onhold">
-                            <img class="nav-img"  src="../../images/x-octagon-fill.svg" alt="on-hold"><span>On-hold</span>
+                            <table>
+                                <tr>
+                                    <td><img class="nav-img" src="../../images/x-octagon-fill.svg" alt="on-hold"></td>
+                                    <td>On-hold</td>
+                                </tr>
+                            </table>
                         </a>
                     </li>
                     <li>
                         <a href="all_tasks.php?filtertasks=todo">
-                            <img class="nav-img"  src="../../images/card-checklist.svg" alt="todo"><span>TODO</span>    
+                            <table>
+                                <tr>
+                                    <td><img class="nav-img" src="../../images/card-checklist.svg" alt="to do"></td>
+                                    <td>TODO</td>
+                                </tr>
+                            </table>
                         </a>
                     </li>
                     <li>
                         <a href="all_tasks.php?filtertasks=inprogress">
-                            <img class="nav-img"  src="../../images/hourglass-split.svg" alt="in progress"><span>In Progress</span>    
+                            <table>
+                                <tr>
+                                    <td><img class="nav-img" src="../../images/hourglass-split.svg" alt="in progress"></td>
+                                    <td>In Progress</td>
+                                </tr>
+                            </table>
                         </a>
                     </li>
                     <li>
                         <a href="all_tasks.php?filtertasks=resolved">
-                            <img class="nav-img"  src="../../images/check2-square.svg" alt="resolved"><span>Resolved</span>  
+                            <table>
+                                <tr>
+                                    <td><img class="nav-img" src="../../images/check2-square.svg" alt="resolved"></td>
+                                    <td>Resolved</td>
+                                </tr>
+                            </table>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="row-body">
-            <h3 class="task-header">Edit Task | BUG-<?php echo $_SESSION['id']; ?></h3>
+            <table class="row-body-header-table">
+                <tr>
+                    <td class="task-header">Edit Task | BUG-<?php echo $_SESSION['id']; ?></td>
+                    <td></td>
+                </tr>
+            </table>
             <div class="members-body">
                 <div id="addtask-container">
                     <?php
@@ -86,20 +121,16 @@ include('../../includes/database.php');
                                 $stmt->fetch();
                     ?>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">
-                        <!-- task-title -->
                         <input type="text" name="task-title" cols="100" id="task-title" placeholder="New Task Title" value="<?php echo $result['title']; ?>">
                         <div class="error"><?php echo $this->getData('error_title'); ?></div><br>
-                        <!-- task author -->
                         <input type="text" name="task-author" id="task-author" placeholder="Created by" value="<?php echo $result['author']; ?>" disabled>
                         <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
-                        <!-- task status -->
                         <select id="task-status" name="task-status">
                             <option value="TODO">TODO</option>
                             <option value="On-hold">On-hold</option>
                             <option value="In Progress">In Progress</option>
                             <option value="Resolved">Resolved</option>
                         </select><br><br>
-                        <!-- task description -->
                         <textarea type="text" name="task-description" id="task-description" form="task-form" placeholder="Description..."><?php echo $result['description']; ?></textarea>
                         <div class="error"><?php echo $this->getData('error_description'); ?></div><br>
                         <input type="button" name="cancel" class="cancel cancel-form" value="Cancel">

@@ -166,6 +166,7 @@ class Templates
             },3000);
             </script>
             ALERT;
+            /* $displayAlert = "<ul class='alerts'>$alert</ul>"; */
         }
         else
         {
