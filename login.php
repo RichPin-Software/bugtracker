@@ -20,6 +20,7 @@ $pass_key = 'input_pass';
 $err_key_user = 'error_user';
 $err_key_pass = 'error_pass';
 $error = '*required field!';
+$error2 = "*invalid username or password!";
 /*
     if user submits login form
 */
@@ -60,13 +61,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         }
         else
         {
-            $Template->setAlert('Invalid username or password!','error');
+            $Template->setData($err_key_user, $error2);
+            $Template->setData($err_key_pass, $error2);
             $Template->load('views/v_login.php');
         }
     }
     else
     {
-        $Template->setAlert('Must complete required fields!', 'error');
         $Template->load('views/v_login.php');
     }
 }

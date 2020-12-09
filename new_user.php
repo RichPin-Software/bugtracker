@@ -101,13 +101,16 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['group']))
             $new_password = $Template->getData($pass_key);
 
             $Auth->addNewUserGroup($new_user, $new_group, $new_password);
-            $Template->setAlert("Welcome $new_user! Please sign in with your new username and password!", 'success');
+            
+            /* $Template->setAlert("Welcome $new_user! Please sign in with your new username and password!", 'success'); */
+            // Redirect to separate view containing welcome message, new username, link to login page
+            // This page can have basic information about Bug Tracker app
+
             $Template->redirect("login.php");
         }
     }
     else
     {
-        $Template->setAlert('Must complete required fields', 'error');
         $Template->load('views/v_group_new_user.php');
     }
 }
@@ -156,13 +159,15 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
 
             $Auth->addNewUser($new_user, $new_password);
 
-            $Template->setAlert("Welcome $new_user! Please sign in with your new username and password!", 'success');
+            /* $Template->setAlert("Welcome $new_user! Please sign in with your new username and password!", 'success'); */
+            // Redirect to separate view containing welcome message, new username, link to login page
+            // This page can have basic information about Bug Tracker app
+
             $Template->redirect("login.php");
         }
     }
     else
     {
-        $Template->setAlert('Must complete required fields', 'error');
         $Template->load('views/v_new_user.php');
     }
 }

@@ -10,7 +10,6 @@
     <div class="container" id="login-container">
         <div id="login-form">
             <h1>New User</h1>
-            <div class="alert-banner-login"><?php echo $this->displayAlert(); ?></div>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <label for="username">Create Username:</label><br>
                 <input type="text" name="username" id="username" value="<?php echo $this->getData('new_user'); ?>">

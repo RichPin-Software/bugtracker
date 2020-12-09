@@ -42,7 +42,7 @@ table {
 }
 
 table th {
-    font-size: 30px;
+    font-size: 25px;
 }
 
 table td {
@@ -71,11 +71,22 @@ div#login-container {
     padding: 10% 0;
 }
 
-div#addtask-container, div#edittask-container, div#admin-container {
-    width:100%;
-    margin: 10px auto 0 auto;
-    padding:30px 100px 30px 100px;
+div#addtask-container,
+div#edittask-container, 
+div#admin-container {
+    width: 100%;
     border: 1px solid rgb(0,0,0);
+}
+
+div#addtask-container,
+div#edittask-container {
+    margin: 10px auto 0 auto;
+    padding: 30px 150px;
+}
+
+div#admin-container {
+    margin: 0 auto;
+    padding: 30px 0px;
 }
 
 div#login-form {
@@ -89,25 +100,43 @@ div#login-form {
 div.container {
     width:100%;
     height:100%;
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    /* box-shadow: 0 8px 8px 0px rgba(0,0,0,0.25); */
 }
 
 div.row-header {
     height: 65px;
     background-color: rgba(0, 50, 216, 0.9);
-    box-shadow: 0 8px 8px 0px rgba(0,0,0,0.25);
+    box-shadow: 0 8px 8px 0px rgba(0,0,0,0.1);
+}
+
+div.row-nav {
+    width: 15%;
+    float:left;
 }
 
 div.row-body {
+    width:85%;
+    float:left;
     height: fit-content;
 }
 
 div.members-body {
+    width: 70%;
     padding: 0;
-    margin:0 auto;
-    width:60%;
+    margin: 0 auto;
     height: fit-content;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
+}
+
+div.form-container {
+    max-width: 250px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+div.selected-task-container {
+    width:100%;
 }
 
 /*
@@ -115,46 +144,53 @@ div.members-body {
 */
 
 div.nav {
-    float:left;
-    width:180px;
+    float: left;
+    width: 100%;
     height: 100%;
-    margin:0;
+    margin: 0;
 }
 
 div.nav ul {
     list-style-type: none;
     overflow: hidden;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
 
 div.nav ul li {
-    text-align: left;
+    margin: 0 auto;
+    border-right: 1px solid gray;
+}
+
+div.nav ul li:last-child {
+    border-bottom: 1px solid gray;
 }
 
 div.nav ul li a {
     display:block;
-    padding:30px;
-    height: 80px;
-    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 35px 30px;
     font-weight: 600;
     font-size:13px;
-    color: black;
+    color: rgb(0,0,0);
+}
+
+div.nav ul li a table {
+    width:120px;
+    margin: 0 auto;
+}
+
+div.nav ul li a table tr td {
+    margin:0;
+    padding:0;
+    text-align:left;
 }
 
 div.nav ul li a img {
     height: 18px;
     margin-right: 20px;
     filter:none;
-}
-
-div.nav ul li a span {
-    display: inline-block;
-    height:20px;
-    position: absolute;
-    top:50%;
-    margin-top:-8px;
-    
 }
 
 div.nav ul li a:hover {
@@ -174,75 +210,121 @@ table#header-table {
     height:100%;
 }
 
-table#header-table tr td#header-label {
-    float:left;
+table#header-table tr td#header-label,
+table#header-table tr td#header-icon {
+    width: 15%;
     height:100%;
     color:rgb(255, 255, 255);
+}
+
+table#header-table tr td#header-label {
+    float:left;
+    color:rgb(255, 255, 255);
     font-size:20px;
-    padding-left:30px;
     font-weight:600;
 }
 
+table#header-table tr td#header-label span {
+    display: block;
+    width: 120px;
+    margin: 0 auto;
+}
+
 table#header-table tr td#header-icon {
-    float:right;
-    height:100%;
-    padding-right: 30px;
+    float: right;
+    width: 12%;
+}
+
+table#header-table tr td#header-icon div.header-dropdown {
+    margin: 0 35% 0 auto;
 }
 
 table#header-table tr td#header-icon img {
-    width:25px;
+    width: 25px;
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
-table#selected-task {
-    max-width: 950px;
+table.row-body-header-table {
+    width: 70%;
     margin:0 auto;
+    padding:0;
+}
+
+table.row-body-header-table tr td.task-header {
+    text-align:left;
+    margin:0;
+    padding:30px 0;
+    font-weight:600;
+    font-size:21px;
+}
+
+table.selected-task-layout {
+    position: relative;
     border: 1px solid rgb(0,0,0);
 }
 
-td#edit-delete {
-    border-top: 1px solid rgb(0,0,0);
+table.selected-task-layout tr td:nth-child(1) {
+    width: 70%;
 }
 
-td#edit-delete a {
+table#selected-task {
+    margin: 0 auto;
+    padding: 10px;
+    width: 100%;
+}
+
+table#selected-task tr th {
+    padding: 10px;
+    border: 1px solid rgb(0,0,0);
+    text-align: center;
+}
+
+table#selected-task tr td#description {
+    margin: 10px 0;
+    padding: 20px;
+    height: 220px;
+    border: 1px solid rgb(0,0,0);
+}
+
+table#selected-task tr td#description div {
+    max-height: 243px;
+    min-height: 220px;
+    white-space: pre-wrap;
+    overflow-y: scroll;
+}
+
+td#edit-delete {
     float: right;
+    padding-top: 50px;
 }
 
 td#edit-delete a#delete-task,
 td#edit-delete a#delete-task-group {
-    margin-right: 50px;
+    margin-left: 50px;
 }
 
-td div.td-content {
-    padding:4px 12px;
+table#selected-task-data-table {
+    width: fit-content;
+    position: absolute;
+    top: 0;
+    text-align: left;
+    margin: 25px 0;
+    padding: 0;
+}
+
+table#selected-task-data-table tr td {
+    padding: 5px;
+}
+
+table#selected-task-data-table tr td#status {
+    height:100px;
+    padding-bottom:50px;
 }
 
 td div span.task-suffix {
     color: rgb(97, 97, 97);
     font-weight: 500;
-}
-
-table#selected-task tr th {
-    padding: 10px 0;
-    text-align: center;
-    width:67%;
-}
-
-table#selected-task #author, #assignee, #status {
-    width:33%;
-    text-align: left;
-    font-weight: 600;
-    padding: 0;
-}
-
-table#selected-task tr td#description {
-    border-top: 1px solid rgb(0,0,0);
-    padding: 20px;
-}
-
-table#selected-task tr td#description div {
-    min-height: 300px;
-    white-space: pre-wrap;
+    font-style: italic;
 }
 
 table#tasks {
@@ -251,6 +333,7 @@ table#tasks {
 
 table#tasks tr td a {
     color: rgb(20, 29, 75);
+    font-size: 16px;
     font-weight: 600;
 }
 
@@ -292,16 +375,47 @@ table#tasks tr:nth-child(even) {
     5. Forms
 */
 
+form#task-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+form#task-form label#account-label-username,
+form#task-form label#admin-label-groupname {
+    color: rgb(112, 112, 112);
+}
+
+form#task-form select {
+    margin-top: 5px;
+    padding: 5px;
+}
+
+form#task-form input#password,
+form#task-form input#default-password,
+form#task-form input#password_confirm,
+form#task-form input#add-user {
+    margin-top: 5px;
+}
+
+form#task-form input#default-password {
+    border: 1px solid rgb(90, 90, 90);
+}
+
 textarea#task-description {
-    width:100%;
-    height:260px;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    font-family: sans-serif;
+    min-height: 180px;
 }
 
 #login-form h1{
     text-align: center;
 }
 
-a#signup, a#group-signup, a#login-group-message {
+a#signup,
+a#group-signup, 
+a#login-group-message {
     font-size: 13px;
 }
 
@@ -312,7 +426,7 @@ a#group-signup {
 input.submit {
     background-color: rgb(25, 65, 247);
     width:fit-content;
-    padding:4px;
+    padding:6px;
     border-radius:7px;
     float:right;
     color:rgb(255, 255, 255);
@@ -331,18 +445,22 @@ a#back {
 }
 
 a#back img {
-    padding-top:10px;
+    padding-top: 10px;
     width: 30px;
 }
 
 h3.task-header {
-    margin:30px auto;
-    width:60%;
+    margin: 30px auto;
+    width: 70%;
     height: fit-content;
 }
 
 label#account-user-label {
     font-weight: 600;
+}
+
+div.form-container form#task-form p {
+    font-size: 13px;
 }
 
 /*
@@ -358,16 +476,18 @@ div.header-dropdown {
     float: right;
 }
 
-div.dropdown-menu, div.dropdown-menu-header, div.dropdown-menu-login {
+div.dropdown-menu, 
+div.dropdown-menu-header, 
+div.dropdown-menu-login {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
     border-radius: 2px;
-    text-align: center;
+    text-align: left;
     width: fit-content;
     overflow:auto;
-    box-shadow: 0 8px 16px 0px rgba(0,0,0,0.2);
-    padding:5px 8px;
+    box-shadow: 0 8px 16px 0px rgba(0,0,0,0.3);
+    padding: 5px 25px;
     z-index: 1;
 }
 
@@ -392,6 +512,16 @@ div.dropdown-menu-header p a#logout {
 
 div.dropdown-menu p a {
     color: rgb(0,0,0);
+}
+
+.dropdown #dropdown-menu-status p a,
+.dropdown #dropdown-menu-assignee p a {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.dropdown #dropdown-menu-assignee p a.assignee:hover {
+    color: rgb(0, 50, 216);
 }
 
 div.dropdown-menu p a#on-hold:hover {
@@ -451,12 +581,20 @@ span.display-assignee#assignee-dropdown-sts {
     left: 70px;
 }
 
+.dropdown:hover #dropdown-menu-status,
+.dropdown:hover #dropdown-menu-assignee {
+    display: block;
+    position: absolute;
+    left: 0;
+}
+
 .dropdown-menu-header p a:hover {
     color: rgb(0, 50, 216);
 }
 
 .dropdown:hover span#assignee-dropdown-sts {
-    color:rgb(140, 161, 230);
+    font-weight: 600;
+    color:rgb(0, 50, 216);
 }
 
 /*
@@ -482,52 +620,83 @@ div.error {
     font-size: 13px;
 }
 
-.alert-banner, .alert-banner-login {
-    margin:0 auto;
-}
-
-.alert-banner {
-    width:60%;
-    position: absolute;
-    top: 30%;
-}
-
-.alert-banner-login {
-    width:500px;
-    position: absolute;
-    top:20%;
-    right: 0px;
-}
-
 .alerts {
     list-style-type: none;
     overflow: hidden;
-    padding:0;
+    padding: 0;
+    margin: 0;
 }
 
 .alerts li {
-    padding:50px 40px;
     font-weight: 600;
-    text-align: center;
+    text-align: right;
 }
 
 .alerts li.success {
-    border:3px solid rgb(4, 201, 4);
-    border-radius: 10px;
-    background-color: rgb(213, 248, 203);
-    color:rgb(4, 201, 4);
+    font-size: 21px;
+    color:rgb(99, 99, 99);
 }
 
 .alerts li.warning {
-    border:3px solid rgb(255, 196, 0);
+    border: 3px solid rgb(255, 196, 0);
     border-radius: 10px;
     background-color: rgb(245, 226, 165);
     color:rgb(255, 196, 0);
 }
 
 .alerts li.error {
-    border:3px solid rgb(255, 0, 0);
+    border: 3px solid rgb(255, 0, 0);
     border-radius: 10px;
     background-color: rgb(213, 248, 203);
     color:rgb(255, 0, 0);
+}
+/*
+
+    Media Queries
+
+    Screen width: 1400px
+
+        1400-2. Containers
+        1400-4. Tables
+        1400-6. Miscellaneous
+
+*/
+
+/*
+    Screen width: 1400px
+*/
+
+@media only screen and (max-width: 1400px)
+{
+    /*
+        1400-2. Containers
+    */
+
+    /*
+        1400-4. Tables
+    */
+
+    table#tasks tr td a {
+        font-size: 14px;
+    }
+    
+    table#tasks tr td span.display-onhold, 
+    table#tasks tr td span.display-todo, 
+    table#tasks tr td span.display-inprogress, 
+    table#tasks tr td span.display-resolved {
+        font-size:16px;
+    }
+
+    table#selected-task-data-table {
+        margin:76px 0;
+        /* padding: 0 30px 0 0; */
+    }
+
+    /*
+        1400-6. Miscellaneous
+    */
+
+    h3#selected-task-task-header {
+        width: 90%;
+    }
 }
