@@ -45,7 +45,7 @@ if(isset($_SESSION['id']))
     {
         $Auth->deleteTask($db_user_table, $id);
 
-        $Template->setAlert("BUG-$id Deleted Successfully", 'success');
+        $Template->setAlert("Task-$id Deleted Successfully", 'success');
         unset($_SESSION['id']);
         $Template->redirect('group_all_tasks.php');
     }

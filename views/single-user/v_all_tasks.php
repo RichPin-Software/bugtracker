@@ -16,7 +16,7 @@ include('../../includes/database.php');
             <table id="header-table">
                 <tr></tr>
                 <tr>
-                    <td id="header-label"><span>Bug Tracker</span></td>
+                    <td id="header-label"><span>myTasks</span></td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
                             <img src="../../images/list.svg" alt="dropdown">
@@ -143,7 +143,7 @@ include('../../includes/database.php');
                                 }
                                 $bug_display = "<tr>
                                                     <td>
-                                                        <a href='selected_task.php?id=$id'>BUG-$id: $title</a>
+                                                        <a href='selected_task.php?id=$id'>Task-$id: $title</a>
                                                         <span class='display-$class'>$status</span>
                                                     </td>
                                                 </tr>";

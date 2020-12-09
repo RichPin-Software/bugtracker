@@ -8,7 +8,7 @@ include('../../includes/database.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../views/style.css">
-    <title>BUG-<?php echo $_SESSION['id']; ?></title>
+    <title>Task-<?php echo $_SESSION['id']; ?></title>
 </head>
 <body>
     <div class="container">
@@ -16,7 +16,7 @@ include('../../includes/database.php');
             <table id="header-table">
                 <tr></tr>
                 <tr>
-                    <td id="header-label"><span>Bug Tracker</span></td>
+                    <td id="header-label"><span>myTasks</span></td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
                             <img src="../../images/list.svg" alt="dropdown">
@@ -98,7 +98,7 @@ include('../../includes/database.php');
         <div class="row-body">
             <table class="row-body-header-table">
                 <tr>
-                    <td class="task-header">BUG-<?php echo $_SESSION['id']; ?></td>
+                    <td class="task-header">Task-<?php echo $_SESSION['id']; ?></td>
                     <td></td>
                 </tr>
             </table>
@@ -158,7 +158,6 @@ include('../../includes/database.php');
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td></td>
                                         <td id="edit-delete">
                                             <a id="edit-task" href="selected_task.php?edittask=true"><img src="../../images/pencil-square.svg" alt="edit"></a>
                                             <a id="delete-task" href="#"><img src="../../images/trash-fill.svg" alt="delete"></a>
@@ -172,7 +171,7 @@ include('../../includes/database.php');
                                         <td id="author">
                                             <div class="td-content">
                                                 <span class="task-suffix">Created by:</span><br>
-                                                <?php echo $result['author']; ?>
+                                                <span class="display-author"><?php echo $result['author']; ?></span>
                                             </div>
                                         </td>
                                     </tr>
@@ -180,7 +179,10 @@ include('../../includes/database.php');
                                         <td id="status">
                                             <div class="td-content dropdown">
                                                 <span class="task-suffix">Status: </span><br>
-                                                <span class="<?php echo "display-$sts"; ?>" id="dropdown-status"><?php echo $result['status']; ?></span>
+                                                <div class="selected-task-data-dropdown-container">
+                                                    <span class="<?php echo "display-$sts"; ?>" id="dropdown-status"><?php echo $result['status']; ?></span>
+                                                    <img src="../../images/caret-down.svg" alt="dropdown">
+                                                </div>
                                                 <div id="dropdown-menu-status" class="dropdown-menu">
                                                     <p><a href="selected_task.php?status=onhold" id="on-hold">On-hold</a></p>
                                                     <p><a href="selected_task.php?status=todo" id="todo">TODO</a></p>

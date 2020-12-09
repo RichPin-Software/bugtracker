@@ -8,7 +8,7 @@ include('../../includes/database.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../views/style.css">
-    <title>BUG-<?php echo $_SESSION['id']; ?></title>
+    <title>Task-<?php echo $_SESSION['id']; ?></title>
 </head>
 <body>
     <div class="container">
@@ -16,7 +16,7 @@ include('../../includes/database.php');
             <table id="header-table">
                 <tr></tr>
                 <tr>
-                    <td id="header-label"><span>Bug Tracker</span></td>
+                    <td id="header-label"><span>myTasks</span></td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
                             <img src="../../images/list.svg" alt="">
@@ -99,7 +99,7 @@ include('../../includes/database.php');
         <div class="row-body">
             <table class="row-body-header-table">
                 <tr>
-                    <td class="task-header">Edit Task | BUG-<?php echo $_SESSION['id']; ?></td>
+                    <td class="task-header">Edit Task | Task-<?php echo $_SESSION['id']; ?></td>
                     <td></td>
                 </tr>
             </table>
