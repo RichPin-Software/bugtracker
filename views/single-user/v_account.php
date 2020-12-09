@@ -25,7 +25,7 @@
             </table>
         </div>
         <div class="row-nav">
-        <div class="nav">
+            <div class="nav">
                 <ul>
                     <li>
                         <a href="all_tasks.php?addtask=1">
@@ -94,11 +94,10 @@
             <table class="row-body-header-table">
                 <tr>
                     <td class="task-header">Change Password</td>
-                    <td></td>
+                    <td class="alert-banner"><?php echo $this->displayAlert(); ?></td>
                 </tr>
             </table>
             <div class="members-body">
-                <?php echo $this->displayAlert(); ?>
                 <div id="admin-container">
                     <div class="form-container">
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">

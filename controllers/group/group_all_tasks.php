@@ -129,13 +129,19 @@ if(isset($_SESSION['login_successful']))
             {
                 $tasks = $_GET['filtertasks'];
 
-                $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
-                $Template->redirect("group_all_tasks.php?filtertasks=$tasks");
+                if(isset($_SESSION['results']))
+                {
+                    $_SESSION['offset'] = $_SESSION['results'] * ($_GET['page'] - 1);
+                    $Template->redirect("group_all_tasks.php?filtertasks=$tasks");
+                }
             }
             else
             {
-                $_SESSION['offset'] = 8 * ($_GET['page'] - 1);
-                $Template->redirect('group_all_tasks.php');
+                if(isset($_SESSION['results']))
+                {
+                    $_SESSION['offset'] = $_SESSION['results'] * ($_GET['page'] - 1);
+                    $Template->redirect('group_all_tasks.php');
+                }
             }
         }
         /*

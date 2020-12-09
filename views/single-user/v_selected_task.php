@@ -95,14 +95,14 @@ include('../../includes/database.php');
                 </ul>
             </div>
         </div>
-        <div class="row-body" id="selected-task-row-body-container">
+        <div class="row-body">
             <table class="row-body-header-table">
                 <tr>
                     <td class="task-header">BUG-<?php echo $_SESSION['id']; ?></td>
                     <td></td>
                 </tr>
             </table>
-            <div class="members-body" id="selected-task-members-body-container">
+            <div class="members-body">
                 <div class="selected-task-container">
                     <table class="selected-task-layout">
                         <tr>
@@ -184,7 +184,7 @@ include('../../includes/database.php');
                                                 <div id="dropdown-menu-status" class="dropdown-menu">
                                                     <p><a href="selected_task.php?status=onhold" id="on-hold">On-hold</a></p>
                                                     <p><a href="selected_task.php?status=todo" id="todo">TODO</a></p>
-                                                    <p><a href="selected_task.php?status=inprogress" id="in-progress">In Progress</a></p>
+                                                    <p><a href="selected_task.php?status=inprogress" id="in-progress">In&nbspProgress</a></p>
                                                     <p><a href="selected_task.php?status=resolved" id="resolved">Resolved</a></p>
                                                 </div>
                                             </div>
@@ -207,7 +207,7 @@ include('../../includes/database.php');
                                 </table><!-- #selected-task-data-table -->
                             </td>
                         </tr>
-                    </table>
+                    </table><!-- .selected-task-layout -->
                 </div><!-- .selected-task-container -->
             </div><!-- .members-body -->
         </div><!-- .row-body -->

@@ -30,7 +30,7 @@ include('../../includes/database.php');
             </table>
         </div>
         <div class="row-nav">
-        <div class="nav">
+            <div class="nav">
                 <ul>
                     <li>
                         <a href="all_tasks.php?addtask=1">
@@ -105,8 +105,6 @@ include('../../includes/database.php');
             <div class="members-body">
                 <div id="addtask-container">
                     <?php
-                        echo $this->displayAlert();
-                        
                         $id = $_SESSION['id'];
 
                         if ($stmt = $conn->prepare("SELECT * FROM $db_user_table WHERE id = ?"))

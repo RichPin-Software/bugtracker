@@ -26,7 +26,7 @@
             </table>
         </div>
         <div class="row-nav">
-        <div class="nav">
+            <div class="nav">
                 <ul>
                     <li>
                         <a href="all_tasks.php?back=1">
@@ -90,9 +90,6 @@
             </table>
             <div class="members-body">
                 <div id="addtask-container">
-                    <?php
-                        echo $this->displayAlert();
-                    ?>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">
                         <input type="text" name="task-title" cols="100" id="task-title" placeholder="New Task Title" value="<?php echo $this->getData('input_title'); ?>">
                         <div class="error"><?php echo $this->getData('error_title'); ?></div><br>

@@ -30,7 +30,7 @@ include('../../includes/database.php');
             </table>
         </div>
         <div class="row-nav">
-        <div class="nav">
+            <div class="nav">
                 <ul>
                     <li>
                         <a href="all_tasks.php?addtask=1">
@@ -103,7 +103,6 @@ include('../../includes/database.php');
                 </tr>
             </table>
             <div class="members-body">
-                <?php echo $this->displayAlert(); ?>
                 <table id="tasks">
                     <?php
                     $offset = 0;
@@ -120,7 +119,7 @@ include('../../includes/database.php');
 
                         // store number of rows in num_tasks to display total results
                         $num_tasks = $stmt->num_rows;
-                        $count = ceil($num_tasks/8);
+                        $count = ceil($num_tasks/$results);
                         $stmt->free_result();
                         $stmt->close();
 

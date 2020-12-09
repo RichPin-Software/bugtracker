@@ -16,7 +16,7 @@ include('../../includes/database.php');
             <table id="header-table">
                 <tr></tr>
                 <tr>
-                    <td id="header-label">Bug Tracker</td>
+                    <td id="header-label"><span>Bug Tracker</span></td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
                             <img src="../../images/list.svg" alt="">
@@ -35,119 +35,153 @@ include('../../includes/database.php');
                 <ul>
                     <li>
                         <a href="group_all_tasks.php?addtask=1">
-                            <img class="nav-img" src="../../images/plus-square.svg" alt="new task"><span>New Task</span>
+                            <table>
+                                <tr>
+                                    <td><img class="nav-img" src="../../images/plus-square.svg" alt="new task"></td>
+                                    <td>New Task</td>
+                                </tr>
+                            </table>
                         </a>
                     </li>
                     <li>
                         <a href="group_all_tasks.php?back=1">
-                            <img class="nav-img" src="../../images/asterisk.svg" alt="all tasks"><span>All Tasks</span>
+                            <table>
+                                <tr>
+                                    <td><img class="nav-img" src="../../images/asterisk.svg" alt="all tasks"></td>
+                                    <td>All Tasks</td>
+                                </tr>
+                            </table>
                         </a>
                     </li>
                     <li id="li-onhold">
                         <a href="group_all_tasks.php?filtertasks=onhold">
-                            <img class="nav-img"  src="../../images/x-octagon-fill.svg" alt="on-hold"><span>On-hold</span>
+                            <table>
+                                <tr>
+                                    <td><img class="nav-img" src="../../images/x-octagon-fill.svg" alt="on-hold"></td>
+                                    <td>On-hold</td>
+                                </tr>
+                            </table>
                         </a>
                     </li>
                     <li id="li-todo">
                         <a href="group_all_tasks.php?filtertasks=todo">
-                            <img class="nav-img"  src="../../images/card-checklist.svg" alt="todo"><span>TODO</span>    
+                            <table>
+                                <tr>
+                                    <td><img class="nav-img" src="../../images/card-checklist.svg" alt="to do"></td>
+                                    <td>TODO</td>
+                                </tr>
+                            </table>
                         </a>
                     </li>
                     <li id="li-inprogress">
                         <a href="group_all_tasks.php?filtertasks=inprogress">
-                            <img class="nav-img"  src="../../images/hourglass-split.svg" alt="in progress"><span>In Progress</span>    
+                            <table>
+                                <tr>
+                                    <td><img class="nav-img" src="../../images/hourglass-split.svg" alt="in progress"></td>
+                                    <td>In Progress</td>
+                                </tr>
+                            </table>
                         </a>
                     </li>
                     <li id="li-resolved">
                         <a href="group_all_tasks.php?filtertasks=resolved">
-                            <img class="nav-img"  src="../../images/check2-square.svg" alt="resolved"><span>Resolved</span>  
+                            <table>
+                                <tr>
+                                    <td><img class="nav-img" src="../../images/check2-square.svg" alt="resolved"></td>
+                                    <td>Resolved</td>
+                                </tr>
+                            </table>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="row-body">
-            <h3 class="task-header"><?php echo $_SESSION['filtertasks']; ?></h3>
+            <table class="row-body-header-table">
+                <tr>
+                    <td class="task-header"><?php echo $_SESSION['filtertasks']; ?></td>
+                    <td></td>
+                </tr>
+            </table>
             <div class="members-body">
-                <?php echo $this->displayAlert(); ?>
                 <table id="tasks">
-                <?php
-                $offset = 0;
-                $results = 5;
-                $status = $_SESSION['filtertasks'];
+                    <?php
+                    $offset = 0;
+                    $results = 6;
+                    $status = $_SESSION['filtertasks'];
 
-                if(isset($_SESSION['offset'])) { $offset = $_SESSION['offset']; }
+                    if(isset($_SESSION['offset'])) { $offset = $_SESSION['offset']; }
 
-                if ($stmt = $conn->prepare("SELECT id, title FROM $db_user_table WHERE status=? ORDER BY id"))
-                {
-                    $stmt->bind_param("s", $status);
-                    $stmt->execute();
-                    $stmt->store_result();
-
-                    // store number of rows in num_tasks to display total results
-                    $num_tasks = $stmt->num_rows;
-                    $count = ceil($num_tasks/8);
-
-                    $stmt->free_result();
-                    $stmt->close();
-
-                    if ($stmt = $conn->prepare("SELECT id, title FROM $db_user_table WHERE status=? ORDER BY id LIMIT ?,?"))
+                    if ($stmt = $conn->prepare("SELECT id, title FROM $db_user_table WHERE status=? ORDER BY id"))
                     {
-                        $stmt->bind_param("sii", $status, $offset, $results);
+                        $stmt->bind_param("s", $status);
                         $stmt->execute();
                         $stmt->store_result();
-                        $stmt->bind_result($id, $title);
 
-                        if ($stmt->num_rows > 0)
+                        // store number of rows in num_tasks to display total results
+                        $num_tasks = $stmt->num_rows;
+                        $count = ceil($num_tasks/$results);
+
+                        $stmt->free_result();
+                        $stmt->close();
+
+                        if ($stmt = $conn->prepare("SELECT id, title FROM $db_user_table WHERE status=? ORDER BY id LIMIT ?,?"))
                         {
-                            while($stmt->fetch()) 
+                            $stmt->bind_param("sii", $status, $offset, $results);
+                            $stmt->execute();
+                            $stmt->store_result();
+                            $stmt->bind_result($id, $title);
+
+                            if ($stmt->num_rows > 0)
                             {
-                                // set class name for CSS
-                                switch($status)
+                                while($stmt->fetch()) 
                                 {
-                                    case 'On-hold':
-                                        $class = 'onhold';
-                                        break;
-                                    case 'TODO':
-                                        $class = 'todo';
-                                        break;
-                                    case 'In Progress':
-                                        $class = 'inprogress';
-                                        break;
-                                    case 'Resolved':
-                                        $class = 'resolved';
-                                        break;
-                                    default: 
-                                        $class = 'todo';
-                                }
-                                $bug_display = "<tr>
-                                                    <td>
-                                                        <a href='group_selected_task.php?id=$id'>BUG-$id: $title</a>
-                                                        <span class='display-$class'>$status</span>
-                                                    </td>
-                                                </tr>";
+                                    // set class name for CSS
+                                    switch($status)
+                                    {
+                                        case 'On-hold':
+                                            $class = 'onhold';
+                                            break;
+                                        case 'TODO':
+                                            $class = 'todo';
+                                            break;
+                                        case 'In Progress':
+                                            $class = 'inprogress';
+                                            break;
+                                        case 'Resolved':
+                                            $class = 'resolved';
+                                            break;
+                                        default: 
+                                            $class = 'todo';
+                                    }
+                                    $bug_display = "<tr>
+                                                        <td>
+                                                            <a href='group_selected_task.php?id=$id'>BUG-$id: $title</a>
+                                                            <span class='display-$class'>$status</span>
+                                                        </td>
+                                                    </tr>";
 
-                                echo $bug_display;
+                                    echo $bug_display;
+                                }
+                                $stmt->free_result();
+                                $stmt->close();
+                                $conn->close();
                             }
-                            $stmt->free_result();
-                            $stmt->close();
-                            $conn->close();
+                            else
+                            {
+                                echo "<tr><td>No Data Available</td></tr>";
+                            }
                         }
-                        else
-                        {
-                            echo "<tr><td>No Data Available</td></tr>";
-                        }
+                        if(isset($_SESSION['offset'])) { unset($_SESSION['offset']); }
                     }
-                    if(isset($_SESSION['offset'])) { unset($_SESSION['offset']); }
-                }
-                else
-                {
-                    echo "<tr><td>Failure to connect: ($conn->errno) $conn->error</td></tr>";
-                }
-                ?>
+                    else
+                    {
+                        echo "<tr><td>Failure to connect: ($conn->errno) $conn->error</td></tr>";
+                    }
+                    ?>
                 </table><!-- #tasks -->
                 <div class="results">
-                    <span><?php echo "$num_tasks results. Showing 8 results per page."; ?></span>
+                    <span><?php echo "$num_tasks results. Showing $results results per page."; ?></span>
                     <?php
                     // set value for query string
                     switch($status)

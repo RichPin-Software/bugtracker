@@ -97,6 +97,7 @@ include('../../includes/database.php');
                 <?php
                 $offset = 0;
                 $results = 6;
+                $_SESSION['results'] = $results;
 
                 if(isset($_SESSION['offset'])) { $offset = $_SESSION['offset']; }
 
@@ -107,7 +108,7 @@ include('../../includes/database.php');
 
                     //store number of rows in num_tasks to display total results
                     $num_tasks = $stmt->num_rows;
-                    $count = ceil($num_tasks/8);
+                    $count = ceil($num_tasks/$results);
                     $stmt->free_result();
                     $stmt->close();
 

@@ -15,11 +15,13 @@ $error = '*required field';
 
 $db_user_table = $_SESSION['group_table'];
 $admin = $_SESSION['user'];
+$group;
 
 if(isset($_SESSION['currentUser']))
 {
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
+        $group = $_POST['group-name'];
         $new_group_member = $_POST['add-user'];
         $new_group_username = $new_group_member . "@" . $_POST['group-name'];
         $special_char = '/\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\+|\=|\]|\[|\}|\{|\"|\'|\:|\;|\?|\/|\>|\<|\,|\./';
@@ -53,7 +55,7 @@ if(isset($_SESSION['currentUser']))
             {
                 $user = $Template->getData($user_key);
                 $Auth->addGroupMember($admin, $new_group_member);
-                $Template->setAlert("$user successfully added to group!", 'success');
+                $Template->setAlert("$user@$group added successfully!", 'success');
                 $Template->redirect('admin.php');
             }
         }
