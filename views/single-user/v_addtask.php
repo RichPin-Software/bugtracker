@@ -12,7 +12,7 @@
             <table id="header-table">
                 <tr></tr>
                 <tr>
-                    <td id="header-label"><span>Bug Tracker</span></td>
+                    <td id="header-label"><span>myTasks</span></td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
                             <img src="../../images/list.svg" alt="">

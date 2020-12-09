@@ -155,15 +155,12 @@ div.nav ul {
     overflow: hidden;
     margin: 0;
     padding: 0;
+    border-right: 1px solid rgb(112, 112, 112);
+    border-bottom: 1px solid rgb(112, 112, 112);
 }
 
 div.nav ul li {
     margin: 0 auto;
-    border-right: 1px solid gray;
-}
-
-div.nav ul li:last-child {
-    border-bottom: 1px solid gray;
 }
 
 div.nav ul li a {
@@ -260,17 +257,22 @@ table.row-body-header-table tr td.task-header {
 
 table.selected-task-layout {
     position: relative;
-    border: 1px solid rgb(0,0,0);
+    /* border: 1px solid rgb(0,0,0); */
 }
 
 table.selected-task-layout tr td:nth-child(1) {
-    width: 70%;
+    width: 65%;
+}
+
+table.selected-task-layout tr td:nth-child(2) {
+    width: 35%;
 }
 
 table#selected-task {
     margin: 0 auto;
-    padding: 10px;
-    width: 100%;
+    padding: 10px 10px 0 10px;
+    width: 90%;
+    border: 1px solid rgb(0,0,0);
 }
 
 table#selected-task tr th {
@@ -294,8 +296,9 @@ table#selected-task tr td#description div {
 }
 
 td#edit-delete {
+    padding: 10px 0;
     float: right;
-    padding-top: 50px;
+    text-align: right;
 }
 
 td#edit-delete a#delete-task,
@@ -304,21 +307,35 @@ td#edit-delete a#delete-task-group {
 }
 
 table#selected-task-data-table {
-    width: fit-content;
+    width: 95%;
     position: absolute;
     top: 0;
     text-align: left;
-    margin: 25px 0;
+    margin: 25px auto;
     padding: 0;
 }
 
 table#selected-task-data-table tr td {
     padding: 5px;
+    font-size: 14px;
 }
 
-table#selected-task-data-table tr td#status {
-    height:100px;
-    padding-bottom:50px;
+.display-author {
+    font-weight: 600;
+}
+
+.selected-task-data-dropdown-container {
+    padding: 4px 5px 3px 5px;
+    border: 1px solid rgb(112, 112, 112);
+}
+
+.selected-task-data-dropdown-container span {
+    padding-right: 4px;
+}
+
+.selected-task-data-dropdown-container img {
+    padding-left: 3px;
+    border-left: 1px solid rgb(112, 112, 112);
 }
 
 td div span.task-suffix {
@@ -520,6 +537,10 @@ div.dropdown-menu p a {
     font-weight: 600;
 }
 
+.dropdown #dropdown-menu-assignee p a {
+    font-style: italic;
+}
+
 .dropdown #dropdown-menu-assignee p a.assignee:hover {
     color: rgb(0, 50, 216);
 }
@@ -542,7 +563,6 @@ div.dropdown-menu p a#resolved:hover {
 
 div.dropdown:hover span#dropdown-status {
     color: rgb(0, 50, 216);
-    font-weight: 700;
 }
 
 span.display-onhold#dropdown-status {
@@ -593,7 +613,6 @@ span.display-assignee#assignee-dropdown-sts {
 }
 
 .dropdown:hover span#assignee-dropdown-sts {
-    font-weight: 600;
     color:rgb(0, 50, 216);
 }
 
