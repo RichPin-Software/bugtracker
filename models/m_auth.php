@@ -79,8 +79,69 @@ class Auth
             die("Error: Could not prepare MySQLi statement");
         }
     }
+
+    function validateNewGroupUsername($username, $groupname)
+    {
+        global $conn;
+        $group_username = "$username@$groupname";
+
+        if($stmt = $conn->prepare("SELECT username FROM users_login WHERE username = ?"))
+        {
+            $stmt->bind_param("s", $group_username);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if($stmt->num_rows > 0)
+            {
+                $stmt->close();
+                $result = false;
+            }
+            else
+            {
+                $stmt->close();
+                $result = true;
+            }
+
+            return $result;
+        }
+        else
+        {
+            die("Error: Could not prepare MySQLi statement");
+        }
+    }
     /*
-        Username Validation to Prevent Duplicate Usernames
+        Email Validation to Prevent Accounts with Duplicate Emails
+    */
+    function validateNewEmail($email)
+    {
+        global $conn;
+
+        if($stmt = $conn->prepare("SELECT email FROM users_login WHERE email = ?"))
+        {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if($stmt->num_rows > 0)
+            {
+                $stmt->close();
+                $result = false;
+            }
+            else
+            {
+                $stmt->close();
+                $result = true;
+            }
+
+            return $result;
+        }
+        else
+        {
+            die("Error: Could not prepare MySQLi statement");
+        }
+    }
+    /*
+        Groupname Validation to Prevent Duplicate Groupnames
     */
     function validateNewGroupname($groupname)
     {
@@ -181,33 +242,20 @@ class Auth
         }
     }
 
-    function addNewUserGroup($username, $groupname, $password)
+    function addNewUserGroup($username, $groupname, $email, $password)
     {
         global $conn;
         $secure_password = md5($password.$this->salt);
         $admin = 'yes';
         $user_group = "$username@$groupname";
         /*
-            add new username, groupname and password to table 'users_login'
+            add new username, groupname, email and password to table 'users_login'
         */
-        if($stmt = $conn->prepare("INSERT INTO users_login (username, groupname, password, admin) VALUES (?, ?, ?, ?)"))
+        if($stmt = $conn->prepare("INSERT INTO users_login (username, groupname, password, admin, email) VALUES (?, ?, ?, ?, ?)"))
         {
-            $stmt->bind_param("ssss", $user_group, $groupname, $secure_password, $admin);
+            $stmt->bind_param("sssss", $user_group, $groupname, $secure_password, $admin, $email);
             $stmt->execute();
             $stmt->close();
-            /*
-                create new table for new user account
-            */
-            /* $sql = "CREATE TABLE $username (
-                id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                title varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-                author varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-                assignee varchar(255) COLLATE utf8_unicode_ci NULL,
-                status varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-                description text COLLATE utf8_unicode_ci NOT NULL
-                )";
-
-            echo ($conn->query($sql)===TRUE) ? : "Error: $conn->error"; */
             /*
                 create new table for group
             */

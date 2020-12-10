@@ -9,12 +9,15 @@
 <body class="login">
     <div class="container" id="login-container">
         <div id="login-form">
-            <h1>New User</h1>
+            <h1>Create Account</h1>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-                <label for="username">Create Username:</label><br>
+                <label for="email">Email:</label><br>
+                <input type="email" name="email" id="email" value="<?php echo $this->getData('new_email'); ?>">
+                <div class="error"><?php echo $this->getData('error_email'); ?></div><br>
+                <label for="username">Username:</label><br>
                 <input type="text" name="username" id="username" value="<?php echo $this->getData('new_user'); ?>">
                 <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
-                <label for="password">Create Password:</label>
+                <label for="password">Password:</label>
                 <input type="password" name="password" id="password" value="<?php echo $this->getData('newuser_pass'); ?>">
                 <div class="error"><?php echo $this->getData('error_pass'); ?></div><br>
                 <a id="group-signup" href="new_user.php?group=1">Are you creating a group or team?</a><br>
