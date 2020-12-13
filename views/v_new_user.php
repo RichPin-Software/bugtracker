@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/style.css">
-    <title>New User</title>
+    <title>Create Account</title>
 </head>
 <body class="login">
     <div class="container" id="login-container">

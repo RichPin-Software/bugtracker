@@ -159,15 +159,17 @@ class Templates
         return $validate;
     }
 
-    function adminFormValidate($user_key, $user, $error_key, $error)
+    function adminFormValidate($user_key, $user, $email_key, $email, $error_key, $error_key2, $error)
     {
         $this->setData($user_key, $user);
+        $this->setData($email_key, $email);
 
         $validate;
 
-        if($user=='')
+        if($user=='' || $email=='')
         {
             if($user=='') { $this->setData($error_key, $error); }
+            if($email=='') { $this->setData($error_key2, $error); }
 
             $validate = false;
         }

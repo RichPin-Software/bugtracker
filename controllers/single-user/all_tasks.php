@@ -155,6 +155,5 @@ if(isset($_SESSION['login_successful']))
 }
 else
 {
-    $Template->setAlert('Access Denied!', 'error');
     $Template->redirect('../../login.php');
 }

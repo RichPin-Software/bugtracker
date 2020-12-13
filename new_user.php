@@ -179,11 +179,13 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
                 create new user account
             */
             $Template->setData($user_key, $_POST['username']);
+            $Template->setData($email_key, $_POST['email']);
             $Template->setData($pass_key, $_POST['password']);
             $new_user = $Template->getData($user_key);
+            $new_email = $Template->getData($email_key);
             $new_password = $Template->getData($pass_key);
 
-            $Auth->addNewUser($new_user, $new_password);
+            $Auth->addNewUser($new_user, $new_email, $new_password);
             $Template->redirect("login.php");
         }
     }
