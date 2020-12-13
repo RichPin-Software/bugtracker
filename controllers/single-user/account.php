@@ -63,6 +63,5 @@ if(isset($_SESSION['currentUser']))
 }
 else
 {
-    $Template->setAlert('Access Denied!', 'error');
     $Template->redirect('../../login.php');
 }

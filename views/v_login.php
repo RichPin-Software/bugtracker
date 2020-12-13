@@ -12,7 +12,7 @@
         <div id="login-form">
             <h1>Member Login</h1>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-                <label for="username">Username:</label><br>
+                <label for="username">Username or Email:</label><br>
                 <input type="text" name="username" id="username" value="<?php echo $this->getData('input_user'); ?>">
                 <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
                 <label for="password">Password:</label>

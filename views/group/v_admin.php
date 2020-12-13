@@ -140,9 +140,12 @@ else
                                 <option value="<?php echo $groupname; ?>"><?php echo $groupname; ?></option>
                             </select>
                             <br><br><br>
-                            <label id="admin-label-username" for="username">Create Username:</label><br>
-                            <input type="text" name="add-user" id="add-user" placeholder="Add User (example: abcd1234)" value="<?php echo $this->getData('input_add-user'); ?>">
+                            <label id="admin-label-username" for="username">Username:</label><br>
+                            <input type="text" name="add-user" id="add-user" placeholder="example: abcd1234" value="<?php echo $this->getData('input_add-user'); ?>">
                             <div class="error"><?php echo $this->getData('error_add-user'); ?></div><br>
+                            <label id="admin-label-email" for="email">Email:</label><br>
+                            <input type="email" name="add-email" id="add-email" placeholder="example: abcd1234@email.com" value="<?php echo $this->getData('input_add-email'); ?>">
+                            <div class="error"><?php echo $this->getData('error_add-email'); ?></div><br>
                             <label id="admin-label-password" for="password">Default Password:</label><br>
                             <input type="text" name="password" id="default-password" value="<?php echo $groupname; ?>" disabled><br>
                             <p>*change default password on first login!</p><br>

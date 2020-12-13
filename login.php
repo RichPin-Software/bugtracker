@@ -37,17 +37,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         if($Auth->validateLogin($username, $password))
         {
             $_SESSION['login_successful'] = true;
+            $Auth->setUserInformation($username, $password);
+            $_SESSION['user'] = $Auth->getUserInformation('username');
             /*
                 group redirect
             */
-            if(preg_match("/@/", $username)===1)
+            if($Auth->getUserInformation('groupname') != "")
             {
-                $pos = strpos($username, '@') + 1;
-                $groupname = substr($username, $pos);
+                $_SESSION['groupname'] = $Auth->getUserInformation('groupname');
+                $_SESSION['group_table'] = $Auth->assignDatabase($username, $password);
 
-                $_SESSION['user'] = $Template->getData($user_key);
-                $_SESSION['groupname'] = $groupname;
-                $_SESSION['group_table'] = "group_$groupname";
                 $Template->redirect('controllers/group/group_all_tasks.php');
             }
             /*
@@ -55,7 +54,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             */
             else
             {
-                $_SESSION['user'] = $Template->getData($user_key);
                 $Template->redirect('controllers/single-user/all_tasks.php');
             }
         }

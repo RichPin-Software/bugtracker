@@ -10,43 +10,257 @@
 class Auth
 {
     private $salt = 'j4H97e021_d';
+    private $user_information;
     /*
         Constructor
     */
     function __construct() {}
     /*
-        Login Validation
+        isGroup (returns true|false)
     */
-    function validateLogin($username, $password)
+    function isGroup($username, $password)
+    {
+        global $conn;
+        $isGroup;
+
+        if($this->validateUsernameLogin($username, $password))
+        {
+            if($stmt = $conn->prepare("SELECT groupname FROM users_login WHERE username = ?"))
+            {
+                $stmt->bind_param("s", $username);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result($result);
+                
+                if($stmt->num_rows > 0)
+                {
+                    while($stmt->fetch())
+                    {
+                        $isGroup = ($result===NULL || $result==="") ? false : true;
+                    }
+                }
+            }
+            else
+            {
+                die("Error: Could not prepare MySQLi statement");
+            }
+        }
+        else
+        {
+            if($stmt = $conn->prepare("SELECT groupname FROM users_login WHERE email = ?"))
+            {
+                $stmt->bind_param("s", $username);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result($result);
+                
+                if($stmt->num_rows > 0)
+                {
+                    while($stmt->fetch())
+                    {
+                        $isGroup = ($result===NULL || $result==="") ? false : true;
+                    }
+                }
+            }
+            else
+            {
+                die("Error: Could not prepare MySQLi statement");
+            }
+        }
+
+        $stmt->free_result();
+        $stmt->close();
+        return $isGroup;
+    }
+    /*
+        setUserInformation()
+    */
+    function setUserInformation($username, $password)
+    {
+        global $conn;
+
+        if($this->validateUsernameLogin($username, $password))
+        {
+            if($stmt = $conn->prepare("SELECT username, groupname, admin, email FROM users_login WHERE username = ?"))
+            {
+                $stmt->bind_param("s", $username);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result($result['username'], $result['groupname'], $result['admin'], $result['email']);
+                
+                if($stmt->num_rows > 0)
+                {
+                    while($stmt->fetch())
+                    {
+                        $this->user_information['username'] = $result['username'];
+                        $this->user_information['groupname'] = $result['groupname'];
+                        $this->user_information['admin'] = $result['admin'];
+                        $this->user_information['email'] = $result['email'];
+                    }
+                }
+            }
+            else
+            {
+                die("Error: Could not prepare MySQLi statement");
+            }
+        }
+        else
+        {
+            if($stmt = $conn->prepare("SELECT username, groupname, admin, email FROM users_login WHERE email = ?"))
+            {
+                $stmt->bind_param("s", $username);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result($result['username'], $result['groupname'], $result['admin'], $result['email']);
+                
+                if($stmt->num_rows > 0)
+                {
+                    while($stmt->fetch())
+                    {
+                        $this->user_information['username'] = $result['username'];
+                        $this->user_information['groupname'] = $result['groupname'];
+                        $this->user_information['admin'] = $result['admin'];
+                        $this->user_information['email'] = $result['email'];
+                    }
+                }
+            }
+            else
+            {
+                die("Error: Could not prepare MySQLi statement");
+            }
+        }
+
+        $stmt->free_result();
+        $stmt->close();
+    }
+    /*
+        getUserInformation()
+    */
+    function getUserInformation($key)
+    {
+        $output = '';
+        if(isset($this->user_information[$key]))
+        {
+            $output = $this->user_information[$key];
+        }
+
+        return $output;
+    }
+    /*
+        Validate Username
+    */
+    function validateUsernameLogin($username, $password)
     {
         global $conn;
         $secure_password = md5($password.$this->salt);
 
         if($stmt = $conn->prepare("SELECT * FROM users_login WHERE username = ? AND password = ?"))
         {
-            $result;
-
             $stmt->bind_param("ss", $username, $secure_password);
             $stmt->execute();
             $stmt->store_result();
 
-            if($stmt->num_rows > 0)
-            {
-                $stmt->close();
-                $result = true;
-            }
-            else
-            {
-                $stmt->close();
-                $result = false;
-            }
-
+            $result = ($stmt->num_rows > 0) ? true : false;
+            $stmt->close();
             return $result;
         }
         else
         {
             die("Error: Could not prepare MySQLi statement");
         }
+    }
+    /*
+        Validate Email
+    */
+    function validateEmailLogin($email, $password)
+    {
+        global $conn;
+        $secure_password = md5($password.$this->salt);
+
+        if($stmt = $conn->prepare("SELECT * FROM users_login WHERE email = ? AND password = ?"))
+        {
+            $stmt->bind_param("ss", $email, $secure_password);
+            $stmt->execute();
+            $stmt->store_result();
+
+            $result = ($stmt->num_rows > 0) ? true : false;
+            $stmt->close();
+            return $result;
+        }
+        else
+        {
+            die("Error: Could not prepare MySQLi statement");
+        }
+    }
+    /*
+        Validate Login by Username or Email
+    */
+    function validateLogin($username, $password)
+    {
+        $login;
+
+        if($this->validateUsernameLogin($username, $password)) { $login = true; }
+        else if($this->validateEmailLogin($username, $password)) { $login = true; }
+        else { $login = false; }
+
+        return $login;
+    }
+    /*
+        Assign Correct Database to User
+    */
+    function assignDatabase($username, $password)
+    {
+        global $conn;
+        $database;
+
+        if($this->validateUsernameLogin($username, $password))
+        {
+            if($stmt = $conn->prepare("SELECT username, groupname FROM users_login WHERE username = ?"))
+            {
+                $stmt->bind_param("s", $username);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result($result['username'], $result['groupname']);
+                
+                if($stmt->num_rows > 0)
+                {
+                    while($stmt->fetch())
+                    {
+                        $database = ($result['groupname']===NULL || $result['groupname']==="") ? $result['username'] : "group_".$result['groupname'];
+                    }
+                }
+            }
+            else
+            {
+                die("Error: Could not prepare MySQLi statement");
+            }
+        }
+        else
+        {
+            if($stmt = $conn->prepare("SELECT username, groupname FROM users_login WHERE email = ?"))
+            {
+                $stmt->bind_param("s", $username);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result($result['username'], $result['groupname']);
+                
+                if($stmt->num_rows > 0)
+                {
+                    while($stmt->fetch())
+                    {
+                        $database = ($result['groupname']===NULL || $result['groupname']==="") ? $result['username'] : "group_".$result['groupname'];
+                    }
+                }
+            }
+            else
+            {
+                die("Error: Could not prepare MySQLi statement");
+            }
+        }
+
+        $stmt->free_result();
+        $stmt->close();
+        return $database;
     }
     /*
         Username Validation to Prevent Duplicate Usernames
@@ -61,17 +275,29 @@ class Auth
             $stmt->execute();
             $stmt->store_result();
 
-            if($stmt->num_rows > 0)
-            {
-                $stmt->close();
-                $result = false;
-            }
-            else
-            {
-                $stmt->close();
-                $result = true;
-            }
+            $result = ($stmt->num_rows > 0) ? false : true;
+            $stmt->close();
+            return $result;
+        }
+        else
+        {
+            die("Error: Could not prepare MySQLi statement");
+        }
+    }
 
+    function validateNewGroupUsername($username, $groupname)
+    {
+        global $conn;
+        $group_username = "$username@$groupname";
+
+        if($stmt = $conn->prepare("SELECT username FROM users_login WHERE username = ?"))
+        {
+            $stmt->bind_param("s", $group_username);
+            $stmt->execute();
+            $stmt->store_result();
+
+            $result = ($stmt->num_rows > 0) ? false : true;
+            $stmt->close();
             return $result;
         }
         else
@@ -80,7 +306,29 @@ class Auth
         }
     }
     /*
-        Username Validation to Prevent Duplicate Usernames
+        Email Validation to Prevent Accounts with Duplicate Emails
+    */
+    function validateNewEmail($email)
+    {
+        global $conn;
+
+        if($stmt = $conn->prepare("SELECT email FROM users_login WHERE email = ?"))
+        {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->store_result();
+
+            $result = ($stmt->num_rows > 0) ? false : true;
+            $stmt->close();
+            return $result;
+        }
+        else
+        {
+            die("Error: Could not prepare MySQLi statement");
+        }
+    }
+    /*
+        Groupname Validation to Prevent Duplicate Groupnames
     */
     function validateNewGroupname($groupname)
     {
@@ -92,17 +340,8 @@ class Auth
             $stmt->execute();
             $stmt->store_result();
 
-            if($stmt->num_rows > 0)
-            {
-                $stmt->close();
-                $result = false;
-            }
-            else
-            {
-                $stmt->close();
-                $result = true;
-            }
-
+            $result = ($stmt->num_rows > 0) ? false : true;
+            $stmt->close();
             return $result;
         }
         else
@@ -147,16 +386,16 @@ class Auth
     /*
         Prepared Statements - Add New User
     */
-    function addNewUser($username, $password)
+    function addNewUser($username, $email, $password)
     {
         global $conn;
         $secure_password = md5($password.$this->salt);
         /*
             add new username and password to table 'users_login'
         */
-        if($stmt = $conn->prepare("INSERT INTO users_login (username, password) VALUES (?, ?)"))
+        if($stmt = $conn->prepare("INSERT INTO users_login (username, password, email) VALUES (?, ?, ?)"))
         {
-            $stmt->bind_param("ss", $username, $secure_password);
+            $stmt->bind_param("sss", $username, $secure_password, $email);
             $stmt->execute();
             $stmt->close();
             /*
@@ -181,33 +420,20 @@ class Auth
         }
     }
 
-    function addNewUserGroup($username, $groupname, $password)
+    function addNewUserGroup($username, $groupname, $email, $password)
     {
         global $conn;
         $secure_password = md5($password.$this->salt);
         $admin = 'yes';
         $user_group = "$username@$groupname";
         /*
-            add new username, groupname and password to table 'users_login'
+            add new username, groupname, email and password to table 'users_login'
         */
-        if($stmt = $conn->prepare("INSERT INTO users_login (username, groupname, password, admin) VALUES (?, ?, ?, ?)"))
+        if($stmt = $conn->prepare("INSERT INTO users_login (username, groupname, password, admin, email) VALUES (?, ?, ?, ?, ?)"))
         {
-            $stmt->bind_param("ssss", $user_group, $groupname, $secure_password, $admin);
+            $stmt->bind_param("sssss", $user_group, $groupname, $secure_password, $admin, $email);
             $stmt->execute();
             $stmt->close();
-            /*
-                create new table for new user account
-            */
-            /* $sql = "CREATE TABLE $username (
-                id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                title varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-                author varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-                assignee varchar(255) COLLATE utf8_unicode_ci NULL,
-                status varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-                description text COLLATE utf8_unicode_ci NOT NULL
-                )";
-
-            echo ($conn->query($sql)===TRUE) ? : "Error: $conn->error"; */
             /*
                 create new table for group
             */
@@ -230,7 +456,7 @@ class Auth
         }
     }
 
-    function addGroupMember($admin, $username)
+    function addGroupMember($admin, $username, $email)
     {
         global $conn;
         $groupname;
@@ -265,9 +491,9 @@ class Auth
         $default_password = md5($groupname.$this->salt);
         $admin_status = "no";
 
-        if($stmt = $conn->prepare("INSERT INTO users_login (username, groupname, password, admin) VALUES (?, ?, ?, ?)"))
+        if($stmt = $conn->prepare("INSERT INTO users_login (username, groupname, password, admin, email) VALUES (?, ?, ?, ?, ?)"))
         {
-            $stmt->bind_param("ssss", $group_user_login, $groupname, $default_password, $admin_status);
+            $stmt->bind_param("sssss", $group_user_login, $groupname, $default_password, $admin_status, $email);
             $stmt->execute();
             $stmt->close();
             $conn->close();
