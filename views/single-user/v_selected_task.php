@@ -14,9 +14,8 @@ include('../../includes/database.php');
     <div class="container">
         <div class="row-header">
             <table id="header-table">
-                <tr></tr>
                 <tr>
-                    <td id="header-label"><span>myTasks</span></td>
+                    <td id="header-label">myTasks</td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
                             <img src="../../images/list.svg" alt="dropdown">
@@ -84,7 +83,7 @@ include('../../includes/database.php');
                     </li>
                     <li>
                         <a href="all_tasks.php?filtertasks=resolved">
-                            <table>
+                            <table id="nav-last">
                                 <tr>
                                     <td><img class="nav-img" src="../../images/check2-square.svg" alt="resolved"></td>
                                     <td>Resolved</td>
@@ -103,114 +102,112 @@ include('../../includes/database.php');
                 </tr>
             </table>
             <div class="members-body">
-                <div class="selected-task-container">
-                    <table class="selected-task-layout">
-                        <tr>
-                            <td>
-                                <table id="selected-task">
-                                <?php
-                                if ($stmt = $conn->prepare("SELECT * FROM $db_user_table WHERE id = ?")) // begin if statement
-                                {
-                                    $stmt->bind_param("i", $id);
-                                    $id = $_SESSION['id'];
-                                    $stmt->execute();
-                                    $stmt->store_result();
-                                    $stmt->bind_result(
-                                        $result['id'], 
-                                        $result['title'], 
-                                        $result['author'], 
-                                        $result['assignee'], 
-                                        $result['status'], 
-                                        $result['description']
-                                    );
+                <table class="selected-task-layout">
+                    <tr>
+                        <td>
+                            <table id="selected-task">
+                            <?php
+                            if ($stmt = $conn->prepare("SELECT * FROM $db_user_table WHERE id = ?")) // begin if statement
+                            {
+                                $stmt->bind_param("i", $id);
+                                $id = $_SESSION['id'];
+                                $stmt->execute();
+                                $stmt->store_result();
+                                $stmt->bind_result(
+                                    $result['id'], 
+                                    $result['title'], 
+                                    $result['author'], 
+                                    $result['assignee'], 
+                                    $result['status'], 
+                                    $result['description']
+                                );
 
-                                    if ($stmt->num_rows > 0)
+                                if ($stmt->num_rows > 0)
+                                {
+                                    $stmt->fetch();
+                                    // set class name for CSS
+                                    switch($result['status'])
                                     {
-                                        $stmt->fetch();
-                                        // set class name for CSS
-                                        switch($result['status'])
-                                        {
-                                            case 'On-hold':
-                                                $sts = 'onhold';
-                                                break;
-                                            case 'TODO':
-                                                $sts = 'todo';
-                                                break;
-                                            case 'In Progress':
-                                                $sts = 'inprogress';
-                                                break;
-                                            case 'Resolved':
-                                                $sts = 'resolved';
-                                                break;
-                                            default: 
-                                                $sts = 'todo';
+                                        case 'On-hold':
+                                            $sts = 'onhold';
+                                            break;
+                                        case 'TODO':
+                                            $sts = 'todo';
+                                            break;
+                                        case 'In Progress':
+                                            $sts = 'inprogress';
+                                            break;
+                                        case 'Resolved':
+                                            $sts = 'resolved';
+                                            break;
+                                        default: 
+                                            $sts = 'todo';
+                                    }
+                            ?>
+                                <tr>
+                                    <th colspan="2"><?php echo $result['title']; ?></th>
+                                </tr>
+                                <tr></tr><tr></tr><tr></tr><tr></tr>
+                                <tr></tr><tr></tr><tr></tr><tr></tr>
+                                <tr></tr><tr></tr><tr></tr><tr></tr>
+                                <tr>
+                                    <td colspan="2" id="description">
+                                        <div><?php echo $result['description']; ?></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="edit-delete">
+                                        <a id="edit-task" href="selected_task.php?edittask=true"><img src="../../images/pencil-square.svg" alt="edit"></a>
+                                        <a id="delete-task" href="#"><img src="../../images/trash-fill.svg" alt="delete"></a>
+                                    </td>
+                                </tr>
+                            </table><!-- #selected-task -->
+                        </td>
+                        <td>
+                            <table id="selected-task-data-table">
+                                <tr>
+                                    <td id="author">
+                                        <div class="td-content">
+                                            <span class="task-suffix">Created by:</span><br>
+                                            <span class="display-author"><?php echo $result['author']; ?></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="status">
+                                        <div class="td-content dropdown">
+                                            <span class="task-suffix">Status: </span><br>
+                                            <div class="selected-task-data-dropdown-container">
+                                                <span class="<?php echo "display-$sts"; ?>" id="dropdown-status"><?php echo $result['status']; ?></span>
+                                                <img src="../../images/caret-down.svg" alt="dropdown">
+                                            </div>
+                                            <div id="dropdown-menu-status" class="dropdown-menu">
+                                                <p><a href="selected_task.php?status=onhold" id="on-hold">On-hold</a></p>
+                                                <p><a href="selected_task.php?status=todo" id="todo">TODO</a></p>
+                                                <p><a href="selected_task.php?status=inprogress" id="in-progress">In&nbspProgress</a></p>
+                                                <p><a href="selected_task.php?status=resolved" id="resolved">Resolved</a></p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php
+                                            $stmt->close();
+                                            $conn->close();
                                         }
-                                ?>
-                                    <tr>
-                                        <th colspan="2"><?php echo $result['title']; ?></th>
-                                    </tr>
-                                    <tr></tr><tr></tr><tr></tr><tr></tr>
-                                    <tr></tr><tr></tr><tr></tr><tr></tr>
-                                    <tr></tr><tr></tr><tr></tr><tr></tr>
-                                    <tr>
-                                        <td colspan="2" id="description">
-                                            <div><?php echo $result['description']; ?></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="edit-delete">
-                                            <a id="edit-task" href="selected_task.php?edittask=true"><img src="../../images/pencil-square.svg" alt="edit"></a>
-                                            <a id="delete-task" href="#"><img src="../../images/trash-fill.svg" alt="delete"></a>
-                                        </td>
-                                    </tr>
-                                </table><!-- #selected-task -->
-                            </td>
-                            <td>
-                                <table id="selected-task-data-table">
-                                    <tr>
-                                        <td id="author">
-                                            <div class="td-content">
-                                                <span class="task-suffix">Created by:</span><br>
-                                                <span class="display-author"><?php echo $result['author']; ?></span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="status">
-                                            <div class="td-content dropdown">
-                                                <span class="task-suffix">Status: </span><br>
-                                                <div class="selected-task-data-dropdown-container">
-                                                    <span class="<?php echo "display-$sts"; ?>" id="dropdown-status"><?php echo $result['status']; ?></span>
-                                                    <img src="../../images/caret-down.svg" alt="dropdown">
-                                                </div>
-                                                <div id="dropdown-menu-status" class="dropdown-menu">
-                                                    <p><a href="selected_task.php?status=onhold" id="on-hold">On-hold</a></p>
-                                                    <p><a href="selected_task.php?status=todo" id="todo">TODO</a></p>
-                                                    <p><a href="selected_task.php?status=inprogress" id="in-progress">In&nbspProgress</a></p>
-                                                    <p><a href="selected_task.php?status=resolved" id="resolved">Resolved</a></p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                                $stmt->close();
-                                                $conn->close();
-                                            }
-                                            else
-                                            {
-                                                echo "<tr><th>No Data Available</th></tr>";
-                                            }
-                                        } // end if statement
                                         else
                                         {
-                                            echo "<tr><th>Failure to connect: ($conn->errno) $conn->error</th></tr>";
+                                            echo "<tr><th>No Data Available</th></tr>";
                                         }
-                                    ?>
-                                </table><!-- #selected-task-data-table -->
-                            </td>
-                        </tr>
-                    </table><!-- .selected-task-layout -->
-                </div><!-- .selected-task-container -->
+                                    } // end if statement
+                                    else
+                                    {
+                                        echo "<tr><th>Failure to connect: ($conn->errno) $conn->error</th></tr>";
+                                    }
+                                ?>
+                            </table><!-- #selected-task-data-table -->
+                        </td>
+                    </tr>
+                </table><!-- .selected-task-layout -->
             </div><!-- .members-body -->
         </div><!-- .row-body -->
     </div><!-- .container -->

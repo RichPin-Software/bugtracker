@@ -43,9 +43,8 @@ else
     <div class="container">
         <div class="row-header">
             <table id="header-table">
-                <tr></tr>
                 <tr>
-                    <td id="header-label"><span>myTasks</span></td>
+                    <td id="header-label">myTasks</td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
                             <img src="../../images/list.svg" alt="">
@@ -61,7 +60,7 @@ else
         <div class="row-nav">
             <div class="nav">
                 <ul>
-                    <li>
+                    <li class="li-remove">
                         <a href="group_all_tasks.php?addtask=1">
                             <table>
                                 <tr>
@@ -113,7 +112,7 @@ else
                     </li>
                     <li>
                         <a href="group_all_tasks.php?filtertasks=resolved">
-                            <table>
+                            <table id="nav-last">
                                 <tr>
                                     <td><img class="nav-img" src="../../images/check2-square.svg" alt="resolved"></td>
                                     <td>Resolved</td>
@@ -139,7 +138,7 @@ else
                             <select id="group-name" name="group-name">
                                 <option value="<?php echo $groupname; ?>"><?php echo $groupname; ?></option>
                             </select>
-                            <br><br><br>
+                            <br><br>
                             <label id="admin-label-username" for="username">Username:</label><br>
                             <input type="text" name="add-user" id="add-user" placeholder="example: abcd1234" value="<?php echo $this->getData('input_add-user'); ?>">
                             <div class="error"><?php echo $this->getData('error_add-user'); ?></div><br>

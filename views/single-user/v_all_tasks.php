@@ -14,9 +14,8 @@ include('../../includes/database.php');
     <div class="container">
         <div class="row-header">
             <table id="header-table">
-                <tr></tr>
                 <tr>
-                    <td id="header-label"><span>myTasks</span></td>
+                    <td id="header-label">myTasks</td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
                             <img src="../../images/list.svg" alt="dropdown">
@@ -38,6 +37,16 @@ include('../../includes/database.php');
                                 <tr>
                                     <td><img class="nav-img" src="../../images/plus-square.svg" alt="new task"></td>
                                     <td>New Task</td>
+                                </tr>
+                            </table>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="all_tasks.php?back=1">
+                            <table>
+                                <tr>
+                                    <td><img class="nav-img" src="../../images/asterisk.svg" alt="all tasks"></td>
+                                    <td>All Tasks</td>
                                 </tr>
                             </table>
                         </a>
@@ -74,7 +83,7 @@ include('../../includes/database.php');
                     </li>
                     <li>
                         <a href="all_tasks.php?filtertasks=resolved">
-                            <table>
+                            <table id="nav-last">
                                 <tr>
                                     <td><img class="nav-img" src="../../images/check2-square.svg" alt="resolved"></td>
                                     <td>Resolved</td>
