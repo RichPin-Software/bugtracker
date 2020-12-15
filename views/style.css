@@ -395,11 +395,6 @@ form#task-form {
     margin: 0 auto;
 }
 
-form#task-form label#account-label-username,
-form#task-form label#admin-label-groupname {
-    color: rgb(112, 112, 112);
-}
-
 form#task-form select {
     margin-top: 5px;
     padding: 5px;

@@ -98,7 +98,7 @@ include('../../includes/database.php');
         <div class="row-body">
             <table class="row-body-header-table">
                 <tr>
-                    <td class="task-header">Edit Task | Task-<?php echo $_SESSION['id']; ?></td>
+                    <td class="task-header">Edit Task-<?php echo $_SESSION['id']; ?></td>
                     <td></td>
                 </tr>
             </table>
@@ -130,12 +130,6 @@ include('../../includes/database.php');
                         <div class="error"><?php echo $this->getData('error_title'); ?></div><br>
                         <input type="text" name="task-author" id="task-author" placeholder="Created by" value="<?php echo $result['author']; ?>" disabled>
                         <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
-                        <select id="task-status" name="task-status">
-                            <option value="TODO">TODO</option>
-                            <option value="On-hold">On-hold</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Resolved">Resolved</option>
-                        </select><br><br>
                         <textarea type="text" name="task-description" id="task-description" form="task-form" placeholder="Description..."><?php echo $result['description']; ?></textarea>
                         <div class="error"><?php echo $this->getData('error_description'); ?></div><br>
                         <input type="button" name="cancel" class="cancel cancel-form-group" value="Cancel">

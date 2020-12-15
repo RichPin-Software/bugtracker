@@ -134,7 +134,7 @@ else
                 <div id="admin-container">
                     <div class="form-container">
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">
-                            <label id="admin-label-groupname" for="username">Group: </label>
+                            <label id="account-user-label" for="username">Group: </label>
                             <select id="group-name" name="group-name">
                                 <option value="<?php echo $groupname; ?>"><?php echo $groupname; ?></option>
                             </select>

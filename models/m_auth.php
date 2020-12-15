@@ -489,13 +489,13 @@ class Auth
     /*
         Prepared Statements - Edit/Update Selected Task
     */
-    function updateTask($db_table, $id, $title, $status, $description)
+    function updateTask($db_table, $id, $title, $description)
     {
         global $conn;
 
-        if($stmt = $conn->prepare("UPDATE $db_table SET title=?, status=?, description=? WHERE id=?"))
+        if($stmt = $conn->prepare("UPDATE $db_table SET title=?, description=? WHERE id=?"))
         {
-            $stmt->bind_param("sssi", $title, $status, $description, $id);
+            $stmt->bind_param("ssi", $title, $description, $id);
             $stmt->execute();
 
             $stmt->close();

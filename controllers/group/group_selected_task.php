@@ -63,16 +63,22 @@ if(isset($_SESSION['id']))
     {
         $title = $_POST['task-title'];
         $description = $_POST['task-description'];
-        
-        $status = $_POST['task-status'];
 
         if($Template->formValidate($title_key, $title, $err_key_title, $desc_key, $description, $err_key_desc, $error))
         {
-            $title = $Template->getData($title_key);
-            $description = $Template->getData($desc_key);
+            if(strlen($title) > 70)
+            {
+                $Template->setData($err_key_title, "*title is too long! 70 character maximum!");
+                $Template->load('../../views/group/v_group_edittask.php');
+            }
+            else
+            {
+                $title = $Template->getData($title_key);
+                $description = $Template->getData($desc_key);
 
-            $Auth->updateTask($db_user_table, $id, $title, $status, $description);
-            $Template->load('../../views/group/v_group_selected_task.php');
+                $Auth->updateTask($db_user_table, $id, $title, $description);
+                $Template->load('../../views/group/v_group_selected_task.php');
+            }
         }
         else
         {
