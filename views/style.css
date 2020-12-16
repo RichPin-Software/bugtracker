@@ -80,7 +80,7 @@ div#admin-container {
 
 div#addtask-container,
 div#edittask-container {
-    margin: 10px auto 0 auto;
+    margin: 0 auto;
     padding: 30px 150px;
 }
 
@@ -127,7 +127,6 @@ div.members-body {
 }
 
 div.form-container {
-    /* max-width: 250px; */
     width: 90%;
     margin: 0 auto;
 }
@@ -664,149 +663,120 @@ div.error {
 
     Media Queries
 
-    Screen width: 1400px
+    Screen width: 1200px
 
-        1400-2. Containers
-        1400-4. Tables
-        1400-6. Miscellaneous
-
-    Screen width: 1210px
-
-        1210-2. Containers
-        1210-3. Navigation
-        1210-4. Tables
-
-    Screen width: 840px
+        1200-2. Containers
+        1200-3. Navigation
+        1200-4. Tables
+        1200-8. Pagination
+        1200.9. Alerts
 
 */
 
 /*
-    Screen width: 1400px
+    Screen width: 1200px
 */
-@media only screen and (max-width: 1400px)
+@media only screen and (max-width: 1200px)
 {
     /*
-        1400-2. Containers
+        1200-2. Containers
     */
-
-    /*
-        1400-4. Tables
-    */
-
-    /* table#tasks tr td a {
-        font-size: 14px;
-    }
-    
-    table#tasks tr td span.display-onhold, 
-    table#tasks tr td span.display-todo, 
-    table#tasks tr td span.display-inprogress, 
-    table#tasks tr td span.display-resolved {
-        font-size:16px;
-    }
-
-    table#selected-task-data-table {
-        margin:76px 0;
-    } */
-
-    /*
-        1400-6. Miscellaneous
-    */
-
-    /* h3#selected-task-task-header {
-        width: 90%;
-    } */
-}
-/*
-    Screen width: 1210px
-*/
-@media only screen and (max-width: 1210px)
-{
-    /*
-        1210-2. Containers
-    */
-
-
-    /*
-        1210-3. Navigation
-    */
-
-    /* div.nav ul li a {
-        padding: 35px 10px;
-        font-size:11px;
-    }
-
-    div.nav ul li a img {
-        height: 15px;
-        margin-right: 10px;
-    } */
-
-}
-/*
-    Screen width: 1010px
-*/
-@media only screen and (max-width: 1010px)
-{
-    /*
-        1010-2. Containers
-    */
-
-    /* div.row-header {
-        box-shadow: 0;
-    }
-
     div.row-nav {
-        width: 100%;
-    }
-
-    div.row-body {
-        width:100%;
-        float:left;
-        height: fit-content;
-    } */
-    /*
-        1010-3. Navigation
-    */
-
-    /* div.nav ul {
-        border:none;
-        width:fit-content;
-        margin:0 auto;
-    }
-
-    div.nav ul li {
-        float:left;
         border-bottom: 1px solid rgb(112, 112, 112);
     }
 
-    div.nav ul li a {
-        padding: 25px 10px;
-        height: 100%;
+    div.members-body {
+        width: 100%;
+        box-shadow: none;
     }
 
-    div.nav ul li a img {
-        display:none;
-    } */
-
+    div#addtask-container,
+    div#edittask-container, 
+    div#admin-container {
+        border: none;
+    }
     /*
-        1210-4. Tables
+        1200-3. Navigation
     */
 
-    /* table#header-table tr td#header-label span {
-        text-align:right;
-        width: auto;
+    div.nav {
+        width: fit-content;
+        border: none;
     }
 
-    div.nav ul li a table tr td {
-        text-align: center;
-    } */
+    div.nav ul li a {
+        padding: 30px 20px;
+    }
 
-}
-/*
-    Screen width: 860px
-*/
-@media only screen and (max-width: 860px)
-{
-    /* .li-remove {
-        display: none;
-    } */
+    div.nav ul li a table#nav-last {
+        width: 123px;
+    }
+
+    div.nav ul li a:hover {
+        background-color:rgb(255,255,255);
+        color:rgb(0, 50, 216);
+    }
+    
+    div.nav ul li a:hover .nav-img {
+        filter: invert(19%) sepia(58%) saturate(5689%) hue-rotate(226deg) brightness(79%) contrast(120%);
+    }
+    /*
+        1200-4. Tables
+    */
+    table#header-table {
+        width:100%;
+    }
+
+    table#header-table tr td#header-label {
+        margin: 0 47px;
+    }
+
+    table.row-body-header-table {
+        width: 100%;
+        padding: 0 47px;
+        border-bottom: 1px solid rgb(0,0,0);
+    }
+
+    table.row-body-header-table tr td.task-header {
+        padding: 25px 0;
+        font-size: 19px;
+        color: rgb(25, 65, 247);
+    }
+
+    table#tasks tr td {
+        padding-left: 46px;
+    }
+
+    table.selected-task-layout {
+        border-bottom: 1px solid rgb(0,0,0);
+    }
+
+    table#selected-task {
+        padding: 0 0 0 32px;
+    }
+
+    table#selected-task tr th {
+        margin-left: 0;
+    }
+
+    table#selected-task-data-table {
+        padding-right: 47px;
+        text-align: right;
+    }
+
+    .display-author {
+        float: right;
+    }
+    /*
+        1200-8. Pagination
+    */
+    div.results {
+        padding: 0 0 0 47px;
+    }
+    /*
+        1200-9. Alerts
+    */
+    .alerts li.success {
+        font-size: 19px;
+    }
 }
