@@ -20,6 +20,15 @@ include('../../includes/database.php');
                         <div class="header-dropdown dropdown">
                             <img src="../../images/list.svg" alt="">
                             <div class="dropdown-menu-header">
+                                <div class="nav-dropdown">
+                                    <p><a href="group_all_tasks.php?addtask=1">New Task</a></p>
+                                    <p><a href="group_all_tasks.php?back=1">All Tasks</a></p>
+                                    <p><a href="group_all_tasks.php?filtertasks=onhold">On-hold</a></p>
+                                    <p><a href="group_all_tasks.php?filtertasks=todo">TODO</a></p>
+                                    <p><a href="group_all_tasks.php?filtertasks=inprogress">In&nbspProgress</a></p>
+                                    <p><a href="group_all_tasks.php?filtertasks=resolved">Resolved</a></p>
+                                    <p><hr></p>
+                                </div>
                                 <p><a href="group_account.php">Account</a></p>
                                 <p><a href="admin.php" id="admin">Admin</a></p>
                                 <p><a id="logout" href="../../logout.php">Logout</a></p>

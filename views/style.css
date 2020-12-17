@@ -195,6 +195,10 @@ div.nav ul li a:hover .nav-img {
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
+.nav-dropdown {
+    display: none;
+}
+
 /*
     4. Tables
 */
@@ -671,6 +675,10 @@ div.error {
         1200-8. Pagination
         1200.9. Alerts
 
+    Screen width: 1070px
+
+        1070-
+
 */
 
 /*
@@ -768,6 +776,13 @@ div.error {
         float: right;
     }
     /*
+        1200-7. Dropdown Menus
+    */
+    .dropdown:hover #dropdown-menu-status,
+    .dropdown:hover #dropdown-menu-assignee {
+        left: -90%;
+    }
+    /*
         1200-8. Pagination
     */
     div.results {
@@ -778,5 +793,24 @@ div.error {
     */
     .alerts li.success {
         font-size: 19px;
+    }
+}
+/*
+    Screen width: 1070px
+*/
+@media only screen and (max-width: 1070px)
+{
+    /*
+        1070-3. Navigation
+    */
+    div.nav {
+        display: none;
+    }
+
+    .nav-dropdown {
+        display: block;
+        text-align: left;
+        font-style: italic;
+        font-size: 14px;
     }
 }
