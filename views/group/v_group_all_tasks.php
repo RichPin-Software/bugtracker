@@ -162,14 +162,21 @@ $db_user_table = $_SESSION['group_table'];
                                         default: 
                                             $class = 'todo';
                                     }
+
+
                                     $bug_display = "<tr>
-                                                        <td>
-                                                            <a href='group_selected_task.php?id=$id'>Task-$id: $title</a>
-                                                            <span class='display-$class'>$status</span>
-                                                        </td>
-                                                    </tr>";
-                                    
+                                                    <td class='bug-display-normal-view'>
+                                                        <a href='group_selected_task.php?id=$id'>Task-$id: $title</a>
+                                                        <span class='display-$class'>$status</span>
+                                                    </td>
+                                                    <td class='bug-display-mobile-view'>
+                                                        <a href='group_selected_task.php?id=$id'>Task-$id: ".substr($title,0,15)."...</a>
+                                                        <span class='display-$class'>$status</span>
+                                                    </td>
+                                                </tr>";
+
                                     echo $bug_display;
+                                    
                                 }
                                 $stmt->free_result();
                                 $stmt->close();

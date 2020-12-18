@@ -677,7 +677,11 @@ div.error {
 
     Screen width: 1070px
 
-        1070-
+        1070-3. Navigation
+
+    Screen width: 900px
+
+        900-
 
 */
 
@@ -775,6 +779,10 @@ div.error {
     .display-author {
         float: right;
     }
+
+    .bug-display-mobile-view {
+        display: none;
+    }
     /*
         1200-7. Dropdown Menus
     */
@@ -813,4 +821,58 @@ div.error {
         font-style: italic;
         font-size: 14px;
     }
+}
+/*
+    Screen width: 900px
+*/
+@media only screen and (max-width: 900px)
+{
+    /*
+        900-4. Tables
+    */
+    table#tasks tr td span.display-onhold, 
+    table#tasks tr td span.display-todo, 
+    table#tasks tr td span.display-inprogress, 
+    table#tasks tr td span.display-resolved {
+        display: none;
+    }
+
+    table#selected-task tr th {
+        font-size: 20px;
+    }
+
+    .display-author {
+        font-size: 12px;
+    }
+    /*
+        900-7. Dropdown Menus
+    */
+    span#dropdown-status {
+        font-size: 12px;
+    }
+
+    span.display-assignee#assignee-dropdown-sts {
+        font-size: 12px;
+    }
+}
+/*
+    Screen width: 700px
+*/
+@media only screen and (max-width: 700px)
+{
+    /*
+        700-4. Tables
+    */
+    table#tasks tr td.bug-display-normal-view {
+        display: none;
+    }
+
+    table#tasks tr td.bug-display-mobile-view {
+        display: block;
+    }
+
+    table#selected-task tr th {
+        font-size: 16px;
+    }
+
 }

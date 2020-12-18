@@ -160,8 +160,12 @@ include('../../includes/database.php');
                                         $class = 'todo';
                                 }
                                 $bug_display = "<tr>
-                                                    <td>
+                                                    <td class='bug-display-normal-view'>
                                                         <a href='selected_task.php?id=$id'>Task-$id: $title</a>
+                                                        <span class='display-$class'>$status</span>
+                                                    </td>
+                                                    <td class='bug-display-mobile-view'>
+                                                        <a href='selected_task.php?id=$id'>Task-$id: ".substr($title,0,15)."...</a>
                                                         <span class='display-$class'>$status</span>
                                                     </td>
                                                 </tr>";
