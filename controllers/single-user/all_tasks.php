@@ -107,13 +107,21 @@ if(isset($_SESSION['login_successful']))
 
             if($Template->formValidate($title_key, $title, $err_key_title, $desc_key, $description, $err_key_desc, $error))
             {
-                $title = $Template->getData($title_key);
-                $status = "TODO";
-                $author = $_SESSION['user'];
-                $description = $Template->getData($desc_key);
+                if(strlen($title) > 70)
+                {
+                    $Template->setData($err_key_title, "*title is too long! 70 character maximum!");
+                    $Template->load('../../views/single-user/v_addtask.php');
+                }
+                else
+                {
+                    $title = $Template->getData($title_key);
+                    $status = "TODO";
+                    $author = $_SESSION['user'];
+                    $description = $Template->getData($desc_key);
 
-                $Auth->addTask($db_user_table, $title, $status, $author, $description);
-                $Template->redirect('all_tasks.php');
+                    $Auth->addTask($db_user_table, $title, $status, $author, $description);
+                    $Template->redirect('all_tasks.php');
+                }
             }
             else
             {

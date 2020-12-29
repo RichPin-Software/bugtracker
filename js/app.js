@@ -64,7 +64,7 @@ if(deleteButtonExists = document.querySelector('#delete-task-group'))
 /*
     sort nav buttons
 */
-if(navExists = document.querySelector('.nav'))
+/* if(navExists = document.querySelector('.nav'))
 {
     var url = window.location.href;
     var filtertask = ['onhold', 'todo', 'inprogress', 'resolved'];
@@ -80,4 +80,4 @@ if(navExists = document.querySelector('.nav'))
     window.addEventListener('load', ()=> {
         filtertask.forEach(sortButton);
     });
-}
+} */

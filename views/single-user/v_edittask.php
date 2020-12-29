@@ -14,13 +14,21 @@ include('../../includes/database.php');
     <div class="container">
         <div class="row-header">
             <table id="header-table">
-                <tr></tr>
                 <tr>
-                    <td id="header-label"><span>myTasks</span></td>
+                    <td id="header-label">myTasks</td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
                             <img src="../../images/list.svg" alt="">
                             <div class="dropdown-menu-header">
+                                <div class="nav-dropdown">
+                                    <p><a href="all_tasks.php?addtask=1">New Task</a></p>
+                                    <p><a href="all_tasks.php?back=1">All Tasks</a></p>
+                                    <p><a href="all_tasks.php?filtertasks=onhold">On-hold</a></p>
+                                    <p><a href="all_tasks.php?filtertasks=todo">TODO</a></p>
+                                    <p><a href="all_tasks.php?filtertasks=inprogress">In&nbspProgress</a></p>
+                                    <p><a href="all_tasks.php?filtertasks=resolved">Resolved</a></p>
+                                    <p><hr></p>
+                                </div>
                                 <p><a href="account.php">Account</a></p>
                                 <p><a id="logout" href="../../logout.php">Logout</a></p>
                             </div>
@@ -32,7 +40,7 @@ include('../../includes/database.php');
         <div class="row-nav">
             <div class="nav">
                 <ul>
-                    <li>
+                    <li class="li-remove">
                         <a href="all_tasks.php?addtask=1">
                             <table>
                                 <tr>
@@ -84,7 +92,7 @@ include('../../includes/database.php');
                     </li>
                     <li>
                         <a href="all_tasks.php?filtertasks=resolved">
-                            <table>
+                            <table id="nav-last">
                                 <tr>
                                     <td><img class="nav-img" src="../../images/check2-square.svg" alt="resolved"></td>
                                     <td>Resolved</td>
@@ -98,7 +106,7 @@ include('../../includes/database.php');
         <div class="row-body">
             <table class="row-body-header-table">
                 <tr>
-                    <td class="task-header">Edit Task | Task-<?php echo $_SESSION['id']; ?></td>
+                    <td class="task-header">Edit Task-<?php echo $_SESSION['id']; ?></td>
                     <td></td>
                 </tr>
             </table>
@@ -123,12 +131,6 @@ include('../../includes/database.php');
                         <div class="error"><?php echo $this->getData('error_title'); ?></div><br>
                         <input type="text" name="task-author" id="task-author" placeholder="Created by" value="<?php echo $result['author']; ?>" disabled>
                         <div class="error"><?php echo $this->getData('error_user'); ?></div><br>
-                        <select id="task-status" name="task-status">
-                            <option value="TODO">TODO</option>
-                            <option value="On-hold">On-hold</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Resolved">Resolved</option>
-                        </select><br><br>
                         <textarea type="text" name="task-description" id="task-description" form="task-form" placeholder="Description..."><?php echo $result['description']; ?></textarea>
                         <div class="error"><?php echo $this->getData('error_description'); ?></div><br>
                         <input type="button" name="cancel" class="cancel cancel-form" value="Cancel">

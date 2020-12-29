@@ -10,13 +10,21 @@
     <div class="container">
         <div class="row-header">
             <table id="header-table">
-                <tr></tr>
                 <tr>
-                    <td id="header-label"><span>myTasks</span></td>
+                    <td id="header-label">myTasks</td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
                             <img src="../../images/list.svg" alt="">
                             <div class="dropdown-menu-header">
+                                <div class="nav-dropdown">
+                                    <p><a href="all_tasks.php?addtask=1">New Task</a></p>
+                                    <p><a href="all_tasks.php?back=1">All Tasks</a></p>
+                                    <p><a href="all_tasks.php?filtertasks=onhold">On-hold</a></p>
+                                    <p><a href="all_tasks.php?filtertasks=todo">TODO</a></p>
+                                    <p><a href="all_tasks.php?filtertasks=inprogress">In&nbspProgress</a></p>
+                                    <p><a href="all_tasks.php?filtertasks=resolved">Resolved</a></p>
+                                    <p><hr></p>
+                                </div>
                                 <p><a id="logout" href="../../logout.php">Logout</a></p>
                             </div>
                         </div>
@@ -27,7 +35,7 @@
         <div class="row-nav">
             <div class="nav">
                 <ul>
-                    <li>
+                    <li class="li-remove">
                         <a href="all_tasks.php?addtask=1">
                             <table>
                                 <tr>
@@ -79,7 +87,7 @@
                     </li>
                     <li>
                         <a href="all_tasks.php?filtertasks=resolved">
-                            <table>
+                            <table id="nav-last">
                                 <tr>
                                     <td><img class="nav-img" src="../../images/check2-square.svg" alt="resolved"></td>
                                     <td>Resolved</td>
@@ -101,12 +109,12 @@
                 <div id="admin-container">
                     <div class="form-container">
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">
-                            <label id="account-user-label" for="username">Username:</label>
+                            <label id="account-user-label" for="username">Username:</label><br>
                             <select id="username" name="username">
                                 <option value="<?php echo $_SESSION['user']; ?>"><?php echo $_SESSION['user']; ?></option>
                             </select>
                             <br><br><br>
-                            <label for="password">New Password</label><br>
+                            <label for="password">Password</label><br>
                             <input type="password" name="password" id="password" placeholder="Enter new password" value="<?php echo $this->getData('input_pass'); ?>">
                             <div class="error"><?php echo $this->getData('error_pass'); ?></div><br>
                             <label for="password_confirm">Confirm Password</label><br>

@@ -14,13 +14,21 @@ include('../../includes/database.php');
     <div class="container">
         <div class="row-header">
             <table id="header-table">
-                <tr></tr>
                 <tr>
-                    <td id="header-label"><span>myTasks</span></td>
+                    <td id="header-label">myTasks</td>
                     <td id="header-icon">
                         <div class="header-dropdown dropdown">
                             <img src="../../images/list.svg" alt="">
                             <div class="dropdown-menu-header">
+                                <div class="nav-dropdown">
+                                    <p><a href="group_all_tasks.php?addtask=1">New Task</a></p>
+                                    <p><a href="group_all_tasks.php?back=1">All Tasks</a></p>
+                                    <p><a href="group_all_tasks.php?filtertasks=onhold">On-hold</a></p>
+                                    <p><a href="group_all_tasks.php?filtertasks=todo">TODO</a></p>
+                                    <p><a href="group_all_tasks.php?filtertasks=inprogress">In&nbspProgress</a></p>
+                                    <p><a href="group_all_tasks.php?filtertasks=resolved">Resolved</a></p>
+                                    <p><hr></p>
+                                </div>
                                 <p><a href="group_account.php">Account</a></p>
                                 <p><a href="admin.php" id="admin">Admin</a></p>
                                 <p><a id="logout" href="../../logout.php">Logout</a></p>
@@ -85,7 +93,7 @@ include('../../includes/database.php');
                     </li>
                     <li id="li-resolved">
                         <a href="group_all_tasks.php?filtertasks=resolved">
-                            <table>
+                            <table id="nav-last">
                                 <tr>
                                     <td><img class="nav-img" src="../../images/check2-square.svg" alt="resolved"></td>
                                     <td>Resolved</td>
@@ -155,13 +163,18 @@ include('../../includes/database.php');
                                             $class = 'todo';
                                     }
                                     $bug_display = "<tr>
-                                                        <td>
-                                                            <a href='group_selected_task.php?id=$id'>Task-$id: $title</a>
-                                                            <span class='display-$class'>$status</span>
-                                                        </td>
-                                                    </tr>";
+                                                    <td class='bug-display-normal-view'>
+                                                        <a href='group_selected_task.php?id=$id'>Task-$id: $title</a>
+                                                        <span class='display-$class'>$status</span>
+                                                    </td>
+                                                    <td class='bug-display-mobile-view'>
+                                                        <a href='group_selected_task.php?id=$id'>Task-$id: ".substr($title,0,15)."...</a>
+                                                        <span class='display-$class'>$status</span>
+                                                    </td>
+                                                </tr>";
 
                                     echo $bug_display;
+                                    
                                 }
                                 $stmt->free_result();
                                 $stmt->close();

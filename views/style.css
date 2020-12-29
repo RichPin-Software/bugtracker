@@ -79,15 +79,16 @@ div#admin-container {
 }
 
 div#addtask-container,
-div#edittask-container {
-    margin: 10px auto 0 auto;
-    padding: 30px 150px;
-}
-
+div#edittask-container,
 div#admin-container {
     margin: 0 auto;
-    padding: 30px 0px;
+    padding: 30px 47px;
 }
+
+/* div#admin-container {
+    margin: 0 auto;
+    padding: 30px 0px;
+} */
 
 div#login-form {
     position: relative;
@@ -100,43 +101,30 @@ div#login-form {
 div.container {
     width:100%;
     height:100%;
-    /* margin: 0 auto; */
-    /* box-shadow: 0 8px 8px 0px rgba(0,0,0,0.25); */
 }
 
 div.row-header {
     height: 65px;
     background-color: rgba(0, 50, 216, 0.9);
-    box-shadow: 0 8px 8px 0px rgba(0,0,0,0.1);
 }
 
 div.row-nav {
-    width: 15%;
-    float:left;
+    width: 100%;
+    height: fit-content;
 }
 
 div.row-body {
-    width:85%;
+    width: 100%;
     float:left;
     height: fit-content;
 }
 
 div.members-body {
-    width: 70%;
+    width: 1100px;
     padding: 0;
     margin: 0 auto;
     height: fit-content;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
-}
-
-div.form-container {
-    max-width: 250px;
-    width: 90%;
-    margin: 0 auto;
-}
-
-div.selected-task-container {
-    width:100%;
 }
 
 /*
@@ -144,50 +132,54 @@ div.selected-task-container {
 */
 
 div.nav {
-    float: left;
-    width: 100%;
+    width: 1100px;
     height: 100%;
-    margin: 0;
+    margin: 0 auto;
+    border-bottom: 1px solid rgb(112, 112, 112);
 }
 
 div.nav ul {
     list-style-type: none;
     overflow: hidden;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
-    border-right: 1px solid rgb(112, 112, 112);
-    border-bottom: 1px solid rgb(112, 112, 112);
+    width: 100%;
 }
 
 div.nav ul li {
     margin: 0 auto;
+    float: left;
 }
 
 div.nav ul li a {
-    display:block;
+    display: block;
     width: 100%;
     height: auto;
     padding: 35px 30px;
     font-weight: 600;
-    font-size:13px;
+    font-size: 13px;
     color: rgb(0,0,0);
 }
 
 div.nav ul li a table {
-    width:120px;
+    width: 123px;
     margin: 0 auto;
 }
 
+div.nav ul li a table#nav-last {
+    width: 125px;
+}
+
 div.nav ul li a table tr td {
-    margin:0;
-    padding:0;
-    text-align:left;
+    margin: 0;
+    padding: 0;
+    text-align: left;
 }
 
 div.nav ul li a img {
     height: 18px;
-    margin-right: 20px;
-    filter:none;
+    margin-right: 15px;
+    filter: none;
 }
 
 div.nav ul li a:hover {
@@ -199,37 +191,42 @@ div.nav ul li a:hover .nav-img {
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
+.nav-dropdown {
+    display: none;
+}
+
 /*
     4. Tables
 */
 
 table#header-table {
-    height:100%;
+    position: relative;
+    width:1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
 }
 
 table#header-table tr td#header-label,
 table#header-table tr td#header-icon {
-    width: 15%;
-    height:100%;
     color:rgb(255, 255, 255);
 }
 
 table#header-table tr td#header-label {
-    float:left;
+    float: left;
+    margin: 0 49px;
+    padding: 17px 0;
+    text-align: left;
     color:rgb(255, 255, 255);
-    font-size:20px;
-    font-weight:600;
-}
-
-table#header-table tr td#header-label span {
-    display: block;
-    width: 120px;
-    margin: 0 auto;
+    font-size: 25px;
+    font-weight: 600;
 }
 
 table#header-table tr td#header-icon {
-    float: right;
-    width: 12%;
+    height: 100%;
+    padding: 12px 0 0 0;
+    position: absolute;
+    right: 33px;
 }
 
 table#header-table tr td#header-icon div.header-dropdown {
@@ -237,27 +234,23 @@ table#header-table tr td#header-icon div.header-dropdown {
 }
 
 table#header-table tr td#header-icon img {
-    width: 25px;
+    width: 40px;
+    height: 40px;
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
 table.row-body-header-table {
-    width: 70%;
-    margin:0 auto;
-    padding:0;
+    width: 1100px;
+    margin: 0 auto;
+    padding: 0;
 }
 
 table.row-body-header-table tr td.task-header {
-    text-align:left;
-    margin:0;
-    padding:30px 0;
-    font-weight:600;
-    font-size:21px;
-}
-
-table.selected-task-layout {
-    position: relative;
-    /* border: 1px solid rgb(0,0,0); */
+    text-align: left;
+    margin: 0;
+    padding: 30px 0;
+    font-weight: 600;
+    font-size: 21px;
 }
 
 table.selected-task-layout tr td:nth-child(1) {
@@ -266,37 +259,41 @@ table.selected-task-layout tr td:nth-child(1) {
 
 table.selected-task-layout tr td:nth-child(2) {
     width: 35%;
+    vertical-align: top;
+    padding:0;
+    margin:0;
 }
 
 table#selected-task {
     margin: 0 auto;
-    padding: 10px 10px 0 10px;
-    width: 90%;
-    border: 1px solid rgb(0,0,0);
+    padding: 10px 0 0 10px;
 }
 
 table#selected-task tr th {
+    font-size: 18px;
     padding: 10px;
     border: 1px solid rgb(0,0,0);
+    border-radius: 3px;
     text-align: center;
 }
 
 table#selected-task tr td#description {
     margin: 10px 0;
     padding: 20px;
-    height: 220px;
+    height: 200px;
     border: 1px solid rgb(0,0,0);
+    border-radius: 3px;
 }
 
 table#selected-task tr td#description div {
     max-height: 243px;
-    min-height: 220px;
+    min-height: 200px;
     white-space: pre-wrap;
     overflow-y: scroll;
 }
 
 td#edit-delete {
-    padding: 10px 0;
+    padding: 20px 0 0 0;
     float: right;
     text-align: right;
 }
@@ -307,9 +304,6 @@ td#edit-delete a#delete-task-group {
 }
 
 table#selected-task-data-table {
-    width: 95%;
-    position: absolute;
-    top: 0;
     text-align: left;
     margin: 25px auto;
     padding: 0;
@@ -321,6 +315,10 @@ table#selected-task-data-table tr td {
 }
 
 .display-author {
+    display:block;
+    width:fit-content;
+    border: 1px solid rgb(112, 112, 112);
+    padding: 4px 5px;
     font-weight: 600;
 }
 
@@ -348,6 +346,10 @@ table#tasks {
     margin-bottom: 20px;
 }
 
+table#tasks tr td.bug-display-mobile-view {
+    display: none;
+}
+
 table#tasks tr td a {
     color: rgb(20, 29, 75);
     font-size: 16px;
@@ -360,8 +362,8 @@ table#tasks tr td span.display-inprogress,
 table#tasks tr td span.display-resolved {
     padding-right:40px;
     font-weight: 600;
-    font-size:19px;
-    float:right;
+    font-size: 19px;
+    float: right;
 }
 
 table#tasks tr td span.display-onhold {
@@ -393,13 +395,9 @@ table#tasks tr:nth-child(even) {
 */
 
 form#task-form {
-    max-width: 500px;
+    /* max-width: 500px; */
+    max-width: 1000px;
     margin: 0 auto;
-}
-
-form#task-form label#account-label-username,
-form#task-form label#admin-label-groupname {
-    color: rgb(112, 112, 112);
 }
 
 form#task-form select {
@@ -442,15 +440,15 @@ a#group-signup {
 
 input.submit {
     background-color: rgb(25, 65, 247);
-    width:fit-content;
-    padding:6px;
-    border-radius:7px;
-    float:right;
+    width: fit-content;
+    padding: 6px;
+    border-radius: 7px;
+    float: right;
     color:rgb(255, 255, 255);
 }
 
 input.cancel {
-    width:fit-content;
+    width: fit-content;
 }
 
 /*
@@ -464,12 +462,6 @@ a#back {
 a#back img {
     padding-top: 10px;
     width: 30px;
-}
-
-h3.task-header {
-    margin: 30px auto;
-    width: 70%;
-    height: fit-content;
 }
 
 label#account-user-label {
@@ -500,7 +492,7 @@ div.dropdown-menu-login {
     position: absolute;
     background-color: #f9f9f9;
     border-radius: 2px;
-    text-align: left;
+    text-align: right;
     width: fit-content;
     overflow:auto;
     box-shadow: 0 8px 16px 0px rgba(0,0,0,0.3);
@@ -561,6 +553,10 @@ div.dropdown-menu p a#resolved:hover {
     color:rgb(0, 138, 7);
 }
 
+span#dropdown-status {
+    font-weight: 600;
+}
+
 div.dropdown:hover span#dropdown-status {
     color: rgb(0, 50, 216);
 }
@@ -592,8 +588,8 @@ span.display-assignee#assignee-dropdown-sts {
 
 .dropdown:hover .dropdown-menu-header {
     display: block;
-    right:5px;
-    top: 25px;
+    right: 5px;
+    top: 35px;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -622,7 +618,7 @@ span.display-assignee#assignee-dropdown-sts {
 
 a.page-link {
     margin-right: 5px;
-    text-decoration:underline;
+    text-decoration: underline;
 }
 
 div.results {
@@ -673,49 +669,239 @@ div.error {
 
     Media Queries
 
-    Screen width: 1400px
+    Screen width: 1200px
 
-        1400-2. Containers
-        1400-4. Tables
-        1400-6. Miscellaneous
+        1200-2. Containers
+        1200-3. Navigation
+        1200-4. Tables
+        1200-8. Pagination
+        1200.9. Alerts
+
+    Screen width: 1070px
+
+        1070-3. Navigation
+
+    Screen width: 900px
+
+        900-
 
 */
 
 /*
-    Screen width: 1400px
+    Screen width: 1200px
 */
-
-@media only screen and (max-width: 1400px)
+@media only screen and (max-width: 1200px)
 {
     /*
-        1400-2. Containers
+        1200-2. Containers
     */
+    div.row-nav {
+        border-bottom: 1px solid rgb(112, 112, 112);
+    }
 
+    div.members-body {
+        width: 100%;
+        box-shadow: none;
+    }
+
+    div#addtask-container,
+    div#edittask-container, 
+    div#admin-container {
+        border: none;
+    }
     /*
-        1400-4. Tables
+        1200-3. Navigation
     */
 
-    table#tasks tr td a {
-        font-size: 14px;
+    div.nav {
+        width: fit-content;
+        border: none;
+    }
+
+    div.nav ul li a {
+        padding: 30px 20px;
+    }
+
+    div.nav ul li a table#nav-last {
+        width: 123px;
+    }
+
+    div.nav ul li a:hover {
+        background-color:rgb(255,255,255);
+        color:rgb(0, 50, 216);
     }
     
+    div.nav ul li a:hover .nav-img {
+        filter: invert(19%) sepia(58%) saturate(5689%) hue-rotate(226deg) brightness(79%) contrast(120%);
+    }
+    /*
+        1200-4. Tables
+    */
+    table#header-table {
+        width:100%;
+    }
+
+    table#header-table tr td#header-label {
+        margin: 0 47px;
+    }
+
+    table.row-body-header-table {
+        width: 100%;
+        padding: 0 47px;
+        border-bottom: 1px solid rgb(0,0,0);
+    }
+
+    table.row-body-header-table tr td.task-header {
+        padding: 25px 0;
+        font-size: 19px;
+        color: rgb(25, 65, 247);
+    }
+
+    table#tasks tr td {
+        padding-left: 46px;
+    }
+
+    table.selected-task-layout {
+        border-bottom: 1px solid rgb(0,0,0);
+    }
+
+    table#selected-task {
+        padding: 0 0 0 32px;
+    }
+
+    table#selected-task tr th {
+        font-size: 19px;
+        margin-left: 0;
+    }
+
+    /* table#selected-task-data-table {
+        padding-right: 47px;
+        text-align: right;
+    } */
+
+    /* .display-author {
+        float: right;
+    } */
+
+    /* .bug-display-mobile-view {
+        display: none;
+    } */
+    /*
+        1200-7. Dropdown Menus
+    */
+    /* .dropdown:hover #dropdown-menu-status,
+    .dropdown:hover #dropdown-menu-assignee {
+        left: -90%;
+    } */
+    /*
+        1200-8. Pagination
+    */
+    div.results {
+        padding: 0 0 0 47px;
+    }
+    /*
+        1200-9. Alerts
+    */
+    .alerts li.success {
+        font-size: 19px;
+    }
+}
+/*
+    Screen width: 1180px
+*/
+@media only screen and (max-width: 1180px)
+{
+    table#selected-task tr th {
+        font-size: 17px;
+    }
+}
+/*
+    Screen width: 1070px
+*/
+@media only screen and (max-width: 1070px)
+{
+    /*
+        1070-3. Navigation
+    */
+    div.nav {
+        display: none;
+    }
+
+    .nav-dropdown {
+        display: block;
+        text-align: left;
+        font-style: italic;
+        font-size: 14px;
+    }
+}
+/*
+    Screen width: 1050px
+*/
+@media only screen and (max-width: 1050px)
+{
+    table#selected-task tr th {
+        font-size: 15px;
+    }
+    /* #td-selected-task {
+        position: relative;
+    }
+    #td-selected-task-data {
+        position: absolute;
+        bottom: 0;
+    } */
+}
+/*
+    Screen width: 900px
+*/
+@media only screen and (max-width: 900px)
+{
+    /*
+        900-4. Tables
+    */
     table#tasks tr td span.display-onhold, 
     table#tasks tr td span.display-todo, 
     table#tasks tr td span.display-inprogress, 
     table#tasks tr td span.display-resolved {
-        font-size:16px;
+        display: none;
     }
 
-    table#selected-task-data-table {
-        margin:76px 0;
-        /* padding: 0 30px 0 0; */
+    table#selected-task tr th {
+        /* font-size: 20px; */
+        font-size: 16px;
     }
 
+    .display-author {
+        font-size: 12px;
+    }
     /*
-        1400-6. Miscellaneous
+        900-7. Dropdown Menus
     */
-
-    h3#selected-task-task-header {
-        width: 90%;
+    span#dropdown-status {
+        font-size: 12px;
     }
+
+    span.display-assignee#assignee-dropdown-sts {
+        font-size: 12px;
+    }
+}
+/*
+    Screen width: 700px
+*/
+@media only screen and (max-width: 700px)
+{
+    /*
+        700-4. Tables
+    */
+    table#tasks tr td.bug-display-normal-view {
+        display: none;
+    }
+
+    table#tasks tr td.bug-display-mobile-view {
+        display: block;
+    }
+
+    table#selected-task tr th {
+        font-size: 16px;
+    }
+
 }
