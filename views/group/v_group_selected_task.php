@@ -114,7 +114,7 @@ include('../../includes/database.php');
             <div class="members-body">
                 <table class="selected-task-layout">
                     <tr>
-                        <td>
+                        <td id="td-selected-task">
                             <table id="selected-task">
                             <?php
                             if ($stmt = $conn->prepare("SELECT * FROM $db_user_table WHERE id = ?")) // begin if statement
@@ -169,7 +169,7 @@ include('../../includes/database.php');
                                 </tr>
                             </table><!-- #selected-task -->
                         </td>
-                        <td>
+                        <td id="td-selected-task-data">
                             <table id="selected-task-data-table">
                                 <tr>
                                     <td id="author">

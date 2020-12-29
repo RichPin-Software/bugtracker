@@ -79,15 +79,16 @@ div#admin-container {
 }
 
 div#addtask-container,
-div#edittask-container {
-    margin: 0 auto;
-    padding: 30px 150px;
-}
-
+div#edittask-container,
 div#admin-container {
     margin: 0 auto;
-    padding: 30px 0px;
+    padding: 30px 47px;
 }
+
+/* div#admin-container {
+    margin: 0 auto;
+    padding: 30px 0px;
+} */
 
 div#login-form {
     position: relative;
@@ -124,11 +125,6 @@ div.members-body {
     margin: 0 auto;
     height: fit-content;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
-}
-
-div.form-container {
-    width: 90%;
-    margin: 0 auto;
 }
 
 /*
@@ -274,6 +270,7 @@ table#selected-task {
 }
 
 table#selected-task tr th {
+    font-size: 18px;
     padding: 10px;
     border: 1px solid rgb(0,0,0);
     border-radius: 3px;
@@ -349,6 +346,10 @@ table#tasks {
     margin-bottom: 20px;
 }
 
+table#tasks tr td.bug-display-mobile-view {
+    display: none;
+}
+
 table#tasks tr td a {
     color: rgb(20, 29, 75);
     font-size: 16px;
@@ -394,7 +395,8 @@ table#tasks tr:nth-child(even) {
 */
 
 form#task-form {
-    max-width: 500px;
+    /* max-width: 500px; */
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -768,28 +770,29 @@ div.error {
     }
 
     table#selected-task tr th {
+        font-size: 19px;
         margin-left: 0;
     }
 
-    table#selected-task-data-table {
+    /* table#selected-task-data-table {
         padding-right: 47px;
         text-align: right;
-    }
+    } */
 
-    .display-author {
+    /* .display-author {
         float: right;
-    }
+    } */
 
-    .bug-display-mobile-view {
+    /* .bug-display-mobile-view {
         display: none;
-    }
+    } */
     /*
         1200-7. Dropdown Menus
     */
-    .dropdown:hover #dropdown-menu-status,
+    /* .dropdown:hover #dropdown-menu-status,
     .dropdown:hover #dropdown-menu-assignee {
         left: -90%;
-    }
+    } */
     /*
         1200-8. Pagination
     */
@@ -801,6 +804,15 @@ div.error {
     */
     .alerts li.success {
         font-size: 19px;
+    }
+}
+/*
+    Screen width: 1180px
+*/
+@media only screen and (max-width: 1180px)
+{
+    table#selected-task tr th {
+        font-size: 17px;
     }
 }
 /*
@@ -823,6 +835,22 @@ div.error {
     }
 }
 /*
+    Screen width: 1050px
+*/
+@media only screen and (max-width: 1050px)
+{
+    table#selected-task tr th {
+        font-size: 15px;
+    }
+    /* #td-selected-task {
+        position: relative;
+    }
+    #td-selected-task-data {
+        position: absolute;
+        bottom: 0;
+    } */
+}
+/*
     Screen width: 900px
 */
 @media only screen and (max-width: 900px)
@@ -838,7 +866,8 @@ div.error {
     }
 
     table#selected-task tr th {
-        font-size: 20px;
+        /* font-size: 20px; */
+        font-size: 16px;
     }
 
     .display-author {
