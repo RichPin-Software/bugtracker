@@ -113,183 +113,166 @@ include('../../includes/database.php');
             </table>
             <div class="members-body">
                 <table class="selected-task-layout">
-                    <tr>
-                        <td id="td-selected-task">
-                            <table id="selected-task">
-                            <?php
-                            if ($stmt = $conn->prepare("SELECT * FROM $db_user_table WHERE id = ?")) // begin if statement
+                <?php
+                    if ($stmt = $conn->prepare("SELECT * FROM $db_user_table WHERE id = ?")) // begin if statement
+                    {
+                        $stmt->bind_param("i", $id);
+                        $id = $_SESSION['id'];
+                        $stmt->execute();
+                        $stmt->store_result();
+                        $stmt->bind_result(
+                            $result['id'], 
+                            $result['title'], 
+                            $result['author'], 
+                            $result['assignee'], 
+                            $result['status'], 
+                            $result['description']
+                        );
+
+                        if ($stmt->num_rows > 0)
+                        {
+                            $stmt->fetch();
+                            // set class name for CSS
+                            switch($result['status'])
                             {
-                                $id = $_SESSION['id'];
-                                $stmt->bind_param("i", $id);
+                                case 'On-hold':
+                                    $sts = 'onhold';
+                                    break;
+                                case 'TODO':
+                                    $sts = 'todo';
+                                    break;
+                                case 'In Progress':
+                                    $sts = 'inprogress';
+                                    break;
+                                case 'Resolved':
+                                    $sts = 'resolved';
+                                    break;
+                                default: 
+                                    $sts = 'todo';
+                            }
+                    ?>
+                    <tr>
+                        <td id="selected-task-header"><?php echo $result['title']; ?></td>
+                    </tr>
+                    <tr>
+                        <td id="status">
+                            <div class="td-content dropdown">
+                                <span class="task-suffix">Status: </span>
+                                <span class="<?php echo "display-$sts"; ?>" id="dropdown-status"><?php echo $result['status']; ?></span>
+                                <div id="dropdown-menu-status" class="dropdown-menu">
+                                    <p><a href="group_selected_task.php?status=onhold" id="on-hold">On-hold</a></p>
+                                    <p><a href="group_selected_task.php?status=todo" id="todo">TODO</a></p>
+                                    <p><a href="group_selected_task.php?status=inprogress" id="in-progress">In&nbspProgress</a></p>
+                                    <p><a href="group_selected_task.php?status=resolved" id="resolved">Resolved</a></p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="author">
+                            <span class="task-suffix">Created by:</span>
+                            <span class="display-author"><?php echo $result['author']; ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="assignee">
+                            <div class="td-content dropdown">
+                                <span class="task-suffix">Assigned to:</span>
+                                <span class="display-assignee" id="assignee-dropdown-sts"><?php echo $result['assignee']; ?></span>
+                                <div class="dropdown-menu" id="dropdown-menu-assignee">
+                            <?php
+                            // Assignee dropdown
+                            $groupname = '';
+                            
+                            if($stmt = $conn->prepare("SELECT groupname FROM users_login WHERE username = ?"))
+                            {
+                                $username = $_SESSION['user'];
+                                $stmt->bind_param("s", $username);
                                 $stmt->execute();
                                 $stmt->store_result();
-                                $stmt->bind_result(
-                                    $result['id'], 
-                                    $result['title'], 
-                                    $result['author'], 
-                                    $result['assignee'], 
-                                    $result['status'], 
-                                    $result['description']
-                                );
+                                $stmt->bind_result($group_name);
 
                                 if ($stmt->num_rows > 0)
                                 {
-                                    $stmt->fetch();
-                                    // set class name for CSS
-                                    switch($result['status'])
+                                    while($stmt->fetch()) 
                                     {
-                                        case 'On-hold':
-                                            $sts = 'onhold';
-                                            break;
-                                        case 'TODO':
-                                            $sts = 'todo';
-                                            break;
-                                        case 'In Progress':
-                                            $sts = 'inprogress';
-                                            break;
-                                        case 'Resolved':
-                                            $sts = 'resolved';
-                                            break;
-                                        default: 
-                                            $sts = 'todo';
+                                        $groupname = $group_name;
                                     }
-                            ?>
-                                <tr>
-                                    <th colspan="2"><div class="title"><?php echo $result['title']; ?></div></th>
-                                </tr>
-                                <tr></tr><tr></tr><tr></tr><tr></tr>
-                                <tr></tr><tr></tr><tr></tr><tr></tr>
-                                <tr></tr><tr></tr><tr></tr><tr></tr>
-                                <tr><td colspan="2" id="description"><div><?php echo $result['description']; ?></div></td></tr>
-                                <tr>
-                                    <td id="edit-delete">
-                                        <a id="edit-task" href="group_selected_task.php?edittask=true"><img src="../../images/pencil-square.svg" alt="edit"></a>
-                                        <a id="delete-task-group" href="#"><img src="../../images/trash-fill.svg" alt="delete"></a>
-                                    </td>
-                                </tr>
-                            </table><!-- #selected-task -->
-                        </td>
-                        <td id="td-selected-task-data">
-                            <table id="selected-task-data-table">
-                                <tr>
-                                    <td id="author">
-                                        <div class="td-content">
-                                            <span class="task-suffix">Created by: </span><br>
-                                            <span class="display-author"><?php echo $result['author']; ?></span>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td id="assignee">
-                                        <div class="td-content dropdown">
-                                            <span class="task-suffix">Assigned to:</span><br>
-                                            <div class="selected-task-data-dropdown-container">
-                                                <span class="display-assignee" id="assignee-dropdown-sts"><?php echo $result['assignee']; ?></span>
-                                                <img src="../../images/caret-down.svg" alt="dropdown">
-                                            </div>
-                                            <div class="dropdown-menu" id="dropdown-menu-assignee">
-                                        <?php
-                                        // Assignee dropdown
-                                        $groupname = '';
-                                        
-                                        if($stmt = $conn->prepare("SELECT groupname FROM users_login WHERE username = ?"))
-                                        {
-                                            $username = $_SESSION['user'];
-                                            $stmt->bind_param("s", $username);
-                                            $stmt->execute();
-                                            $stmt->store_result();
-                                            $stmt->bind_result($group_name);
 
-                                            if ($stmt->num_rows > 0)
-                                            {
-                                                while($stmt->fetch()) 
-                                                {
-                                                    $groupname = $group_name;
-                                                }
+                                    $stmt->free_result();
+                                }
+                                else
+                                {
+                                    die("Error: No Group");
+                                }
+                            }
+                            else
+                            {
+                                die("Failure to connect: ($conn->errno) $conn->error");
+                            }
 
-                                                $stmt->free_result();
-                                            }
-                                            else
-                                            {
-                                                die("Error: No Group");
-                                            }
-                                        }
-                                        else
+                            if($groupname != '' || $groupname != null)
+                            {
+                                if ($stmt = $conn->prepare("SELECT username FROM users_login WHERE groupname = ?"))
+                                {
+                                    $stmt->bind_param("s", $groupname);
+                                    $stmt->execute();
+                                    $stmt->store_result();
+                                    $stmt->bind_result($username);
+        
+                                    if ($stmt->num_rows > 0)
+                                    {
+                                        while($stmt->fetch()) 
                                         {
-                                            die("Failure to connect: ($conn->errno) $conn->error");
+                                            echo "<p><a class='assignee' href='group_selected_task.php?assign=$username'>$username</a></p>";
                                         }
 
-                                        if($groupname != '' || $groupname != null)
-                                        {
-                                            if ($stmt = $conn->prepare("SELECT username FROM users_login WHERE groupname = ?"))
-                                            {
-                                                $stmt->bind_param("s", $groupname);
-                                                $stmt->execute();
-                                                $stmt->store_result();
-                                                $stmt->bind_result($username);
-                    
-                                                if ($stmt->num_rows > 0)
-                                                {
-                                                    while($stmt->fetch()) 
-                                                    {
-                                                        echo "<p><a class='assignee' href='group_selected_task.php?assign=$username'>$username</a></p>";
-                                                    }
-
-                                                    $stmt->free_result();
-                                                }
-                                                else
-                                                {
-                                                    die("Error: No Users");
-                                                }
-                                            }
-                                            else
-                                            {
-                                                die("Failure to connect: ($conn->errno) $conn->error");
-                                            }
-                                        }
-                                        else
-                                        {
-                                            echo "<p><a href='#'>".$_SESSION['user']."</a></p>";
-                                        }  
-                                        ?>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td id="status">
-                                        <div class="td-content dropdown">
-                                            <span class="task-suffix">Status: </span><br>
-                                            <div class="selected-task-data-dropdown-container">
-                                                <span class="<?php echo "display-$sts"; ?>" id="dropdown-status"><?php echo $result['status']; ?></span>
-                                                <img src="../../images/caret-down.svg" alt="dropdown">
-                                            </div>
-                                            <div id="dropdown-menu-status" class="dropdown-menu">
-                                                <p><a href="group_selected_task.php?status=onhold" id="on-hold">On-hold</a></p>
-                                                <p><a href="group_selected_task.php?status=todo" id="todo">TODO</a></p>
-                                                <p><a href="group_selected_task.php?status=inprogress" id="in-progress">In&nbspProgress</a></p>
-                                                <p><a href="group_selected_task.php?status=resolved" id="resolved">Resolved</a></p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <?php
-                                        $stmt->close();
-                                        $conn->close();
+                                        $stmt->free_result();
                                     }
                                     else
                                     {
-                                        echo "<tr><th>No Data Available</th></tr>";
+                                        die("Error: No Users");
                                     }
-                                } // end if statement
+                                }
                                 else
                                 {
-                                    echo "<tr><th>Failure to connect: ($conn->errno) $conn->error</th></tr>";
+                                    die("Failure to connect: ($conn->errno) $conn->error");
                                 }
-                                ?>
-                            </table><!-- #selected-task-data-table -->
+                            }
+                            else
+                            {
+                                echo "<p><a href='#'>".$_SESSION['user']."</a></p>";
+                            }  
+                            ?>
+                                </div>
+                            </div>
                         </td>
                     </tr>
+                    <tr>
+                        <td id="description">
+                            <div><?php echo $result['description']; ?></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="edit-delete">
+                            <a id="edit-task" href="group_selected_task.php?edittask=true"><img src="../../images/pencil-square.svg" alt="edit">&nbspEdit</a>
+                            <a id="delete-task-group" href="#"><img src="../../images/trash-fill.svg" alt="delete">&nbspDelete</a>
+                        </td>
+                    </tr>
+                    <?php
+                                $stmt->close();
+                                $conn->close();
+                            }
+                            else
+                            {
+                                echo "<tr><th>No Data Available</th></tr>";
+                            }
+                        } // end if statement
+                        else
+                        {
+                            echo "<tr><th>Failure to connect: ($conn->errno) $conn->error</th></tr>";
+                        }
+                    ?>
                 </table><!-- .selected-task-layout -->
             </div><!-- .members-body -->
         </div><!-- .row-body -->
