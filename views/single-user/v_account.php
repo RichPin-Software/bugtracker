@@ -107,7 +107,7 @@
             </table>
             <div class="members-body">
                 <div id="admin-container">
-                    <div class="form-container">
+                    <div class="form-container" id="account">
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="task-form" method="POST">
                             <label id="account-user-label" for="username">Username:</label><br>
                             <select id="username" name="username">
