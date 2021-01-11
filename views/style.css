@@ -74,21 +74,11 @@ div#login-container {
 div#addtask-container,
 div#edittask-container, 
 div#admin-container {
+    margin: 0 auto;
+    padding: 50px 150px;
     width: 100%;
     border: 1px solid rgb(0,0,0);
 }
-
-div#addtask-container,
-div#edittask-container,
-div#admin-container {
-    margin: 0 auto;
-    padding: 50px 150px;
-}
-
-/* div#admin-container {
-    margin: 0 auto;
-    padding: 30px 0px;
-} */
 
 div#login-form {
     position: relative;
@@ -182,18 +172,15 @@ div.nav ul li a table tr td {
 }
 
 div.nav ul li a table tr td:nth-child(1) {
-    /* background-color:pink; */
     width: 20px;
 }
 
 div.nav ul li a table tr td:nth-child(2) {
-    /* background-color:green; */
     padding-left: 10px;
 }
 
 div.nav ul li a img {
     height: 18px;
-    /* margin-right: 15px; */
     margin-left: 5px;
     margin-right: 5px;
     filter: none;
@@ -270,17 +257,6 @@ table.row-body-header-table tr td.task-header {
     font-size: 21px;
 }
 
-/* table.selected-task-layout tr td:nth-child(1) {
-    width: 65%;
-}
-
-table.selected-task-layout tr td:nth-child(2) {
-    width: 35%;
-    vertical-align: top;
-    padding:0;
-    margin:0;
-} */
-
 .selected-task-layout {
     padding: 50px 200px;
 }
@@ -335,8 +311,6 @@ table#selected-task tr td#description div {
 td#edit-delete {
     padding: 13px 10px 10px 10px;
     border-top: 1px solid rgb(0,0,0);
-    /* float: left;
-    text-align: left; */
 }
 
 td#edit-delete a {
@@ -361,26 +335,8 @@ table#selected-task-data-table tr td {
 }
 
 .display-author {
-    /* display:block;
-    width:fit-content;
-    border: 1px solid rgb(112, 112, 112);
-    padding: 4px 5px; */
     font-weight: 600;
 }
-
-/* .selected-task-data-dropdown-container {
-    padding: 4px 5px 3px 5px;
-    border: 1px solid rgb(112, 112, 112);
-} */
-
-/* .selected-task-data-dropdown-container span {
-    padding-right: 4px;
-} */
-
-/* .selected-task-data-dropdown-container img {
-    padding-left: 3px;
-    border-left: 1px solid rgb(112, 112, 112);
-} */
 
 .task-suffix {
     color: rgb(97, 97, 97);
@@ -441,7 +397,6 @@ table#tasks tr:nth-child(even) {
 */
 
 form#task-form {
-    /* max-width: 500px; */
     max-width: 800px;
     margin: 0 auto;
 }
@@ -715,26 +670,6 @@ div.error {
 
     Media Queries
 
-    Screen width: 1200px
-
-        1200-2. Containers
-        1200-3. Navigation
-        1200-4. Tables
-        1200-8. Pagination
-        1200.9. Alerts
-
-    Screen width: 1070px
-
-        1070-3. Navigation
-
-    Screen width: 900px
-
-        900-
-
-*/
-
-/*
-    Screen width: 1200px
 */
 @media only screen and (max-width: 1200px)
 {
@@ -753,6 +688,8 @@ div.error {
     div#addtask-container,
     div#edittask-container, 
     div#admin-container {
+        margin: 0;
+        padding: 50px 47px;
         border: none;
     }
     /*
@@ -807,43 +744,21 @@ div.error {
         padding-left: 46px;
     }
 
-    /* table.selected-task-layout {
-        border-bottom: 1px solid rgb(0,0,0);
-    } */
-
     #selected-task-header {
-        color:pink;
         text-align: left;
     }
 
-    table#selected-task {
-        padding: 0 0 0 32px;
+    .selected-task-layout {
+        padding: 50px 45px;
     }
 
-    table#selected-task tr th {
-        font-size: 19px;
-        margin-left: 0;
-    }
-
-    /* table#selected-task-data-table {
-        padding-right: 47px;
-        text-align: right;
-    } */
-
-    /* .display-author {
-        float: right;
-    } */
-
-    /* .bug-display-mobile-view {
-        display: none;
-    } */
     /*
-        1200-7. Dropdown Menus
+        1200-5. Forms
     */
-    /* .dropdown:hover #dropdown-menu-status,
-    .dropdown:hover #dropdown-menu-assignee {
-        left: -90%;
-    } */
+    form#task-form {
+        max-width: 100%;
+        width: 100%;
+    }
     /*
         1200-8. Pagination
     */
@@ -857,18 +772,14 @@ div.error {
         font-size: 19px;
     }
 }
-/*
-    Screen width: 1180px
-*/
+
 @media only screen and (max-width: 1180px)
 {
     table#selected-task tr th {
         font-size: 17px;
     }
 }
-/*
-    Screen width: 1070px
-*/
+
 @media only screen and (max-width: 1070px)
 {
     /*
@@ -885,25 +796,14 @@ div.error {
         font-size: 14px;
     }
 }
-/*
-    Screen width: 1050px
-*/
+
 @media only screen and (max-width: 1050px)
 {
     table#selected-task tr th {
         font-size: 15px;
     }
-    /* #td-selected-task {
-        position: relative;
-    }
-    #td-selected-task-data {
-        position: absolute;
-        bottom: 0;
-    } */
 }
-/*
-    Screen width: 900px
-*/
+
 @media only screen and (max-width: 900px)
 {
     /*
@@ -917,8 +817,19 @@ div.error {
     }
 
     table#selected-task tr th {
-        /* font-size: 20px; */
         font-size: 16px;
+    }
+
+    #selected-task-header {
+        font-size: 18px;
+    }
+
+    .task-suffix {
+        font-size: 13px;
+    }
+
+    #description {
+        font-size: 12px;
     }
 
     .display-author {
@@ -935,9 +846,7 @@ div.error {
         font-size: 12px;
     }
 }
-/*
-    Screen width: 700px
-*/
+
 @media only screen and (max-width: 700px)
 {
     /*
@@ -955,4 +864,7 @@ div.error {
         font-size: 16px;
     }
 
+    .selected-task-layout {
+        padding: 50px 50px;
+    }
 }
