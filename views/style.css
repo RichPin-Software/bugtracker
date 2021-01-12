@@ -51,7 +51,8 @@ table td {
 
 input {
     width:100%;
-    padding:5px;
+    padding:8px;
+    border-radius: 5px;
 }
 
 textarea {
@@ -77,7 +78,6 @@ div#admin-container {
     margin: 0 auto;
     padding: 50px 150px;
     width: 100%;
-    border: 1px solid rgb(0,0,0);
 }
 
 div#login-form {
@@ -115,11 +115,6 @@ div.members-body {
     margin: 0 auto;
     height: fit-content;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
-}
-
-#account {
-    width: 300px;
-    margin: 0 auto;
 }
 
 /*
