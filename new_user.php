@@ -119,8 +119,8 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['group']))
             $new_user = $Template->getData($user_key);
             $new_password = $Template->getData($pass_key);
 
-            $Auth->addNewUserGroup($new_user, $new_group, $new_email, $new_password);
             $Template->redirect("login.php");
+            $Auth->addNewUserGroup($new_user, $new_group, $new_email, $new_password);
         }
     }
     else
@@ -185,8 +185,8 @@ else if($_SERVER["REQUEST_METHOD"] == "POST")
             $new_email = $Template->getData($email_key);
             $new_password = $Template->getData($pass_key);
 
-            $Auth->addNewUser($new_user, $new_email, $new_password);
             $Template->redirect("login.php");
+            $Auth->addNewUser($new_user, $new_email, $new_password);
         }
     }
     else
