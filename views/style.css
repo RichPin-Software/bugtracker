@@ -468,6 +468,11 @@ div.form-container form#task-form p {
     font-size: 13px;
 }
 
+.cancel-newuser {
+    padding: 6px;
+    border-radius: 7px;
+}
+
 /*
     7. Dropdown Menus
 */

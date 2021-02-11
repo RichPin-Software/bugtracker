@@ -12,7 +12,7 @@
             <h1>Create Account</h1>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <label for="email">Email:</label><br>
-                <input type="email" name="email" id="email" value="<?php echo $this->getData('new_email'); ?>">
+                <input type="email" placeholder="your_email@example.com" name="email" id="email" value="<?php echo $this->getData('new_email'); ?>">
                 <div class="error"><?php echo $this->getData('error_email'); ?></div><br>
                 <label for="username">Username:</label><br>
                 <input type="text" name="username" id="username" value="<?php echo $this->getData('new_user'); ?>">
